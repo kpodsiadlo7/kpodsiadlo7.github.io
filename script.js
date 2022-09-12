@@ -12,7 +12,7 @@
   getAllTasks();
 
   function getAllAvailableBoards(callback, callbackArgs) {
-    var requestUrl = trelloApiRoot + '/boards';
+    var requestUrl = trelloApiRoot + 'boards';
 
     $.ajax({
       url: requestUrl,
@@ -38,9 +38,9 @@
   function prepareBoardOrListSelectOptions(availableChoices) {
     return availableChoices.map(function(choice) {
       return $('<option>')
-          .addClass('crud-select__option')
-          .val(choice.id)
-          .text(choice.name || 'Unknown name');
+                .addClass('crud-select__option')
+                .val(choice.id)
+                .text(choice.name || 'Unknown name');
     });
   }
 
@@ -55,15 +55,15 @@
       var $availableBoardsOptionElements = prepareBoardOrListSelectOptions(boards);
 
       $datatableRowEl.find('[data-board-name-select]')
-          .append($availableBoardsOptionElements);
+        .append($availableBoardsOptionElements);
 
       $datatableRowEl
-          .appendTo($tasksContainer);
+        .appendTo($tasksContainer);
     });
   }
 
   function getAllTasks() {
-    const requestUrl = apiRoot;
+    const requestUrl = apiRoot + 'tasks';
 
     $.ajax({
       url: requestUrl,
@@ -84,7 +84,7 @@
     var taskId = parentEl.attr('data-task-id');
     var taskTitle = parentEl.find('[data-task-name-input]').val();
     var taskContent = parentEl.find('[data-task-content-input]').val();
-    var requestUrl = apiRoot;
+    var requestUrl = apiRoot + 'tasks';
 
     $.ajax({
       url: requestUrl,
@@ -108,7 +108,7 @@
   function handleTaskDeleteRequest() {
     var parentEl = $(this).parents('[data-task-id]');
     var taskId = parentEl.attr('data-task-id');
-    var requestUrl = apiRoot;
+    var requestUrl = apiRoot + 'tasks';
 
     $.ajax({
       url: requestUrl + '/' + taskId,
@@ -125,7 +125,7 @@
     var taskTitle = $(this).find('[name="title"]').val();
     var taskContent = $(this).find('[name="content"]').val();
 
-    var requestUrl = apiRoot;
+    var requestUrl = apiRoot + 'tasks';
 
     $.ajax({
       url: requestUrl,
@@ -138,7 +138,7 @@
         content: taskContent
       }),
       complete: function(data) {
-        if (data.status === 200) {
+        if(data.status === 200) {
           getAllTasks();
         }
       }
@@ -166,7 +166,7 @@
   }
 
   function handleCardCreationRequest(event) {
-    var requestUrl = trelloApiRoot + '/cards';
+    var requestUrl = trelloApiRoot + 'cards';
     var $relatedTaskRow = $(event.target).parents('[data-task-id]');
     var relatedTaskId = $relatedTaskRow.attr('data-task-id');
     var relatedTask = availableTasks[relatedTaskId];
