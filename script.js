@@ -1,5 +1,5 @@
   $(document).ready(function() {
-  const apiRoot = 'https://kodilla-tasks-karol.herokuapp.com/v1/tasks';
+  const apiRoot = 'https://kodilla-tasks-karol.herokuapp.com/v1/';
   const trelloApiRoot = 'https://kodilla-tasks-karol.herokuapp.com/v1/trello';
   const datatableRowTemplate = $('[data-datatable-row-template]').children()[0];
   const $tasksContainer = $('[data-tasks-container]');
@@ -63,7 +63,7 @@
   }
 
   function getAllTasks() {
-    const requestUrl = apiRoot;
+    const requestUrl = apiRoot + 'tasks';
 
     $.ajax({
       url: requestUrl,
