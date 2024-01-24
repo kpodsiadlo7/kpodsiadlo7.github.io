@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+.body {
+    background-color: #f2f2f2;
+}
+
+.container {
+    font-family: 'Poppins', sans-serif;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.homecontainer {
+    margin-top: 100px;
+    width: 800px;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.searchSummoner {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.lolcontainer {
+    margin-top: 100px;
+    width: 800px;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.toprectangle {
+    clear: both;
+    width: 100%;
+}
+
+.summonerContainer {
+    margin-top: 50px;
+    width: 1200px;
+    height: 900px;
+}
+
+.summonerMidContainer {
+    margin: 20px;
+}
+
+#midContainerTop {
+    height: 200px;
+}
+
+#midContainerTop #topRight {
+    display: flex;
+    width: auto;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    background-color: #f2f2f2;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+#midContainerTop #topLeft {
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 100%;
+    background-color: #f2f2f2;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+#leftMatchInfo1{
+    clear: both;
+}
+
+#info {
+    text-align: left;
+    margin-left: 5px;
+    margin-top: 50px;
+}
+
+.matchInfo {
+    
+}
+
+#midContainerCenter {
+    margin-top: 25px;
+}
+
+#title h3 {
+    font-weight: 600;
+}
+
+#champIconMiddle1 {
+    float: left;
+}
+
+.titleLeftMiddle {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+#champNameMiddle1 {
+    float: left;
+    align-items: center;
+    margin-left: 25px;
+}
+
+#champIconMiddle2 {
+    float: left;
+}
+
+#champNameMiddle2 {
+    float: left;
+    margin-left: 25px;
+}
+
+#champIconMiddle3 {
+    float: left;
+}
+
+#champNameMiddle3 {
+    float: left;
+    margin-left: 25px;
+}
+
+#middleContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 500px;
+}
+
+#leftMiddleContainer,
+#middleMiddleContainer,
+#rightMiddleContainer {
+    padding-top: 15px;
+    height: 100%;
+}
+
+#middleContainer img {
+    max-width: 75px;
+    max-height: 75px;
+}
+
+#midContainerCenter #leftMiddleContainer,
+#midContainerCenter #middleMiddleContainer,
+#midContainerCenter #rightMiddleContainer {
+    float: left;
+    width: 370px;
+    margin-top: 10px;
+    margin-left: 30px;
+    background-color: #f2f2f2;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#midContainerTop img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#midContainerTop #bottom img {
+    max-width: 50px; 
+    max-height: 50px;
+}
+
+#midContainerTop #bottom #main1 img {
+    max-width: 80px; 
+    max-height: 80px;
+}
+#midContainerTop #topRight #bottom #main1 {
+    float: left;
+    display: flex;
+    align-items: center;
+    width: 293px;
+    height: 100%;
+    margin-right: 25px;
+    font-size: 25px;
+}
+
+#midContainerTop #topRight #bottom #main1 #numberMain1 {
+    float: left;
+    margin-right: 10px;
+    font-weight: 900;
+    font-size: 60px;
+}
+
+#midContainerTop #topRight #bottom {
+    float: left;  
+    height: 100%; 
+}
+
+
+#midContainerTop #topRight #bottom #main2,
+#midContainerTop #topRight #bottom #main3 {
+    float: left;
+    display: flex;
+    align-items: center;
+    width: 293px;
+    height: 100%;
+}
+
+#midContainerTop #topRight #bottom #main2 #numberMain2,
+#midContainerTop #topRight #bottom #main3 #numberMain3
+{
+    float: left;
+    margin-right: 10px;
+    font-weight: 900;
+    font-size: 35px;
+}
+#midContainerTop #topRight #bottom #main1 #iconMain1,
+#midContainerTop #topRight #bottom #main2 #iconMain2,
+#midContainerTop #topRight #bottom #main3 #iconMain3 {
+    float: left;
+    margin-right: 10px;
+}
+#midContainerTop #topRight #bottom #main1 #nameMain1,
+#midContainerTop #topRight #bottom #main2 #nameMain2,
+#midContainerTop #topRight #bottom #main3 #nameMain3 {
+    float: left;
+}
+
+#midContainerTop #topRight #rank {
+    font-size: 30px;
+    font-weight: 900;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#midContainerTop #topRight #upperInfo {
+    font-size: 70px;
+    font-weight: 700;
+    height: 100%;
+    float: left;
+}
+
+#midContainerTop #bottom #champLv1 {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: left;
+    color: teal;
+    clear: both;
+}
+
+#title h3 {
+    text-align: center;
+}
+
+.champLv {
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    color: teal;
+    clear: both;
+}
+
+#midContainerTop #topRight #upperLv {
+    font-size: 30px;
+    font-weight: 900;
+    text-align: left;
+    text-align: center;
+    color: teal;
+    float: left;
+}
+
+#midContainerTop #topRight #summonerName {
+    font-size: 70px;
+    font-weight: 400;
+    text-align: center;
+    height: 100%;
+    float: left;
+}
+
+.square {
+    width: 50%;
+    float: left;
+}
+
+.btnlol {
+    margin: 55px;
+}
+
+.insidesquare {
+    clear: both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container h1 {
+    background-color: #fff;
+    margin-bottom: 300px; 
+    font-weight: 700;
+}
+
+.container .btn {
+    height: 50px;
+    width: 150px;
+}
