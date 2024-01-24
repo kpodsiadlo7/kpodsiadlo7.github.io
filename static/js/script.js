@@ -8,7 +8,6 @@ function redirectToLol(){
 function redirectToSummoner(){
     window.location.href="/summoner.html";
 }
-
 //end lolhome.html
 
 //summoner.html
