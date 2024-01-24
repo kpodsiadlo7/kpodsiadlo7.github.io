@@ -35,26 +35,26 @@
                             <div id="main1">
                                 <div id="numberMain1">1.</div>
                                 <div id="iconMain1"><img id="champIcon1" src="" alt="ChampIcon"></div>
-                                <div id="">
+                                <div>
                                     <div id="nameMain1">ChampName</div>
-                                    <div id="champLv1">lvl</div>
-                                </div>                                                              
+                                    <div id="champLv1"></div>
+                                </div>
                             </div>
                             <div id="main2">
                                 <div id="numberMain2">2.</div>
                                 <div id="iconMain2"><img id="champIcon2" src="" alt="ChampIcon"></div>
-                                <div id="">
+                                <div>
                                     <div id="nameMain2">ChampName</div>
-                                    <div class="champLv" id="champLv2">lvl</div>
-                                </div>  
+                                    <div class="champLv" id="champLv2"></div>
+                                </div>
                             </div>
                             <div id="main3">
                                 <div id="numberMain3">3.</div>
                                 <div id="iconMain3"><img id="champIcon3" src="" alt="ChampIcon"></div>
-                                <div id="">
-                                    <div id="nameMain2">ChampName</div>
-                                    <div class="champLv" id="champLv3">lvl</div>
-                                </div>  
+                                <div>
+                                    <div id="nameMain3">ChampName</div>
+                                    <div class="champLv" id="champLv3"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -69,98 +69,69 @@
                                 <div id="champIconMiddle1"><img id="champImg1" src="" alt="Champ Icon"></div>
                                 <div id="champNameMiddle1">Champ Name</div>
                             </div> 
-                            <div class="matchInfo">Info</div>
+                            <div class="info">
+                                <div class="matchInfo" id="kills1">Zabójstwa: </div>
+                                <div class="matchInfo" id="assists1">Asysty: </div>
+                                <div class="matchInfo" id="deaths1">Śmierci: </div>
+                                <div class="matchInfo" id="kda1">KDA: </div>
+                                <div class="matchInfo" id="soloKills1">Solo kills: </div>
+                                <div class="matchInfo" id="killingSprees1">Killing sprees: </div>
+                                <div class="matchInfo" id="doubleKills1">Double kills: </div>
+                                <div class="matchInfo" id="tripleKills1">Triple kills: </div>
+                                <div class="matchInfo" id="multikills1">Multi kills: </div>
+                                <div class="matchInfo" id="quadraKills1">Quadry: </div>
+                                <div class="matchInfo" id="pentaKills1">Penty: </div>
+                                <div class="matchInfo" id="dealtDamage1">Zadane obrażenia: </div>
+                            </div> 
+                            <div class="winInfo" id="win1">Wygrana: </div>
                         </div>
                         <div id="middleMiddleContainer">
                             <div class="titleLeftMiddle">
                                 <div id="champIconMiddle2"><img id="champImg2" src="" alt="Champ Icon"></div>
                                 <div id="champNameMiddle2">Champ Name</div>
+                            </div>
+                            <div class="info">
+                                <div class="matchInfo" id="kills2">Zabójstwa: </div>
+                                <div class="matchInfo" id="assists2">Asysty: </div>
+                                <div class="matchInfo" id="deaths2">Śmierci: </div>
+                                <div class="matchInfo" id="kda2">KDA: </div>
+                                <div class="matchInfo" id="soloKills2">Solo kills: </div>
+                                <div class="matchInfo" id="killingSprees2">Killing sprees: </div>
+                                <div class="matchInfo" id="doubleKills2">Double kills: </div>
+                                <div class="matchInfo" id="tripleKills2">Triple kills: </div>
+                                <div class="matchInfo" id="multikills2">Multi kills: </div>
+                                <div class="matchInfo" id="quadraKills2">Quadry: </div>
+                                <div class="matchInfo" id="pentaKills2">Penty: </div>
+                                <div class="matchInfo" id="dealtDamage2">Zadane obrażenia: </div>
                             </div> 
-                            <div class="matchInfo">Info</div>
+                            <div class="winInfo" id="win2">Wygrana: </div>
                         </div>
                         <div id="rightMiddleContainer">
                             <div class="titleLeftMiddle">
                                 <div id="champIconMiddle3"><img id="champImg3" src="" alt="Champ Icon"></div>
                                 <div id="champNameMiddle3">Champ Name</div>
                             </div> 
-                            <div class="matchInfo">Info</div>
+                            <div class="info">
+                                <div class="matchInfo" id="kills3">Zabójstwa: </div>
+                                <div class="matchInfo" id="assists3">Asysty: </div>
+                                <div class="matchInfo" id="deaths3">Śmierci: </div>
+                                <div class="matchInfo" id="kda3">KDA: </div>
+                                <div class="matchInfo" id="soloKills3">Solo kills: </div>
+                                <div class="matchInfo" id="killingSprees3">Killing sprees: </div>
+                                <div class="matchInfo" id="doubleKills3">Double kills: </div>
+                                <div class="matchInfo" id="tripleKills3">Triple kills: </div>
+                                <div class="matchInfo" id="multikills3">Multi kills: </div>
+                                <div class="matchInfo" id="quadraKills3">Quadry: </div>
+                                <div class="matchInfo" id="pentaKills3">Penty: </div>
+                                <div class="matchInfo" id="dealtDamage3">Zadane obrażenia: </div>
+                            </div> 
+                            <div class="winInfo" id="win3">Wygrana: </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
-    <script>
-        async function searchSummoner(event) {
-            event.preventDefault();
-    
-            const name = document.getElementById('name').value;
-            const apiUrl = `http://localhost:8080/?summonerName=${encodeURIComponent(name)}`;
-    
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
-
-                const summonerIcon = document.getElementById('summonerIcon');
-                summonerIcon.src = data.iconUrl;
-                
-                const summonerName = document.getElementById('summonerName');
-                summonerName.textContent = data.name;
-
-                const summonerRank = document.getElementById('rank');
-                summonerRank.textContent = data.rank;
-                summonerRank.style.color = data.rankColor;
-
-                const sumonnerLv = document.getElementById('upperLv');
-                sumonnerLv.textContent = data.summonerLevel;
-
-                //CHAMP ICONS
-                const champIcon1 = document.getElementById('champIcon1');
-                champIcon1.src = `img/champions/${data.champName1}.jpeg`;
-
-                const champIcon2 = document.getElementById('champIcon2');
-                champIcon2.src = `img/champions/${data.champName2}.jpeg`;
-
-                const champIcon3 = document.getElementById('champIcon3');
-                champIcon3.src = `img/champions/${data.champName3}.jpeg`;
-
-                //CHAMP NAMES
-                const nameMain1 = document.getElementById('nameMain1');
-                nameMain1.textContent = data.champName1;
-
-                const nameMain2 = document.getElementById('nameMain2');
-                nameMain2.textContent = data.champName2;
-
-                const nameMain3 = document.getElementById('nameMain3');
-                nameMain3.textContent = data.champName3;
-
-                
-
-                //LAST 3 MATCHES
-                //CHAMP ICONS
-                const champImg1 = document.getElementById('champImg1');
-                champImg1.src = `img/champions/${data.matchChampName1}.jpeg`;
-
-                const champImg2 = document.getElementById('champImg2');
-                champImg2.src = `img/champions/${data.matchChampName2}.jpeg`;
-
-                const champImg3 = document.getElementById('champImg3');
-                champImg3.src = `img/champions/${data.matchChampName3}.jpeg`;
-                
-                //CHAMP NAMES
-                const champNameMiddle1 = document.getElementById('champNameMiddle1');
-                champNameMiddle1.textContent = data.matchChampName1;
-
-                const champNameMiddle2 = document.getElementById('champNameMiddle2');
-                champNameMiddle2.textContent = data.matchChampName2;
-
-                const champNameMiddle3 = document.getElementById('champNameMiddle3');
-                champNameMiddle3.textContent = data.matchChampName3;
-
-            } catch (error) {
-                console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
-            }
-        }
-    </script>
+    <script src="static/js/script.js"></script>
 </body>
 </html>

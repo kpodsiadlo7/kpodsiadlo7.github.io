@@ -86,14 +86,20 @@
     clear: both;
 }
 
-#info {
+.info {
     text-align: left;
-    margin-left: 5px;
-    margin-top: 50px;
+    margin-left: 25px;
+    margin-top: 25px;
 }
 
 .matchInfo {
-    
+    margin-top: 3px;
+    font-size: 15px;
+}
+
+.winInfo {
+    margin-top: 20px;
+    font-size: 40px;
 }
 
 #midContainerCenter {
