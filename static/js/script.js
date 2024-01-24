@@ -15,11 +15,16 @@ async function searchSummoner(event) {
     event.preventDefault();
 
     const name = document.getElementById('name').value;
-    const apiUrl = `http://localhost:8080/?summonerName=${encodeURIComponent(name)}`;
+    const apiUrl = `https://0d68-79-163-203-158.ngrok-free.app/?summonerName=${encodeURIComponent(name)}`;
 
     try {
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiUrl, {
+            headers: {
+              'ngrok-skip-browser-warning': 'true',
+            },
+          });
         const data = await response.json();
+        
 
         const summonerIcon = document.getElementById('summonerIcon');
         summonerIcon.src = data.iconUrl;
