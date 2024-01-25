@@ -348,6 +348,7 @@ font-family: 'Poppins', sans-serif;
     --padding-1: 1.2rem;
 
     --box-shadow: 0 1rem 2rem var(--color-light);
+    --box-shadow-banned-list: 0 0.5rem 0.5rem var(--color-light);
 }
 
 .dark-mode-variables {
@@ -568,8 +569,8 @@ main .match {
     border-radius: var(--card-border-radius);
     box-shadow: var(--box-shadow);
     transition: all 0.3s ease;
-    width: 120vh;
-    height: 80vh;
+    width: 130vh;
+    height: 81vh;
     clear: both;
 }
 
@@ -583,21 +584,17 @@ main .searchMatch {
 
 main .matchInput {
     float: left;
+    width: 300px;
 }
 
 main #aboutMatch {
     text-align: right;
-    margin-right: 10px;
+    margin-right: 30px;
 }
 
 main #middleContainerMatchInfo {
     clear: both;
-    margin-top: 43px;
-}
-
-main .leftMatchTeamContainer {
-    float: left;
-    width: 49%;
+    margin-top: 45px;
 }
 
 .centerContainer {
@@ -617,11 +614,26 @@ main .whichTeamTextLeft {
     font-weight: 600;
     height: 75px;
     text-align: center;
+    margin-top: 5px;
+    margin-right: 50px;
+    transition: all 0.3s ease;
+}
+
+main .leftMatchTeamContainer {
+    float: left;
+    width: 50%;
+    height: 63vh;
+    margin-left: auto;
+    
+    padding-left: 50px;
+    margin-right: 50px;
+    transition: all 0.3s ease;
 }
 
 main .middleMatchTeamContainer {
     float: left;
-    margin-right: 30px;
+    width: 5%;
+    text-align: left;
 }
 
 main .middleMatchTeamContainer::after {
@@ -635,7 +647,11 @@ main .middleMatchTeamContainer::after {
 
 main .rightMatchTeamContainer {
     float: left;
-    width: 49%;
+    width: 50%;
+    height: 63vh;
+    padding-left: 50px;
+    margin-right: 2px;
+    transition: all 0.3s ease;
 }
 
 .copyright {
@@ -663,13 +679,13 @@ main .rightMatchTeamContainer {
 }
 
 .footerBannedList {
-    margin-top: 200px;
     clear: both;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     justify-content: center;
+    margin-top: 15px;
 }
 .footerBannedList .bannedText {
     letter-spacing: 2px;
@@ -680,7 +696,6 @@ main .rightMatchTeamContainer {
 }
 
 .footerBannedList .bannedList {
-    margin-top: 20px;
     clear: both;
 }
 
@@ -698,11 +713,11 @@ main .rightMatchTeamContainer {
 .supportLaneLeft,
 .bottomLaneLeft {
     clear: both;
-    height: 25%;
     display: flex;
     flex-direction: row;
     align-items: center;
     text-align: left;
+    margin-top: 30px;
 }
 
 .topLaneLeft1,
@@ -745,7 +760,7 @@ main .rightMatchTeamContainer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 70px;
+    width: 140px;
     margin-left: 15px;
 }
 
@@ -774,8 +789,8 @@ main .rightMatchTeamContainer {
     clear: both;
     display: flex;
     flex-direction: column;
-    font-size: 19px;
-    font-weight: 600;
+    font-size: 23px;
+    font-weight: 700;
 }
 
 .topLaneLeft3Bottom,
@@ -802,6 +817,7 @@ main .rightMatchTeamContainer {
 .bottomLaneLeft4Bottom {
     clear: both;
     margin-bottom: 5px;
+    font-weight: 500;
 }
 
 .topLaneLeft4BottomLeft,
@@ -824,11 +840,11 @@ main .rightMatchTeamContainer {
 .supportLaneRight,
 .bottomLaneRight {
     clear: both;
-    height: 25%;
     display: flex;
     flex-direction: row;
     align-items: center;
     text-align: left;
+    margin-top: 30px;
 }
 
 .topLaneRight1,
@@ -871,7 +887,7 @@ main .rightMatchTeamContainer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 70px;
+    width: 140px;
     margin-left: 15px;
 }
 
@@ -886,8 +902,8 @@ main .rightMatchTeamContainer {
 .bottomLaneRight3Top {
     clear: both;
     display: flex;
-    font-size: 19px;
-    font-weight: 600;
+    font-size: 23px;
+    font-weight: 700;
     flex-direction: column;
 }
 
@@ -915,6 +931,7 @@ main .rightMatchTeamContainer {
 .bottomLaneRight4Bottom {
     clear: both;
     margin-bottom: 5px;
+    font-weight: 500;
 }
 
 .topLaneRight4BottomRight,
@@ -930,7 +947,6 @@ main .rightMatchTeamContainer {
     float: left;
 }
 
-
 .banned1,
 .banned2,
 .banned3,
@@ -945,6 +961,8 @@ main .rightMatchTeamContainer {
     width: 50px;
     height: 50px;
     display: flex;
+    margin: 5px;
     flex-direction: column;
     justify-content: center;
+    box-shadow: var(--box-shadow-banned-list);
 }
