@@ -111,8 +111,12 @@ font-family: 'Poppins', sans-serif;
     font-weight: 600;
 }
 
-#champIconMiddle1 {
+#champIconMiddle {
     float: left;
+}
+
+.champIconMiddle[src=""] {
+    visibility: hidden;
 }
 
 .titleLeftMiddle {
@@ -444,7 +448,7 @@ small {
 }
 
 .bodyMatch aside {
-    height: 100vh;
+    height: 95vh;
 }
 
 .bodyMatch aside .toggle {
@@ -632,6 +636,30 @@ main .middleMatchTeamContainer::after {
 main .rightMatchTeamContainer {
     float: left;
     width: 49%;
+}
+
+.copyright {
+    text-align: center;
+}
+
+.champBannedIcon[src=""] {
+    visibility: hidden;
+}
+
+.perk[src=""] {
+    visibility: hidden;
+}
+
+.champMatchTeamIcons[src=""] {
+    visibility: hidden;
+}
+
+.iconMain[src=""] {
+    visibility: hidden;
+}
+
+#summonerIcon[src=""] {
+    visibility: hidden;
 }
 
 .footerBannedList {
