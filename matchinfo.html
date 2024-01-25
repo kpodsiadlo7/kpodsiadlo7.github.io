@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <title>Match info</title>
+</head>
+<body class="bodyMatch">
+    <div class="matchcontainer">
+        <!-- Left menu-->
+        <aside>
+            <div class="toggle">
+                <div class="logo" style="display: table-column;">
+                    <img src="">
+                    <h2>Leauge of Legends</h2>
+                    <h4>STATS</h4>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="">
+                    <span class="material-icons-sharp">
+                        home
+                    </span>
+                    <h3>Strona głowna</h3>
+                </a>
+                <a href="matchinfo.html" class="active">
+                    <span class="material-icons-sharp">
+                        groups
+                    </span>
+                    <h3>Wyszukaj mecz</h3>
+                </a>
+                <a href="">
+                    <span class="material-icons-sharp">
+                        person_search
+                    </span>
+                    <h3>Wyszukaj gracza</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- End left menu -->
+
+        <!-- Main center container -->
+        <main>
+            <div class="topBarMatchInfo">
+                <form class="row g-3 searchMatch" onsubmit="">
+                    <div class="col-auto matchInput">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Szukaj mecz po nazwie gracza">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn matchSearchBtn">Wyszukaj</button>
+                    </div>                   
+                </form>                
+                <!-- Info about match -->             
+            </div>
+            <div id="middleContainerMatchInfo">
+                <h1 id="aboutMatch">Karta meczu</h1>   
+                <div class="match">
+                    <div class="centerContainer">
+                        <div class="leftMatchTeamContainer">
+                            <div class="whichTeamTextLeft">Twoja drużyna</div>
+                            <div class="topLaneLeft">
+                                <div class="topLaneLeft1">T</div>
+                                <div class="topLaneLeft2"><img class="champMatchTeamIcons" id="champMatchIcon1" src="" alt="ChampIcon"></div>
+                                <div class="topLaneLeft3">
+                                    <div class="topLaneLeft3Top">summoner name</div>
+                                    <div class="topLaneLeft3Bottom">rank</div>
+                                </div>
+                                <div class="topLaneLeft4">
+                                    <div class="topLaneLeft4Top">YONE</div>
+                                    <div class="topLaneLeft4Bottom">
+                                        <div class="topLaneLeft4BottomLeft"><img class="perk" id="champPerkLeft1" src="" alt="ChampPerkLeft"></div>
+                                        <div class="topLaneLaneLeft4BottomRight"><img class="perk" id="champPerkRight1" alt="ChampPerkLeft"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="jungleLaneLeft">
+                                <div class="jungleLaneLeft1">J</div>
+                                <div class="jungleLaneLeft2"><img class="champMatchTeamIcons" id="champMatchIcon2" alt="ChampIcon"></div>
+                                <div class="jungleLaneLeft3">
+                                    <div class="jungleLaneLeft3Top">summoner name</div>
+                                    <div class="jungleLaneLeft3Bottom">rank</div>
+                                </div>
+                                <div class="jungleLaneLeft4">
+                                    <div class="jungleLaneLeft4Top">Wawrick</div>
+                                    <div class="jungleLaneLeft4Bottom">
+                                        <div class="jungleLaneLeft4TopLeft"><img class="perk" id="champPerkLeft2" src="" alt="ChampPerkLeft"></div>
+                                        <div class="jungleLaneLeft4BottomRight"><img class="perk" id="champPerkRight2" src="" alt="ChampPerkLeft"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="middleLaneLeft">
+                                <div class="middleLaneLeft1">M</div>
+                                <div class="middleLaneLeft2"><img class="champMatchTeamIcons"  id="champMatchIcon3" src="" alt="ChampIcon"></div>
+                                <div class="middleLaneLeft3">
+                                    <div class="middleLaneLeft3Top">summoner name</div>
+                                    <div class="middleLaneLeft3Bottom">rank</div>
+                                </div>
+                                <div class="middleLaneLeft4">
+                                    <div class="middleLaneLeft4Top">Zed</div>
+                                    <div class="middleLaneLeft4Bottom">
+                                        <div class="middleLaneLeft4TopLeft"><img class="perk" id="champPerkLeft3" src="" alt="ChampPerkLeft"></div>
+                                        <div class="middleLaneLeft4BottomRight"><img class="perk" id="champPerkRight3" src="" alt="ChampPerkLeft"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="supportLaneLeft">
+                                <div class="supportLaneLeft1">S</div>
+                                <div class="supportLaneLeft2"><img class="champMatchTeamIcons"  id="champMatchIcon4" src="" alt="ChampIcon"></div>
+                                <div class="supportLaneLeft3">
+                                    <div class="supportLaneLeft3Top">summoner name</div>
+                                    <div class="supportLaneLeft3Bottom">rank</div>
+                                </div>
+                                <div class="supportLaneLeft4">
+                                    <div class="supportLaneLeft4Top">Brand</div>
+                                    <div class="supportLaneLeft4Bottom">
+                                        <div class="supportLaneLeft4TopLeft"><img class="perk" id="champPerkLeft4" src="" alt="ChampPerkLeft"></div>
+                                        <div class="supportLaneLeft4BottomRight"><img class="perk" id="champPerkRight4" src="" alt="ChampPerkLeft"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottomLaneLeft">
+                                <div class="bottomLaneLeft1">B</div>
+                                <div class="bottomLaneLeft2"><img class="champMatchTeamIcons"  id="champMatchIcon5" src="" alt="ChampIcon"></div>
+                                <div class="bottomLaneLeft3">
+                                    <div class="bottomLaneLeft3Top">summoner name</div>
+                                    <div class="bottomLaneLeft3Bottom">rank</div>
+                                </div>
+                                <div class="bottomLaneLeft4">
+                                    <div class="bottomLaneLeft4Top">Pantheon</div>
+                                    <div class="bottomLaneLeft4Bottom">
+                                        <div class="bottomLaneLeft4TopLeft"><img class="perk" id="champPerkLeft5" src="" alt="ChampPerkLeft"></div>
+                                        <div class="bottomLaneLeft4BottomRight"><img class="perk" id="champPerkRight5" src="" alt="ChampPerkLeft"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="middleMatchTeamContainer">
+                        </div>
+                        <div class="RightMatchTeamContainer">
+                            <div class="whichTeamTextRight"></div>
+                            <div class="topLaneRight">
+                                <div class="topLaneRight1">T</div>
+                                <div class="topLaneRight2"><img class="champMatchTeamIcons" id="champMatchIcon1" src="" alt="ChampIcon"></div>
+                                <div class="topLaneRight3">
+                                    <div class="topLaneRight3Top">summoner name</div>
+                                    <div class="topLaneRight3Bottom">rank</div>
+                                </div>
+                                <div class="topLaneRight4">
+                                    <div class="topLaneRight4Top">YONE</div>
+                                    <div class="topLaneRight4Bottom">
+                                        <div class="topLaneRight4BottomRight"><img class="perk" id="champPerkRight1" src="" alt="ChampPerkRight"></div>
+                                        <div class="topLaneLaneRight4BottomRight"><img class="perk" id="champPerkRight1" alt="ChampPerkRight"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="jungleLaneRight">
+                                <div class="jungleLaneRight1">J</div>
+                                <div class="jungleLaneRight2"><img class="champMatchTeamIcons" id="champMatchIcon2" alt="ChampIcon"></div>
+                                <div class="jungleLaneRight3">
+                                    <div class="jungleLaneRight3Top">summoner name</div>
+                                    <div class="jungleLaneRight3Bottom">rank</div>
+                                </div>
+                                <div class="jungleLaneRight4">
+                                    <div class="jungleLaneRight4Top">Wawrick</div>
+                                    <div class="jungleLaneRight4Bottom">
+                                        <div class="jungleLaneRight4TopRight"><img class="perk" id="champPerkRight2" src="" alt="ChampPerkRight"></div>
+                                        <div class="jungleLaneRight4BottomRight"><img class="perk" id="champPerkRight2" src="" alt="ChampPerkRight"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="middleLaneRight">
+                                <div class="middleLaneRight1">M</div>
+                                <div class="middleLaneRight2"><img class="champMatchTeamIcons"  id="champMatchIcon3" src="" alt="ChampIcon"></div>
+                                <div class="middleLaneRight3">
+                                    <div class="middleLaneRight3Top">summoner name</div>
+                                    <div class="middleLaneRight3Bottom">rank</div>
+                                </div>
+                                <div class="middleLaneRight4">
+                                    <div class="middleLaneRight4Top">Zed</div>
+                                    <div class="middleLaneRight4Bottom">
+                                        <div class="middleLaneRight4TopRight"><img class="perk" id="champPerkRight3" src="" alt="ChampPerkRight"></div>
+                                        <div class="middleLaneRight4BottomRight"><img class="perk" id="champPerkRight3" src="" alt="ChampPerkRight"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="supportLaneRight">
+                                <div class="supportLaneRight1">S</div>
+                                <div class="supportLaneRight2"><img class="champMatchTeamIcons"  id="champMatchIcon4" src="" alt="ChampIcon"></div>
+                                <div class="supportLaneRight3">
+                                    <div class="supportLaneRight3Top">summoner name</div>
+                                    <div class="supportLaneRight3Bottom">rank</div>
+                                </div>
+                                <div class="supportLaneRight4">
+                                    <div class="supportLaneRight4Top">Brand</div>
+                                    <div class="supportLaneRight4Bottom">
+                                        <div class="supportLaneRight4TopRight"><img class="perk" id="champPerkRight4" src="" alt="ChampPerkRight"></div>
+                                        <div class="supportLaneRight4BottomRight"><img class="perk" id="champPerkRight4" src="" alt="ChampPerkRight"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottomLaneRight">
+                                <div class="bottomLaneRight1">B</div>
+                                <div class="bottomLaneRight2"><img class="champMatchTeamIcons"  id="champMatchIcon5" src="" alt="ChampIcon"></div>
+                                <div class="bottomLaneRight3">
+                                    <div class="bottomLaneRight3Top">summoner name</div>
+                                    <div class="bottomLaneRight3Bottom">rank</div>
+                                </div>
+                                <div class="bottomLaneRight4">
+                                    <div class="bottomLaneRight4Top">Pantheon</div>
+                                    <div class="bottomLaneRight4Bottom">
+                                        <div class="bottomLaneRight4TopRight"><img class="perk" id="champPerkRight5" src="" alt="ChampPerkRight"></div>
+                                        <div class="bottomLaneRight4BottomRight"><img class="perk" id="champPerkRight5" src="" alt="ChampPerkRight"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                   
+                    <div class="footerBannedList">   
+                        <div class="bannedText">Zbanowani</div>
+                            <div class="bannedList">
+                                <div class="banned1"><img class="champBannedIcon" id="champBannedIcon1" src="" alt="ChampIcon"></div>
+                                <div class="banned2"><img class="champBannedIcon" id="champBannedIcon2" src="" alt="ChampIcon"></div>
+                                <div class="banned3"><img class="champBannedIcon" id="champBannedIcon3" src="" alt="ChampIcon"></div>
+                                <div class="banned4"><img class="champBannedIcon" id="champBannedIcon4" src="" alt="ChampIcon"></div>
+                                <div class="banned5"><img class="champBannedIcon" id="champBannedIcon5" src="" alt="ChampIcon"></div>
+                                <div class="banned6"><img class="champBannedIcon" id="champBannedIcon6" src="" alt="ChampIcon"></div>
+                                <div class="banned7"><img class="champBannedIcon" id="champBannedIcon7" src="" alt="ChampIcon"></div>
+                                <div class="banned8"><img class="champBannedIcon" id="champBannedIcon8" src="" alt="ChampIcon"></div>
+                                <div class="banned9"><img class="champBannedIcon" id="champBannedIcon9" src="" alt="ChampIcon"></div>
+                                <div class="banned10"><img class="champBannedIcon" id="champBannedIcon10" src="" alt="ChampIcon"></div>                            
+                            </div>
+                        </div>
+                    </div>  
+                </div>             
+            </main>
+        </div>
+
+    <script src="static/js/script.js"></script>
+</body>
+</html>

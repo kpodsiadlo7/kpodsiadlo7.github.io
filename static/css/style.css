@@ -2,10 +2,11 @@
 
 .body {
     background-color: #f2f2f2;
+    font-family: 'Poppins', sans-serif;
 }
 
 .container {
-    font-family: 'Poppins', sans-serif;
+font-family: 'Poppins', sans-serif;
     border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
@@ -321,4 +322,601 @@
 .container .btn {
     height: 50px;
     width: 150px;
+}
+
+:root {
+    --color-primary: red;
+    --color-danger: #ff0060;
+    --color-success: #1b9c85;
+    --color-warning: #f7d060;
+    --color-white: #fff;
+    --color-info-dark: #000;
+    --color-dark: #363949;
+    --color-light: rgba(132,139,200,0.18);
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 0.5rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 1rem 2rem var(--color-light);
+}
+
+.dark-mode-variables {
+    --color-backbround: #181a1e;
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-dark-variant: #a3bdcc;
+    --color-light: rgba(0,0,0, 0.4);
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: 0;
+    border: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.logo h4 {
+    font-size: small;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.bodyMatch {
+    font-size: 0.88rem;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    user-select: none;
+    overflow-x: hidden;
+    color: var(--color-dark);
+    background-color: var(--color-background);
+}
+
+.bodyMatch a {
+    color: var(--color-dark);
+}
+
+.bodyMatch h1 {
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: #000;
+}
+
+.bodyMatch h2 {
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: #000;
+}
+
+.bodyMatch h3 {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+small {
+    font-size: 0.80rem;
+}
+
+.bodyMatch p {
+    color: var(--color-dark-variant);
+}
+
+.bodyMatch b {
+    color: var(--color-dark);
+}
+
+.bodyMatch .text-muted {
+    color: var(--color-info-dark);
+}
+
+.bodyMatch .primary {
+    color: var(--color-primary);
+}
+
+.bodyMatch .danger {
+    color: var(--color-danger);
+}
+
+.bodyMatch .success {
+    color: var(--color-success);
+}
+
+.bodyMatch .warning {
+    color: var(--color-warning);
+}
+
+.bodyMatch .matchcontainer {
+    display: grid;
+    width: 96%;
+    margin: 0 auto;
+    gap: 1.8rem;
+    grid-template-columns: 14rem auto 23rem;
+}
+
+.bodyMatch aside {
+    height: 100vh;
+}
+
+.bodyMatch aside .toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.4rem;
+}
+
+.bodyMatch aside .toggle .logo {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.bodyMatch aside .toggle .logo h4 {
+    color: var(--color-primary);
+}
+
+.bodyMatch aside .sidebar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--card-border-radius);
+    height: 55vh;
+    position: relative;
+    top: 1.5rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.75);
+  }
+
+  main .matchSearchBtn {
+    background-color: rebeccapurple;
+    border-color: rebeccapurple;
+    color: white;
+    float: left;
+  }
+
+  
+
+  main .matchSearchBtn:hover,
+  main .matchSearchBtn:active,
+  main .matchSearchBtn:focus{
+    background-color: rgb(69, 30, 109);
+    border-color: rgb(69, 30, 109);
+    color: white;
+  }
+  
+  .bodyMatch aside .sidebar::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('/img/menuicons/DariusMenu.jpeg');
+    background-size: cover;
+    z-index: -1;
+    border-radius: inherit;
+  }
+  
+  .bodyMatch aside .sidebar a.active {
+    width: 100%;
+    color: var(--color-primary);
+    background-color: rgba(255, 255, 255, 0.75);
+  }
+
+.bodyMatch aside .sidebar a {
+    display: flex;
+    align-items: center;
+    color: var(--color-info-dark);
+    height: 3.7rem;
+    gap: 1rem;
+    position: relative;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.bodyMatch aside .sidebar a span {
+    font-size: 1.6rem;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+}
+
+.bodyMatch aside .sidebar a.active::before {
+    content: '';
+    width: 6px;
+    height: 18px;
+    background-color: var(--color-primary);
+}
+
+.bodyMatch aside .sidebar a.active span {
+    color: var(--color-primary);
+    margin-left: 1.3rem;
+    user-select: none; 
+}
+
+.bodyMatch aside .sidebar a:hover {
+    color: var(--color-primary);
+    background-color: rgba(255, 255, 255, 0.75);
+    
+}
+
+.bodyMatch aside .sidebar a:hover span {
+    margin-left: 1.3rem;
+}
+
+main {
+    margin-top: 1.2rem;
+}
+
+main .match {
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease;
+    width: 100vh;
+    height: 80vh;
+    clear: both;
+}
+
+.topBarMatchInfo {
+    margin-top: 23px;
+}
+
+main .searchMatch {
+    float: left;
+}
+
+main .matchInput {
+    float: left;
+}
+
+main #aboutMatch {
+    text-align: right;
+    margin-right: 10px;
+}
+
+main #middleContainerMatchInfo {
+    clear: both;
+    margin-top: 43px;
+}
+
+main .leftMatchTeamContainer {
+    float: left;
+    width: 49%;
+}
+
+.centerContainer {
+    clear: both;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+main .whichTeamTextRight,
+main .whichTeamTextLeft {
+    clear: both;
+    color: rebeccapurple;
+    font-size: 30px;
+    font-weight: 600;
+    height: 75px;
+    text-align: center;
+}
+
+main .middleMatchTeamContainer {
+    float: left;
+    margin-right: 30px;
+}
+
+main .middleMatchTeamContainer::after {
+    content: "";
+    position: absolute;
+    top: 20%;
+    bottom: 25%;
+    width: 0.5px;
+    background-color: black;
+}
+
+main .rightMatchTeamContainer {
+    float: left;
+    width: 49%;
+}
+
+.footerBannedList {
+    margin-top: 200px;
+    clear: both;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.footerBannedList .bannedText {
+    letter-spacing: 2px;
+    font-size: 30px;
+    font-weight: 900;
+    color: rgb(182, 0, 0);
+    clear: both;
+}
+
+.footerBannedList .bannedList {
+    margin-top: 20px;
+    clear: both;
+}
+
+.footerBannedList .bannedList img {
+    max-width: 45px;
+    max-height: 45px;
+    height: 45px;
+}
+
+/* Left team */
+
+.topLaneLeft,
+.jungleLaneLeft,
+.middleLaneLeft,
+.supportLaneLeft,
+.bottomLaneLeft {
+    clear: both;
+    height: 25%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+}
+
+.topLaneLeft1,
+.jungleLaneLeft1,
+.middleLaneLeft1,
+.supportLaneLeft1,
+.bottomLaneLeft1 {
+    float: left;
+    text-align: left;
+    width: 15px;
+    margin-right: 5px;
+    font-weight: 700;
+}
+
+.topLaneLeft2,
+.jungleLaneLeft2,
+.middleLaneLeft2,
+.supportLaneLeft2,
+.bottomLaneLeft2 {
+    float: left;
+}
+
+.topLaneLeft3,
+.jungleLaneLeft3,
+.middleLaneLeft3,
+.supportLaneLeft3,
+.bottomLaneLeft3 {
+    width: 250px;
+    float: left;
+    margin-left: 5px;
+}
+
+.topLaneLeft4,
+.jungleLaneLeft4,
+.middleLaneLeft4,
+.supportLaneLeft4,
+.bottomLaneLeft4 {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    margin-left: 15px;
+}
+
+.champMatchTeamIcons {
+    max-width: 65px;
+    max-height: 65px;
+    height: 65px;
+}
+
+.perk {
+    max-width: 30px;
+    max-height: 30px;
+    margin-left: 3px;
+    height: 30px;
+}
+
+.jungleLaneLeft {
+    clear: both;
+}
+
+.topLaneLeft3Top,
+.jungleLaneLeft3Top,
+.middleLaneLeft3Top,
+.supportLaneLeft3Top,
+.bottomLaneLeft3Top {
+    clear: both;
+    display: flex;
+    flex-direction: column;
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.topLaneLeft3Bottom,
+.jungleLaneLeft3Bottom,
+.middleLaneLeft3Bottom,
+.supportLaneLeft3Bottom,
+.bottomLaneLeft3Bottom {
+    clear: both;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: 16px;
+}
+
+.topLaneLeft4Top,
+.topLaneLeft4Bottom,
+.jungleLaneLeft4Top,
+.jungleLaneLeft4Bottom,
+.middleLaneLeft4Top,
+.middleLaneLeft4Bottom,
+.supportLaneLeft4Top,
+.supportLaneLeft4Bottom,
+.bottomLaneLeft4Top,
+.bottomLaneLeft4Bottom {
+    clear: both;
+    margin-bottom: 5px;
+}
+
+.topLaneLeft4BottomLeft,
+.topLaneLaneLeft4BottomRight,
+.jungleLaneLeft4TopLeft,
+.jungleLaneLeft4BottomRight,
+.middleLaneLeft4TopLeft,
+.middleLaneLeft4BottomRight,
+.supportLaneLeft4TopLeft,
+.supportLaneLeft4BottomRight,
+.bottomLaneLeft4TopLeft,
+.bottomLaneLeft4BottomRight {
+    float: left;
+}
+
+/* Right team */
+.topLaneRight,
+.jungleLaneRight,
+.middleLaneRight,
+.supportLaneRight,
+.bottomLaneRight {
+    clear: both;
+    height: 25%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+}
+
+.topLaneRight1,
+.jungleLaneRight1,
+.middleLaneRight1,
+.supportLaneRight1,
+.bottomLaneRight1 {
+    float: left;
+    text-align: left;
+    width: 15px;
+    margin-right: 5px;
+    font-weight: 700;
+}
+
+.topLaneRight2,
+.jungleLaneRight2,
+.middleLaneRight2,
+.supportLaneRight2,
+.bottomLaneRight2 {
+    float: left;
+}
+
+.topLaneRight3,
+.jungleLaneRight3,
+.middleLaneRight3,
+.supportLaneRight3,
+.bottomLaneRight3 {
+    width: 250px;
+    float: left;
+    margin-left: 5px;
+}
+
+.topLaneRight4,
+.jungleLaneRight4,
+.middleLaneRight4,
+.supportLaneRight4,
+.bottomLaneRight4 {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    margin-left: 15px;
+}
+
+.jungleLaneRight {
+    clear: both;
+}
+
+.topLaneRight3Top,
+.jungleLaneRight3Top,
+.middleLaneRight3Top,
+.supportLaneRight3Top,
+.bottomLaneRight3Top {
+    clear: both;
+    display: flex;
+    font-size: 19px;
+    font-weight: 600;
+    flex-direction: column;
+}
+
+.topLaneRight3Bottom,
+.jungleLaneRight3Bottom,
+.middleLaneRight3Bottom,
+.supportLaneRight3Bottom,
+.bottomLaneRight3Bottom {
+    clear: both;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: 16px;
+}
+
+.topLaneRight4Top,
+.topLaneRight4Bottom,
+.jungleLaneRight4Top,
+.jungleLaneRight4Bottom,
+.middleLaneRight4Top,
+.middleLaneRight4Bottom,
+.supportLaneRight4Top,
+.supportLaneRight4Bottom,
+.bottomLaneRight4Top,
+.bottomLaneRight4Bottom {
+    clear: both;
+    margin-bottom: 5px;
+}
+
+.topLaneRight4BottomRight,
+.topLaneLaneRight4BottomRight,
+.jungleLaneRight4TopRight,
+.jungleLaneRight4BottomRight,
+.middleLaneRight4TopRight,
+.middleLaneRight4BottomRight,
+.supportLaneRight4TopRight,
+.supportLaneRight4BottomRight,
+.bottomLaneRight4TopRight,
+.bottomLaneRight4BottomRight {
+    float: left;
+}
+
+
+.banned1,
+.banned2,
+.banned3,
+.banned4,
+.banned5,
+.banned6,
+.banned7,
+.banned8,
+.banned9,
+.banned10 {
+    float: left;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
