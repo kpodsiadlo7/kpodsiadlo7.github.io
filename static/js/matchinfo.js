@@ -69,7 +69,8 @@ function setBannedList(champions){
     if(champions && champions.length > 1){
         for (let i = 1; i <= 10; i++) {
             const img = document.getElementById(`champBannedIcon${i}`)
-            img.src = `img/champions/${champions['champName']}.jpeg`;
+            img.src = `img/champions/${champions[i-1]}.jpeg`;
+            img.style.setProperty('box-shadow', '0 0 0.5rem rgba(255, 0, 0, 1)');
         }
     }
 }
@@ -85,7 +86,7 @@ async function matchSearch(event) {
         const data = await response.json();
 
         const aboutMatch = document.getElementById('aboutMatch');
-        const matchCard = "Karta meczu - " + (data["gameMode"] === "CLASSIC" ? "Ranked" : data["gameMode"]);
+        const matchCard = "Karta meczu - " + (data["gameMode"] === "CLASSIC" ? "Rankedowy" : data["gameMode"]);
         aboutMatch.textContent = matchCard;
 
         let playedTeam = "";
@@ -131,7 +132,7 @@ async function matchSearch(event) {
             }
         }
         
-        setBannedList(data["summoners"]["bannedChampions"]);
+        setBannedList(data["bannedChampions"]);
 
     } catch (error) {
         console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
@@ -151,6 +152,16 @@ async function getLast10Matches(event, id) {
     let hasMatches = "true";
     matchList.innerHTML = '';
 
+    const matchesSummonerName = document.getElementById("matchesSummonerName");
+    matchesSummonerName.textContent = data["name"];
+
+    const matchesSummonerLv = document.getElementById("matchesSummonerLv");
+    matchesSummonerLv.textContent = "Lv " + data["summonerLevel"] + " - "; 
+
+    const matchesSummonerRank = document.getElementById("matchesSummonerRank");
+    matchesSummonerRank.textContent = data["rank"];
+    matchesSummonerRank.style.color = data["rankColor"];
+
     if (Array.isArray(data["matches"]) && data["matches"].length > 0) {
         for (var i = 0; i < data["matches"].length; i++) {
             addLast10MatchesToView(hasMatches,matchList,i,data);
@@ -162,27 +173,46 @@ async function getLast10Matches(event, id) {
 }
 
 function addLast10MatchesToView(hasMatches,matchList,i,data){
-    var listItem = document.createElement("li");
-    listItem.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-start");
-    
-    var contentDiv = document.createElement("div");
-    contentDiv.classList.add("ms-2", "me-auto");
+    var matchList = document.getElementById("matchList");
 
-    if(hasMatches === "true") {
+    var listItem = document.createElement("li");
+    var contentDiv = document.createElement("div");
+
+    if (hasMatches === "true") {
+        var selectedPlayer = document.getElementById("selectPlayer");
+        selectedPlayer.innerHTML = '';
+        selectedPlayer.style.margin = 0;
+        let win = "";
+
+        if(data["matches"][i]["win"] === "WYGRANA") {
+            win = `<span class="badge bg-success rounded-pill">${data["matches"][i]["win"]}</span>`;
+        } else {
+            win = `<span class="badge bg-danger rounded-pill">${data["matches"][i]["win"]}</span>`;
+        }
+        
+        
         contentDiv.innerHTML = 
-        `<img class="last10MatchesImg" src="img/champions/${data["matches"][i]["matchChampName"]}.jpeg">
-        <div class='fw-bold'>${data["matches"][i]["matchChampName"]}</div>
-        ${data["matches"][i]["kills"]} | ${data["matches"][i]["deaths"]} | ${data["matches"][i]["assists"]}`;
-    
-    
-        var badgeSpan = document.createElement("span");
-        badgeSpan.classList.add("badge", "bg-primary", "rounded-pill");
-        badgeSpan.textContent = "14";
-        listItem.appendChild(badgeSpan);
+            `<div class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="item">
+                        <img class="last10MatchesImg" src="img/champions/${data["matches"][i]["matchChampName"]}.jpeg">
+                        <div class="nameAndKda">
+                            <div class="fw-bold" id="last10MatchesName">${data["matches"][i]["matchChampName"]}</div>
+                            <div id="last10MachesKda">${data["matches"][i]["kills"]} | ${data["matches"][i]["deaths"]} | ${data["matches"][i]["assists"]}</div>   
+                        </div> 
+                    </div>
+                </div>
+                <div class="last10MatchesWinAndLane">
+                    ${win}
+                    <div class="lane">${data["matches"][i]["lane"]}</div>
+                </div>
+            </div>`;
+
     } else {
         contentDiv.innerHTML = "Brak rozegranych rankedów w ostatnich 50 grach";
-    }  
+        
+    }
 
-    listItem.appendChild(contentDiv);    
-    matchList.appendChild(listItem);
+    listItem.appendChild(contentDiv);
+    matchList.appendChild(listItem);   
 }
