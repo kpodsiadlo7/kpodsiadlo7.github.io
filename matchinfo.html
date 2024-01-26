@@ -16,7 +16,7 @@
             <div class="toggle">
                 <div class="logo" style="display: table-column;">
                     <img src="">
-                    <h2>Leauge of Legends</h2>
+                    <a href="/matchinfo.html" style="text-decoration: none;"><h2>Leauge of Legends</h2></a>
                     <h4>STATS</h4>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                                 <div class="topLaneLeft1"></div>
                                 <div class="topLaneLeft2"><img class="champMatchTeamIcons" id="champMatchIcon1" src="" alt="ChampIcon"></div>
                                 <div class="topLaneLeft3">
-                                    <div class="topLaneLeft3Top" id="name1">summoner name</div>
+                                    <a href="" id="name1" class="topLaneLeft3Top" onclick="getLast10Matches(event,'name1')">summoner name</a>
                                     <div class="topLaneLeft3Bottom" id="rank1">rank</div>
                                 </div>
                                 <div class="topLaneLeft4">
@@ -81,7 +81,7 @@
                                 <div class="jungleLaneLeft1"></div>
                                 <div class="jungleLaneLeft2"><img class="champMatchTeamIcons" src="" id="champMatchIcon2" alt="ChampIcon"></div>
                                 <div class="jungleLaneLeft3">
-                                    <div class="jungleLaneLeft3Top" id="name2">summoner name</div>
+                                    <a href="" id="name2" class="jungleLaneLeft3Top" onclick="getLast10Matches(event,'name2')">summoner name</a>
                                     <div class="jungleLaneLeft3Bottom" id="rank2">rank</div>
                                 </div>
                                 <div class="jungleLaneLeft4">
@@ -96,7 +96,7 @@
                                 <div class="middleLaneLeft1"></div>
                                 <div class="middleLaneLeft2"><img class="champMatchTeamIcons"  id="champMatchIcon3" src="" alt="ChampIcon"></div>
                                 <div class="middleLaneLeft3">
-                                    <div class="middleLaneLeft3Top" id="name3">summoner name</div>
+                                    <div class="middleLaneLeft3Top" id="name3" onclick="getLast10Matches(event,'name1')">summoner name</div>
                                     <div class="middleLaneLeft3Bottom" id="rank3">rank</div>
                                 </div>
                                 <div class="middleLaneLeft4">
@@ -111,7 +111,7 @@
                                 <div class="supportLaneLeft1"></div>
                                 <div class="supportLaneLeft2"><img class="champMatchTeamIcons"  id="champMatchIcon4" src="" alt="ChampIcon"></div>
                                 <div class="supportLaneLeft3">
-                                    <div class="supportLaneLeft3Top" id="name4">summoner name</div>
+                                    <div class="supportLaneLeft3Top" id="name4" onclick="getLast10Matches(event,'name1')">summoner name</div>
                                     <div class="supportLaneLeft3Bottom" id="rank4">rank</div>
                                 </div>
                                 <div class="supportLaneLeft4">
@@ -126,7 +126,7 @@
                                 <div class="bottomLaneLeft1"></div>
                                 <div class="bottomLaneLeft2"><img class="champMatchTeamIcons"  id="champMatchIcon5" src="" alt="ChampIcon"></div>
                                 <div class="bottomLaneLeft3">
-                                    <div class="bottomLaneLeft3Top" id="name5">summoner name</div>
+                                    <div class="bottomLaneLeft3Top" id="name5" onclick="getLast10Matches(event,'name1')">summoner name</div>
                                     <div class="bottomLaneLeft3Bottom" id="rank5">rank</div>
                                 </div>
                                 <div class="bottomLaneLeft4">
@@ -144,7 +144,7 @@
                                 <div class="topLaneRight1"></div>
                                 <div class="topLaneRight2"><img class="champMatchTeamIcons" id="champMatchIconR1" src="" alt="ChampIcon"></div>
                                 <div class="topLaneRight3">
-                                    <div class="topLaneRight3Top" id="nameR1">summoner name</div>
+                                    <div class="topLaneRight3Top" id="nameR1" onclick="getLast10Matches(event,'name1')">summoner name</div>
                                     <div class="topLaneRight3Bottom" id="rankR1">rank</div>
                                 </div>
                                 <div class="topLaneRight4">
@@ -159,7 +159,7 @@
                                 <div class="jungleLaneRight1"></div>
                                 <div class="jungleLaneRight2"><img class="champMatchTeamIcons" src="" id="champMatchIconR2" alt="ChampIcon"></div>
                                 <div class="jungleLaneRight3">
-                                    <div class="jungleLaneRight3Top" id="nameR2">summoner name</div>
+                                    <div class="jungleLaneRight3Top" id="nameR2" onclick="getLast10Matches(event,'name1')">summoner name</div>
                                     <div class="jungleLaneRight3Bottom" id="rankR2">rank</div>
                                 </div>
                                 <div class="jungleLaneRight4">
@@ -174,7 +174,7 @@
                                 <div class="middleLaneRight1"></div>
                                 <div class="middleLaneRight2"><img class="champMatchTeamIcons" src=""  id="champMatchIconR3" alt="ChampIcon"></div>
                                 <div class="middleLaneRight3">
-                                    <div class="middleLaneRight3Top" id="nameR3">summoner name</div>
+                                    <div class="middleLaneRight3Top" id="nameR3" onclick="getLast10Matches(event,'name1')">summoner name</div>
                                     <div class="middleLaneRight3Bottom" id="rankR3">rank</div>
                                 </div>
                                 <div class="middleLaneRight4">
@@ -189,7 +189,7 @@
                                 <div class="supportLaneRight1"></div>
                                 <div class="supportLaneRight2"><img class="champMatchTeamIcons" src=""  id="champMatchIconR4" alt="ChampIcon"></div>
                                 <div class="supportLaneRight3">
-                                    <div class="supportLaneRight3Top" id="nameR4">summoner name</div>
+                                    <div class="supportLaneRight3Top" id="nameR4" onclick="getLast10Matches(event,'name1')">summoner name</div>
                                     <div class="supportLaneRight3Bottom" id="rankR4">rank</div>
                                 </div>
                                 <div class="supportLaneRight4">
@@ -204,7 +204,7 @@
                                 <div class="bottomLaneRight1"></div>
                                 <div class="bottomLaneRight2"><img class="champMatchTeamIcons" src="" id="champMatchIconR5" alt="ChampIcon"></div>
                                 <div class="bottomLaneRight3">
-                                    <div class="bottomLaneRight3Top" id="nameR5">summoner name</div>
+                                    <div class="bottomLaneRight3Top" id="nameR5" onclick="getLast10Matches(event,'name1')">summoner name</div>
                                     <div class="bottomLaneRight3Bottom" id="rankR5">rank</div>
                                 </div>
                                 <div class="bottomLaneRight4">
@@ -219,26 +219,33 @@
                     </div>                   
                     <div class="footerBannedList">   
                         <div class="bannedText">Zbanowani</div>
-                            <div class="bannedList">
-                                <div class="banned1"><img class="champBannedIcon" id="champBannedIcon1" src="" alt="ChampIcon"></div>
-                                <div class="banned2"><img class="champBannedIcon" id="champBannedIcon2" src="" alt="ChampIcon"></div>
-                                <div class="banned3"><img class="champBannedIcon" id="champBannedIcon3" src="" alt="ChampIcon"></div>
-                                <div class="banned4"><img class="champBannedIcon" id="champBannedIcon4" src="" alt="ChampIcon"></div>
-                                <div class="banned5"><img class="champBannedIcon" id="champBannedIcon5" src="" alt="ChampIcon"></div>
-                                <div class="banned6"><img class="champBannedIcon" id="champBannedIcon6" src="" alt="ChampIcon"></div>
-                                <div class="banned7"><img class="champBannedIcon" id="champBannedIcon7" src="" alt="ChampIcon"></div>
-                                <div class="banned8"><img class="champBannedIcon" id="champBannedIcon8" src="" alt="ChampIcon"></div>
-                                <div class="banned9"><img class="champBannedIcon" id="champBannedIcon9" src="" alt="ChampIcon"></div>
-                                <div class="banned10"><img class="champBannedIcon" id="champBannedIcon10" src="" alt="ChampIcon"></div>                            
-                            </div>
+                        <div class="bannedList">
+                            <div class="banned1"><img class="champBannedIcon" id="champBannedIcon1" src="" alt="ChampIcon"></div>
+                            <div class="banned2"><img class="champBannedIcon" id="champBannedIcon2" src="" alt="ChampIcon"></div>
+                            <div class="banned3"><img class="champBannedIcon" id="champBannedIcon3" src="" alt="ChampIcon"></div>
+                            <div class="banned4"><img class="champBannedIcon" id="champBannedIcon4" src="" alt="ChampIcon"></div>
+                            <div class="banned5"><img class="champBannedIcon" id="champBannedIcon5" src="" alt="ChampIcon"></div>
+                            <div class="banned6"><img class="champBannedIcon" id="champBannedIcon6" src="" alt="ChampIcon"></div>
+                            <div class="banned7"><img class="champBannedIcon" id="champBannedIcon7" src="" alt="ChampIcon"></div>
+                            <div class="banned8"><img class="champBannedIcon" id="champBannedIcon8" src="" alt="ChampIcon"></div>
+                            <div class="banned9"><img class="champBannedIcon" id="champBannedIcon9" src="" alt="ChampIcon"></div>
+                            <div class="banned10"><img class="champBannedIcon" id="champBannedIcon10" src="" alt="ChampIcon"></div>                            
                         </div>
-                    </div> 
-                </div>        
-            </main>
-        </div>
+                    </div>
+                </div> 
+            </div>        
+        </main>
+        <aside>
+            <div class="rightContainer">
+                <div class="matchesList">
+                    <ol class="list-group list-group-numbered" id="matchList"></ol>
+                </div>
+            </div>
+        </aside>
+    </div>
         <footer class="copyright">
             ©
         </footer> 
-    <script src="static/js/script.js"></script>
+    <script src="static/js/matchinfo.js"></script>
 </body>
 </html>

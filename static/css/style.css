@@ -6,7 +6,7 @@
 }
 
 .container {
-font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
     border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
@@ -612,7 +612,8 @@ main .whichTeamTextLeft {
     color: rebeccapurple;
     font-size: 30px;
     font-weight: 600;
-    height: 75px;
+    padding-top: 10px;
+    height: 50px;
     text-align: center;
     margin-top: 5px;
     margin-right: 50px;
@@ -768,6 +769,8 @@ main .rightMatchTeamContainer {
     max-width: 65px;
     max-height: 65px;
     height: 65px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
 .perk {
@@ -791,6 +794,7 @@ main .rightMatchTeamContainer {
     flex-direction: column;
     font-size: 23px;
     font-weight: 700;
+    text-decoration: none;
 }
 
 .topLaneLeft3Bottom,
@@ -965,4 +969,43 @@ main .rightMatchTeamContainer {
     flex-direction: column;
     justify-content: center;
     box-shadow: var(--box-shadow-banned-list);
+}
+
+.rightContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    height: 95%;
+    position: relative;
+    top: 2.4rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.75)
+}
+
+.last10MatchesImg {
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+}
+
+.rightContainer {
+    display: flex;
+}
+
+.matchesList {
+    width: 100%; 
+}
+
+.list-group {
+    display: flex;
+    flex-direction: row;
+    height: 10px;
+    gap: 10px; 
+}
+
+.list-group-item {
+    flex: 1;
 }
