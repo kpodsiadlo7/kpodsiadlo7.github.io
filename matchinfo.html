@@ -21,12 +21,6 @@
                 </div>
             </div>
             <div class="sidebar">
-                <a href="index.html">
-                    <span class="material-icons-sharp">
-                        home
-                    </span>
-                    <h3>Strona głowna</h3>
-                </a>
                 <a href="matchinfo.html" class="active">
                     <span class="material-icons-sharp">
                         groups
@@ -37,7 +31,13 @@
                     <span class="material-icons-sharp">
                         person_search
                     </span>
-                    <h3>Wyszukaj gracza</h3>
+                    <h3>Szukaj gracza</h3>
+                </a>
+                <a href="index.html">
+                    <span class="material-icons-sharp">
+                        home
+                    </span>
+                    <h3>Strona głowna</h3>
                 </a>
             </div>
         </aside>
@@ -67,7 +67,10 @@
                                 <div class="topLaneLeft2"><img class="champMatchTeamIcons" id="champMatchIcon1" src="" alt="ChampIcon"></div>
                                 <div class="topLaneLeft3">
                                     <a href="" id="name1" class="topLaneLeft3Top" onclick="getLast10Matches(event,'name1')">summoner name</a>
-                                    <div class="topLaneLeft3Bottom" id="rank1">rank</div>
+                                    <div class="summonerLvAnRank">
+                                        <div class="topLaneLeft3Bottom" id="rank1">rank</div>
+                                        <div id="summonerLv1"></div>
+                                    </div>  
                                 </div>
                                 <div class="topLaneLeft4">
                                     <div class="topLaneLeft4Top" id="champ1">CHAMP</div>
@@ -248,6 +251,13 @@
                 <div class="matchesList">
                     <h4 style="text-align: center; margin-top: 240px;" id="selectPlayer">Wybierz gracza</h4>
                     <ol class="list-group list-group-numbered" id="matchList"></ol>
+                </div>
+                <div class="leagueInfoContainer"> 
+                    <h6>OGÓLNIE RANKEDÓW: </h6>
+                    <div class="leagueInfo">
+                        <div class="leagueInfoWins" id="leagueInfoWins"></div>
+                        <div class="leagueInfoLosses" id="leagueInfoLosses"></div>
+                    </div>
                 </div>
             </div>
         </aside>

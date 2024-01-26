@@ -473,12 +473,24 @@ small {
     flex-direction: column;
     border-radius: var(--card-border-radius);
     height: 55vh;
-    position: relative;
     top: 1.5rem;
     transition: all 0.3s ease;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.75);
   }
+
+  .bodyMatch aside .sidebar a:last-child {
+    position: absolute;
+    width: 100%;
+    bottom: 2rem;
+  }
+
+  .sidebarItems {
+    height: 100%;
+    position: relative;
+  }
+
+
 
   main .matchSearchBtn {
     background-color: rebeccapurple;
@@ -799,10 +811,15 @@ main .rightMatchTeamContainer {
 .middleLaneLeft3Bottom,
 .supportLaneLeft3Bottom,
 .bottomLaneLeft3Bottom {
-    clear: both;
+    float: left;
     display: flex;
     flex-direction: column;
     text-align: left;
+    font-size: 16px;
+}
+
+.summonerLvAnRank #summonerLv {
+    text-align: center;
     font-size: 16px;
 }
 
@@ -1077,4 +1094,36 @@ main .rightMatchTeamContainer {
     flex-direction: row;
     align-items: center;
     text-align: center;
+}
+
+.leagueInfoContainer {
+    height: 80px;
+    font-size: 20px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}
+
+.leagueInfoWins {
+    float: left;
+    margin-right: 20px;
+}
+
+.leagueInfoLoses {
+    float: left;
+}
+
+.leagueInfo {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 35px;
+}
+
+.summonerLv {
+    float: left;
 }

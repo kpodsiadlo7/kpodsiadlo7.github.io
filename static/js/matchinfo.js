@@ -33,6 +33,7 @@ function setLeftTeam(summoner,i){
     name.textContent = summoner['summonerName'];
     rank.textContent = summoner['rank'];
     rank.style.color = summoner['rankColor'];
+
     if (summoner['rank'] !== "BRAK RANGI") {
         rank.style.fontWeight = 700;
     }  else {
@@ -178,6 +179,14 @@ function addLast10MatchesToView(hasMatches,matchList,i,data){
     var listItem = document.createElement("li");
     var contentDiv = document.createElement("div");
 
+    let wins = 0;
+    let losses = 0;
+
+    if(data["leagueInfo"] !== null) {
+        wins = data["leagueInfo"]["wins"];
+        losses = data["leagueInfo"]["losses"];
+    } 
+
     if (hasMatches === "true") {
         var selectedPlayer = document.getElementById("selectPlayer");
         selectedPlayer.innerHTML = '';
@@ -189,7 +198,6 @@ function addLast10MatchesToView(hasMatches,matchList,i,data){
         } else {
             win = `<span class="badge bg-danger rounded-pill">${data["matches"][i]["win"]}</span>`;
         }
-        
         
         contentDiv.innerHTML = 
             `<div class="list-group-item d-flex justify-content-between align-items-start">
@@ -209,9 +217,17 @@ function addLast10MatchesToView(hasMatches,matchList,i,data){
             </div>`;
 
     } else {
-        contentDiv.innerHTML = "Brak rozegranych rankedów w ostatnich 50 grach";
+        contentDiv.innerHTML = "Brak rozegranych rankedów w ostatnich 20 grach";
         
     }
+
+    const leagueInfoWins = document.getElementById("leagueInfoWins");
+    leagueInfoWins.textContent = wins;
+    leagueInfoWins.style.color = "green";
+
+    const leagueInfoLosses = document.getElementById("leagueInfoLosses");
+    leagueInfoLosses.textContent = losses;
+    leagueInfoLosses.style.color = "red";
 
     listItem.appendChild(contentDiv);
     matchList.appendChild(listItem);   
