@@ -2,113 +2,180 @@ async function searchSummoner(event) {
     event.preventDefault();
 
     const name = document.getElementById('name').value;
-    const apiUrl = `https://0d68-79-163-203-158.ngrok-free.app/?summonerName=${encodeURIComponent(name)}`;
+    const apiUrl = `http://localhost:8080/?summonerName=${encodeURIComponent(name)}`;
+
+    var spinnerSearch = document.getElementById("spinnerSearch");
+    var searchButton = document.getElementById("searchButton");
+
+    disableButtonAndShowSpinner(searchButton,spinnerSearch);
 
     try {
+        /*
         const response = await fetch(apiUrl, {
             headers: {
               'ngrok-skip-browser-warning': 'true',
             },
           });
+          */
+        var beforeFillSummonerCard = document.getElementById("beforeFillSummonerCard");
+        
+        const response = await fetch(apiUrl);
+
+        if(!response.ok){
+            activeSearchButtonAndHideSpinner(searchButton,spinnerSearch);
+            beforeFillSummonerCard.textContent = "Wystąpił problem z pobraniem profilu użytkownika!";
+            beforeFillSummonerCard.style.color = 'red';
+
+            throw new Error(`Błąd HTTP: ${response.status}`);
+        }
         const data = await response.json();
+
+        activeSearchButtonAndHideSpinner(searchButton,spinnerSearch);
+        removeBeforeFillSummonerCard(beforeFillSummonerCard);
+        setRanks(data);
+        setBackgroundImage(data);
+        displayBlurOnBackgroundImage();
         
-
-        const summonerIcon = document.getElementById('summonerIcon');
-        summonerIcon.src = data.iconUrl;
-        
-        const summonerName = document.getElementById('summonerName');
-        summonerName.textContent = data.name;
-
-        const summonerRank = document.getElementById('rank');
-        summonerRank.textContent = data.rank;
-        summonerRank.style.color = data.rankColor;
-
-        const sumonnerLv = document.getElementById('upperLv');
-        sumonnerLv.textContent = data.summonerLevel;
-
-        //CHAMP ICONS
-        for (let i = 1; i <= 3; i++) {
-            const champIcon = document.getElementById(`champIcon${i}`);
-            champIcon.src = `img/champions/${data[`champName${i}`]}.jpeg`;
-        }           
-
-        //CHAMP NAMES
-        for (let i = 1; i <= 3; i++) {
-            const nameMain1 = document.getElementById(`nameMain${i}`);
-            nameMain1.textContent = data[`champName${i}`];
-        }
-
-        //CHAMP LEVLES
-        for (let i = 1; i <= 3; i++) {
-            const champLv = document.getElementById(`champLv${i}`);
-            champLv.textContent = "Lv: "+data[`champLv${i}`];
-        }
-
-        //LAST 3 MATCHES
-        //CHAMP ICONS
-        for (let i = 1; i <= 3; i++) {
-            const champImg1 = document.getElementById(`champImg${i}`);
-            champImg1.src = `img/champions/${data[`matchChampName${i}`]}.jpeg`;
-        }
-        
-        //CHAMP NAMES
-        for (let i = 1; i <= 3; i++) {
-            const champNameMiddle1 = document.getElementById(`champNameMiddle${i}`);
-            champNameMiddle1.textContent = data[`matchChampName${i}`];
-        }
-
-        //LAST 3 MATCHES INFO
-        //MATCH 1 INFO
-        for (let i = 1; i <= 3; i++) {
-            const kills = document.getElementById(`kills${i}`);
-            kills.textContent = "Zabójstwa: "+data[`kills${i}`];
-
-            const assists = document.getElementById(`assists${i}`);
-            assists.textContent = "Asysty: "+data[`assists${i}`];
-
-            const deaths = document.getElementById(`deaths${i}`);
-            deaths.textContent = "Śmierci: "+data[`deaths${i}`];
-
-            const kda = document.getElementById(`kda${i}`);
-            kda.textContent = "KDA: "+data[`kda${i}`];
-            
-            const killingSprees = document.getElementById(`killingSprees${i}`);
-            killingSprees.textContent = "Killing sprees: "+data[`killingSprees${i}`];
-
-            const soloKills = document.getElementById(`soloKills${i}`);
-            soloKills.textContent = "Solo kills: "+data[`soloKills${i}`];
-
-            const doubleKills = document.getElementById(`doubleKills${i}`);
-            doubleKills.textContent = "Double kills: "+data[`doubleKills${i}`];
-
-            const tripleKills = document.getElementById(`tripleKills${i}`);
-            tripleKills.textContent = "Triple kills: "+data[`tripleKills${i}`];
-
-            const multikills = document.getElementById(`multikills${i}`);
-            multikills.textContent = "Multi kills: "+data[`multikills${i}`];
-
-            const quadraKills = document.getElementById(`quadraKills${i}`);
-            quadraKills.textContent = "Quadra kills: "+data[`quadraKills${i}`];
-
-            const pentaKills = document.getElementById(`pentaKills${i}`);
-            pentaKills.textContent = "Penta kills: "+data[`pentaKills${i}`];
-
-            const dealtDamage = document.getElementById(`dealtDamage${i}`);
-            dealtDamage.textContent = "Zadane obrażenia: "+data[`dealtDamage${i}`];
-
-            const win = document.getElementById(`win${i}`);
-            if(data[`win${i}`] == "WYGRANA") {
-                win.textContent = data[`win${i}`];
-                win.style.color = data[`winColor${i}`];
-            } else if(data[`win`] === "BRAK DANYCH") {
-                win.textContent = "BRAK DANYCH";
-            } else {
-                win.textContent = data[`win${i}`];
-                win.style.color = data[`winColor${i}`];
-            }
-            
-        }
     } catch (error) {
         console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
     }
+}
+
+function displayBlurOnBackgroundImage(){
+    var boxBlurShadow = document.getElementById("boxBlurShadow");
+    boxBlurShadow.style.display = "block";
+}
+
+function setBackgroundImage(data) {
+    const backgroundImage = document.getElementById("matchBackground");
+        backgroundImage.style = 
+        `background-image: url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${data["mainChamp"]}_0.jpg); 
+        background-size: cover; --box-shadow: 0 0 0.7rem 3px;`
+}
+
+function disableButtonAndShowSpinner(searchButton,spinnerBorder){
+    if(searchButton !== null){
+        searchButton.disabled = true;
+    }
+    if(spinnerBorder !== null) {
+        spinnerBorder.classList.add("d-inline-block");
+    }
+}
+
+function activeSearchButtonAndHideSpinner(searchButton,spinnerBorder){
+    if(searchButton !== null){
+        searchButton.disabled = false;
+    }
+    if(spinnerBorder !== null) {
+        spinnerBorder.classList.remove("d-inline-block");
+    }
+}
+
+function removeBeforeFillSummonerCard(beforeFillSummonerCard) {
+    if(beforeFillSummonerCard){
+        beforeFillSummonerCard.remove();
+    }
+}
+
+
+/* Zmienne globalne 
+// -Flagi do kasowania informacji o randze jeżeli nie występuje */ 
+let userHasRankSolo = false;
+let userHasRankFlex = false;
+
+// -Tier
+let summonerTier = null;
+/* ----------------------------------------------------------- */
+
+
+function setRanks(data){
+
+    const summonerName = document.getElementById("nameSummoner");
+    summonerName.textContent = data["name"];
+
+    const sumonnerLv = document.getElementById("summonerLevel");
+    sumonnerLv.textContent = "Level " + data["summonerLevel"];
+
+    userHasRankSolo = false;
+    userHasRankFlex = false;
+
+    if( data !== null && Array.isArray(data["ranks"]) && data["ranks"] !== null) {
+            let ranksArray = data.ranks;
+            ranksArray.forEach(rank => {
+                if(rank["rankFlex"]) {
+                    setRankFlex(rank,data);
+                    if(!userHasRankSolo){
+                        removeRankSolo();
+                    }
+                } else if (rank["rankSolo"]) {
+                    setRankSolo(rank,data);
+                    if(!userHasRankFlex){
+                        removeRankFlex();
+                    }
+                }
+            });
+            setProfileIconWithRank(data);
+        }
+}
+
+function setRankFlex(rank,data) {
+    userHasRankFlex = true;
+
+    const rankedFlex = document.getElementById("rankedFlex");
+    const leaguePointsFlex = document.getElementById("leaguePointsFlex");
+    const winLossesFlex = document.getElementById("winLossesFlex");
+
+    rankedFlex.textContent = "Ranga Flex: " + rank["rankFlex"]["tier"] + "-" + rank["rankFlex"]["rank"];
+    rankedFlex.style.color = data["rankFlexColor"];
+
+    leaguePointsFlex.textContent = "Punkty league: " + rank["rankFlex"]["leaguePoints"];
+    winLossesFlex.textContent = "Wygrane-Przegrane: " + rank["rankFlex"]["wins"] + " / " + rank["rankFlex"]["losses"];
+}
+
+function setRankSolo(rank,data) {
+    userHasRankSolo = true;
+
+    const rankedSolo = document.getElementById("rankedSolo");
+    const leaugePointsSolo = document.getElementById("leaugePointsSolo");
+    const winLossesSolo = document.getElementById("winLossesSolo");
+
+    rankedSolo.textContent = "Ranga Solo/Duo: " + rank["rankSolo"]["tier"] + "-" + rank["rankSolo"]["rank"];
+    rankedSolo.style.color = data["rankSoloColor"];
+
+    leaugePointsSolo.textContent = "Punkty league: " + rank["rankSolo"]["leaguePoints"];
+    winLossesSolo.textContent = "Wygrane-Przegrane: " + rank["rankSolo"]["wins"] + " / " + rank["rankSolo"]["losses"];
+
+    summonerTier = rank["rankSolo"]["tier"];
+    if(rank["rankSolo"]["tier"] === "EMERALD"){
+        summonerTier = "";
+    }
+}
+
+function removeRankSolo() {
+    rankedSolo.textContent = "";
+    leaugePointsSolo.textContent = "";
+    winLossesSolo.textContent = "";
+}
+
+function removeRankFlex() {
+    rankedFlex.textContent = "";
+    leaguePointsFlex.textContent = "";
+    winLossesFlex.textContent = "";
+}
+
+function setProfileIconWithRank(data){
+
+    var profileIcon = document.getElementById("profileIcon");
+    var contentDiv = document.createElement("div");
+    profileIcon.innerHTML = '';
+    contentDiv.innerHTML = `
+                                <div class="centeredContainer">
+                                    <img src="https://ddragon.leagueoflegends.com/cdn/14.2.1/img/profileicon/${data["profileIconId"]}.png" 
+                                    style="max-width: 150px; max-height: 150px; border-radius: 50%; position: relative; z-index: 1; margin-bottom: 10px">
+                                </div>
+                                <img src="img/tiers/${summonerTier}.png" 
+                                style="max-width: 350px; max-height: 350px; position: absolute; top: 50%; left: 50%; transform: translate(-181.5%, -52%); border-radius: 50%; z-index: 2;">
+                            `;
+
+    profileIcon.appendChild(contentDiv);  
 }

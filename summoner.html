@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="sidebar" style="background-image: url('/img/menuicons/YoneMenu.jpg');">
-                <div class="sidebarItems" style="background-color: rgba(255, 255, 255, 0.75)">
+                <div class="sidebarItems" style="background-color: rgba(255, 255, 255, 0.75); ">
                     <a href="matchinfo.html">
                         <span class="material-icons-sharp">
                             groups
@@ -47,22 +47,47 @@
         <!-- Main center container -->
         <main>
             <div class="topBarMatchInfo">
-                <form class="row g-3 searchMatch"  onsubmit="matchSearch(event)">
+                <form class="row g-3 searchMatch"  onsubmit="searchSummoner(event)">
                     <div class="col-auto matchInput">
                         <input type="text" class="form-control" id="name" name="name" placeholder="Wprowiadź nazwę gracza">
                     </div>
                     <div class="col-auto">
-                        <button type="submit" class="btn matchSearchBtn">Wyszukaj</button>
+                        <button type="submit" class="btn matchSearchBtn" id="searchButton">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerSearch"></span>Wyszukaj</button>
                     </div>                   
                 </form>                
                 <!-- Info about match -->             
             </div>
             <div id="middleContainerMatchInfo">
                 <h1 id="aboutMatch">Profil gracza</h1>   
-                <div class="match">
-                    <div class="centerContainer">
-                        
-                    </div>                   
+                <div class="match" id="matchBackground">
+                    <div class="centerSummonerContainer" id="boxBlurShadow">
+                        <div class="topSummonerContainer">
+                            <div class="profileContainer">
+                                <div class="profileShadow">
+                                    <div class="profileIcon" id="profileIcon"></div>
+                                </div>
+                            </div>
+                                <div class="descContainer">
+                                    <div class="summonerNameLvPoints">
+                                        <div class="nameSummoner" id="nameSummoner"></div>
+                                        <div class="lvSummoner" id="summonerLevel"></div>
+                                    </div>
+                                    <div class="ranks">
+                                        <div class="solo">
+                                            <div class="leaguePointsSolo" id="leaugePointsSolo"></div>
+                                            <div class="winLossesSolo" id="winLossesSolo"></div>
+                                            <div class="rankedSolo" id="rankedSolo"></div>
+                                        </div>
+                                        <div class="flex">
+                                            <div class="leaguePointsFlex" id="leaguePointsFlex"></div>
+                                            <div class="winLossesFlex" id="winLossesFlex"></div>
+                                            <div class="rankedFlex" id="rankedFlex"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div><h4 style="white-space: nowrap; margin-left: 200px; margin-top: 300px;" id="beforeFillSummonerCard">Aby wyszukać profil gracza, wprowadź jego nazwę powyżej.</h4>                   
                 </div> 
             </div>        
         </main>
@@ -70,6 +95,6 @@
         <footer class="copyright">
             ©
         </footer> 
-    <script src="static/js/matchinfo.js"></script>
+    <script src="static/js/summoner.js"></script>
 </body>
 </html>
