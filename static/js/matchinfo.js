@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
         headers: {
           'ngrok-skip-browser-warning': 'true',
         }})
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {   
             exampleSummonerName.textContent = "Losowy gracz: " + data;
         })
