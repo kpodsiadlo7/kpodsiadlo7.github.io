@@ -376,12 +376,13 @@
     font-weight: 600;
 }
 
+
 .bodyMatch {
     font-size: 0.88rem;
     width: 100vw;
     height: 100vh;
     font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
+    overflow-y: auto;
     color: var(--color-dark);
     background-color: var(--color-background);
 }
@@ -661,6 +662,10 @@ main .rightMatchTeamContainer {
     height: 63vh;
     margin-right: 2px;
     transition: all 0.3s ease;
+}
+
+html {
+    overflow: auto;
 }
 
 .copyright {
