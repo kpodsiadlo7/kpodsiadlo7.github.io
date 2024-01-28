@@ -1,8 +1,6 @@
-
-function redirectToLol(){
-    window.location.href="/lolhome.html";
-}
-
+document.addEventListener("DOMContentLoaded", function() {
+    window.location.href = "lolhome.html";
+});
 
 
 

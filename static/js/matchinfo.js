@@ -99,7 +99,7 @@ function activeSearchButtonAndHideSpinner(searchButton,spinnerBorder){
 
 // Pobranie przykładowej nazwy gracza z losowego rozgrywanego meczu
 document.addEventListener("DOMContentLoaded", function() {
-    const apiUrl = `http://localhost:8080/randomMatch`;
+    const apiUrl = `${window.home_url}/randomMatch`;
     var exampleSummonerName = document.getElementById("exampleSummonerName");
     fetch(apiUrl)
         .then(response => response.json())
@@ -121,7 +121,7 @@ async function matchSearch(event) {
     disableButtonAndShowSpinner(searchButton,spinnerBorder);
 
     const name = document.getElementById('name').value;
-    const apiUrl = `http://localhost:8080/matchInfo?summonerName=${encodeURIComponent(name)}`;
+    const apiUrl = `${window.home_url}/matchInfo?summonerName=${encodeURIComponent(name)}`;
 
     try {
         const response = await fetch(apiUrl);
@@ -229,7 +229,7 @@ async function getLast10Matches(event, id) {
 
     var clickedElement = document.getElementById(id);
     var summonerName = clickedElement.innerText || clickedElement.textContent;
-    const apiUrl = `http://localhost:8080/last10matches?summonerName=${encodeURIComponent(summonerName)}`;
+    const apiUrl = `${window.home_url}/last10matches?summonerName=${encodeURIComponent(summonerName)}`;
 
     try {
         const response = await fetch(apiUrl)
