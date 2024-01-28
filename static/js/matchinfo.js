@@ -197,8 +197,10 @@ function setBothTeamDependsOnTeamId(data) {
 function RemoveBeforeFillMatchCardAndExampleSummonerName(){
     var beforeFillMatchCard = document.getElementById("beforeFillMatchCard");
     var exampleSummonerName = document.getElementById("exampleSummonerName");
-    beforeFillMatchCard.remove();
-    exampleSummonerName.remove();
+    if(beforeFillMatchCard && exampleSummonerName) {
+        beforeFillMatchCard.remove();
+        exampleSummonerName.remove();
+    } 
 }
 
 function displaySelectSummonerTextInRightSideBar() {
@@ -206,8 +208,10 @@ function displaySelectSummonerTextInRightSideBar() {
 
     if (!lastRankedGames.textContent.includes("OSTATNIE RANKEDY")) {
         var selectPlayer = document.getElementById("selectPlayer");
-        var textNode = document.createTextNode("Wybierz gracza");
-        selectPlayer.appendChild(textNode);
+        var textNode = selectPlayer.textContent.includes("Wybierz gracza") ? "" : document.createTextNode("Wybierz gracza");
+        if(textNode !== ""){
+            selectPlayer.appendChild(textNode);
+        }     
     }
 }
 
