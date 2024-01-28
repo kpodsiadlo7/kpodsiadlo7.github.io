@@ -101,7 +101,10 @@ function activeSearchButtonAndHideSpinner(searchButton,spinnerBorder){
 document.addEventListener("DOMContentLoaded", function() {
     const apiUrl = `${window.home_url}/randomMatch`;
     var exampleSummonerName = document.getElementById("exampleSummonerName");
-    fetch(apiUrl)
+    fetch(apiUrl, {
+        headers: {
+          'ngrok-skip-browser-warning': 'true',
+        }})
         .then(response => response.json())
         .then(data => {   
             exampleSummonerName.textContent = "Losowy gracz: " + data;
