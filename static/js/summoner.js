@@ -282,6 +282,10 @@ function addLast20MatchesToView(matchList,i,data){
                         <div class="fw-bold" id="last10MatchesImg">${data["matches"][i]["matchChampName"]}</div>
                         <div id="last10MatchesImg">${data["matches"][i]["kills"]} | ${data["matches"][i]["deaths"]} | ${data["matches"][i]["assists"]}</div>   
                     </div> 
+                    <div class="damage">
+                        <div class="fw-bold" id="last10MatchesImg">DMG</div>
+                        <div id="last10MatchesImg">${data["matches"][i]["dealtDamage"]}</div>   
+                    </div> 
                 </div>
             </div>
             <div class="last10MatchesWinAndLane">

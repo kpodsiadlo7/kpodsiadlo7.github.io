@@ -107,7 +107,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }})
         .then(response => response.text())
         .then(data => {   
-            exampleSummonerName.textContent = "Losowy gracz: " + data;
+            exampleSummonerName.textContent = data === "Spróbuj ponownie za chwilę" ? "Spróbuj ponownie za chwilę" : ("Losowy gracz: " + data) ;
+            exampleSummonerName.style.color = data === "Spróbuj ponownie za chwilę" ? "red" : "black";
+
         })
         .catch(error => {
             console.error("Wystąpił błąd:", error);
@@ -304,8 +306,8 @@ function addLast10MatchesToView(hasMatches,matchList,i,data){
     let losses = 0;
 
     if(data["leagueInfo"] !== null) {
-        wins = data["leagueInfo"]["wins"];
-        losses = data["leagueInfo"]["losses"];
+        wins = data["wins"];
+        losses = data["losses"];
         winLosses.textContent = data["leagueInfo"]["losses"] === undefined ? "" : "Wygrane - Przegrane(Solo/Duo)";      
     } 
 
