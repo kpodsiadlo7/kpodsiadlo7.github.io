@@ -1041,7 +1041,7 @@ html {
     display: flex;
     flex-direction: column;
     height: 50px;
-    width: 200px;
+    width: 185px;
 }
 
 .last10MatchesWinAndLane {
@@ -1289,4 +1289,10 @@ html {
 .warningContent #warningText {
     margin-left: 1rem;
     margin-right: 1rem;
+}
+
+.containerFor20LastMatches {
+    height: 85%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }

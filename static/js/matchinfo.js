@@ -306,7 +306,7 @@ function addLast10MatchesToView(hasMatches,matchList,i,data){
     if(data["leagueInfo"] !== null) {
         wins = data["leagueInfo"]["wins"];
         losses = data["leagueInfo"]["losses"];
-        winLosses.textContent = data["leagueInfo"]["losses"] === undefined ? "" : "Wygrane - Przegrane";      
+        winLosses.textContent = data["leagueInfo"]["losses"] === undefined ? "" : "Wygrane - Przegrane(Solo/Duo)";      
     } 
 
     if (hasMatches) {
@@ -346,7 +346,7 @@ function addLast10MatchesToView(hasMatches,matchList,i,data){
         selectPlayer.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`+"Wybierz gracza";
         selectPlayer.style.marginTop = '240px';
         selectPlayer.style.color = "#363949";
-        contentDiv.innerHTML = "Brak rozegranych rankedów w ostatnich 20 grach";
+        contentDiv.innerHTML = "Brak rozegranych rankedów w ostatnich 20 grach(Solo/Duo)";
     }
 
     setWinLosses(wins,losses);

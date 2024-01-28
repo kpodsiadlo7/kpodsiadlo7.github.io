@@ -20,7 +20,7 @@
                     <h4>STATS</h4>
                 </div>
             </div>
-            <div class="sidebar" style="background-image: url('/img/menuicons/YoneMenu.jpg');">
+            <div class="sidebar" style="background-image: url('/img/menuicons/YoneMenu.jpg');" id="sideBar">
                 <div class="sidebarItems" style="background-color: rgba(255, 255, 255, 0.75); ">
                     <a href="lolhome.html">
                         <span class="material-icons-sharp">
@@ -102,6 +102,24 @@
                 </div> 
             </div>        
         </main>
+        <aside>
+            <div class="rightContainer">
+                <h6 style="text-align: center; margin-top: 10px;" id="lastRankedGames">OSTATNIE RANKEDY</h6>
+                <div class="containerFor20LastMatches">
+                    <div class="matchesList">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span></h4>
+                        <ol class="list-group list-group-numbered" id="matchList"></ol>
+                    </div>
+                    <div class="leagueInfoContainer" id="leagueInfoContainer"> 
+                        <h6 id="winLosses"></h6>
+                        <div class="leagueInfo">
+                            <div class="leagueInfoWins" id="leagueInfoWins"></div>
+                            <div class="leagueInfoLosses" id="leagueInfoLosses"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
     </div>
         <footer class="copyright">
             ©
