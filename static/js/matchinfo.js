@@ -124,7 +124,12 @@ async function matchSearch(event) {
     const apiUrl = `${window.home_url}/matchInfo?summonerName=${encodeURIComponent(name)}`;
 
     try {
-        const response = await fetch(apiUrl);
+        //const response = await fetch(apiUrl);
+        const response = await fetch(apiUrl, {
+            headers: {
+              'ngrok-skip-browser-warning': 'true',
+            },
+          });
 
         if (!response.ok) {
             activeSearchButtonAndHideSpinner(searchButton,spinnerBorder);
@@ -232,7 +237,12 @@ async function getLast10Matches(event, id) {
     const apiUrl = `${window.home_url}/last10matches?summonerName=${encodeURIComponent(summonerName)}`;
 
     try {
-        const response = await fetch(apiUrl)
+        //const response = await fetch(apiUrl)
+        const response = await fetch(apiUrl, {
+            headers: {
+              'ngrok-skip-browser-warning': 'true',
+            },
+          });
 
     if(!response.ok){
         var selectPlayerElement = document.getElementById("selectPlayer");
