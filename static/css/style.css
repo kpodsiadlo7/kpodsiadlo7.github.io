@@ -601,6 +601,7 @@ main .matchInput {
 main #aboutMatch {
     text-align: right;
     margin-right: 30px;
+    color: #363949;
 }
 
 main #middleContainerMatchInfo {
@@ -1227,4 +1228,44 @@ main .rightMatchTeamContainer {
 
 #spinnerPlayer {
     display: none;
+}
+
+.logout {
+    margin-right: auto;
+}
+
+#logoutText {
+    margin-top: 7px;
+    margin-left: auto;
+}
+
+.logoutBtn {
+    text-align: center;
+}
+
+#leftTextButtons {
+    margin-top: 7px;;
+}
+
+.about {
+    backdrop-filter: blur(10px);
+    border-radius: 6px;
+    margin: 10px;
+}
+
+.about p {
+    padding-top: 12px;
+}
+
+.about b {
+    color: #fff;
+}
+
+.aboutApp{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
 }

@@ -1,30 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="static/css/style.css">
-    <title>League of Legends STATS</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Match info</title>
 </head>
-<body class="body">
-    <div class="container lolcontainer">
-        <nav id="nav">
-            <div class="square">
-                <div class="insidesquare">
-                    Wyszukaj gracza
-                <button class="btn btn-primary btnlol" onclick="redirectToSummoner()">Przejdź</button>
+<body class="bodyMatch">
+    <div class="matchcontainer">
+        <!-- Left menu-->
+        <aside>
+            <div class="toggle">
+                <div class="logo" style="display: table-column;">
+                    <img src="">
+                    <a href="/summoner.html" style="text-decoration: none;"><h2>Leauge of Legends</h2></a>
+                    <h4>STATS</h4>
                 </div>
             </div>
-            <div class="square">
-                <div class="insidesquare">
-                    Wyszukaj aktywną sesję gry
-                <button class="btn btn-primary btnlol" onclick="redirectToMatches()">Przejdź</button>
+            <div class="sidebar" style="background-image: url('/img/menuicons/MorganaMenu.jpg');">
+                <div class="sidebarItems" style="background-color: rgba(255, 255, 255, 0.75); ">
+                    <a href="lolhome.html" class="active">
+                        <span class="material-icons-sharp">
+                            home
+                        </span>
+                        <h3 id="leftTextButtons">Strona główna</h3>
+                    </a>
+                    <a href="matchinfo.html">
+                        <span class="material-icons-sharp">
+                            groups
+                        </span>
+                        <h3 id="leftTextButtons">Wyszukaj mecz</h3>
+                    </a>
+                    <a href="summoner.html">
+                        <span class="material-icons-sharp">
+                            person_search
+                        </span>
+                        <h3 id="leftTextButtons">Szukaj gracza</h3>
+                    </a>
+                    <div class="logoutBtn">
+                        <a href="#">
+                            <h3 id="logoutText">Wyjdź z aplikacji</h3>
+                            <span class="logout material-icons-sharp">
+                            logout
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div style="clear: both;"></div>
-        </nav>
+        </aside>
+        <main>
+            <div id="middleContainerMatchInfo">
+                <h1 id="aboutMatch" style="margin-top: 61px;">Strona główna aplikacji</h1>   
+                <div class="match" id="matchBackground" style="background-image: url('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jax_0.jpg'); background-size: cover;">
+                    <div class="aboutApp">
+                        <h1 style="color: #fff; margin-bottom: 20px; font-size: 35px; font-weight: 700;">League of Legends STATS</h1>
+                        <div class="about">
+                        <p style="font-size: 17px; color: #fff;">To jest aplikacja, <b>która umożliwia śledzenie graczy aktualnie uczestniczących w rozgrywce.</b> 
+                                Dzięki niej możemy szybko znaleźć swoich znajomych, zobaczyć z kim obecnie grają, 
+                                sprawdzić ich poziom doświadczenia, oraz uzyskać 
+                                ogólne statystyki dotyczące liczby zwycięstw i porażek, jeśli posiadają rangę. <b>Ponadto, aplikacja umożliwia przeglądanie profili i statystyk 
+                                dowolnego gracza w League of Legends.</b></p>
+                        </div>
+                        <div class="about">
+                        <p style="font-size: 17px; color: #fff;">
+                            Na podstronie <a href="matchinfo.html" style="color: white"><b>"Wyszukaj mecz"</b></a>, po wprowadzeniu nazwy użytkownika obecnie uczestniczącego w rozgrywce, 
+                            otrzymamy statystyki dotyczące tego konkretnego meczu. Znajdziemy informacje dotyczące wybranych championów, używanych masterków oraz wszystkich zbanowanych 
+                            bohaterów(obecni w meczach rankingowych, a nie w trybie ARAM).
+                            <b>W ramach testów Riot udostępnia informacje dotyczące losowego, aktualnie trwającego meczu, co pozwala sprawdzić dowolne przypadkowe starcie.</b>
+                            Ponadto, po <b>kliknięciu na nazwę gracza,</b> po prawej stronie panelu pojawią się informacje dotyczące jego ostatnich wyników w meczach rankingowych. 
+                            Z uwagi na ograniczenia API, udostępniane są dane z ostatnich trzech starć, obejmujące nazwę gracza, poziom, rangę oraz ogólne statystyki zwycięstw i porażek, 
+                            o ile profil League jest dostępny. <b>Dodatkowo, dla każdego z tych trzech ostatnich meczów widoczna będzie postać, którą dany gracz grał, jego KDA oraz wynik starcia.</b>
+                        </p>
+                        </div>
+                        <div class="about">
+                        <p style="font-size: 17px; color: #fff;">
+                            Na podstronie <a href="summoner.html" style="color: white"><b>"Szukaj gracza"</b></a>, po wprowadzeniu dowolnej nazwy gracza uzyskamy dostęp do jego profilu, 
+                            z <b>informacjami o poziomie, rangach w grach rankingowych solo/duo oraz flex,</b> jeżeli są dostępne. Na ekranie pojawi się ikona profilu gracza wraz z 
+                            grafiką zależną od jego rangi (solo/duo). <b>Tło karty profilu zostanie ustawione zgodnie z głównym championem gracza.</b>
+                            Na panelu bocznym pojawią się informacje dotyczące <b>ostatnich 20 gier rankingowych</b> gracza, w tym nazwa wybranego <b>championa, wynik starcia oraz wskaźnik KDA</b>.
+                        </p>
+                        </div>
+                            <p style="font-size: 13px; color: #fff; position: absolute; bottom: 3rem;">Backend - Java. Frontend - HTML|CSS|JavaScript</p>
+                    </div>
+                </div> 
+            </div>        
+        </main>
     </div>
-<script src="static/js/lolhome.js"></script>
+        <footer class="copyright">
+            ©
+        </footer> 
+    <script src="static/js/summoner.js"></script>
 </body>
 </html>

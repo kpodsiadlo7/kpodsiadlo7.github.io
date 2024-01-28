@@ -9,6 +9,7 @@
     <title>Match info</title>
 </head>
 <body class="bodyMatch">
+    <script src="static/js/config.js"></script>
     <div class="matchcontainer">
         <!-- Left menu-->
         <aside>
@@ -21,24 +22,32 @@
             </div>
             <div class="sidebar" style="background-image: url('/img/menuicons/YoneMenu.jpg');">
                 <div class="sidebarItems" style="background-color: rgba(255, 255, 255, 0.75); ">
+                    <a href="lolhome.html">
+                        <span class="material-icons-sharp">
+                            home
+                        </span>
+                        <h3 id="leftTextButtons">Strona główna</h3>
+                    </a>
                     <a href="matchinfo.html">
                         <span class="material-icons-sharp">
                             groups
                         </span>
-                        <h3>Wyszukaj mecz</h3>
+                        <h3 id="leftTextButtons">Wyszukaj mecz</h3>
                     </a>
                     <a href="summoner.html" class="active">
                         <span class="material-icons-sharp">
                             person_search
                         </span>
-                        <h3>Szukaj gracza</h3>
+                        <h3 id="leftTextButtons">Szukaj gracza</h3>
                     </a>
-                    <a href="index.html">
-                        <span class="material-icons-sharp">
-                            home
-                        </span>
-                        <h3>Strona głowna</h3>
-                    </a>
+                    <div class="logoutBtn">
+                        <a href="#">
+                            <h3 id="logoutText">Wyjdź z aplikacji</h3>
+                            <span class="logout material-icons-sharp">
+                            logout
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </aside>
@@ -88,7 +97,7 @@
                                 </div>
                         </div>
                     </div>
-                    <h4 style="white-space: nowrap; margin-left: 200px; margin-top: 300px;" id="beforeFillSummonerCard">Aby wyszukać profil gracza, wprowadź jego nazwę powyżej.</h4>
+                    <h4 style="white-space: nowrap; margin-left: 200px; margin-top: 300px;" id="beforeFillSummonerCard">Aby wyszukać profil gracza, wprowadź jego nazwę powyżej</h4>
                     <h6 style="white-space: nowrap; margin-left: 200px; margin-top: 30px;" id="exampleNames">Na przykład: ZiomekMasala, mOzi lub MrJokz</h6>                   
                 </div> 
             </div>        

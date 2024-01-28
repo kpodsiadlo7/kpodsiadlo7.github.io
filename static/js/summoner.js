@@ -1,8 +1,10 @@
+
 async function searchSummoner(event) {
     event.preventDefault();
 
+
     const name = document.getElementById('name').value;
-    const apiUrl = `http://localhost:8080/?summonerName=${encodeURIComponent(name)}`;
+    const apiUrl = `${window.home_url}/?summonerName=${encodeURIComponent(name)}`;
 
     var spinnerSearch = document.getElementById("spinnerSearch");
     var searchButton = document.getElementById("searchButton");
@@ -10,17 +12,17 @@ async function searchSummoner(event) {
     disableButtonAndShowSpinner(searchButton,spinnerSearch);
 
     try {
-        /*
+        
         const response = await fetch(apiUrl, {
             headers: {
               'ngrok-skip-browser-warning': 'true',
             },
           });
-          */
+          
         var beforeFillSummonerCard = document.getElementById("beforeFillSummonerCard");
         var exampleNames = document.getElementById("exampleNames");
         
-        const response = await fetch(apiUrl);
+        //const response = await fetch(apiUrl);
 
         if(!response.ok){
             activeSearchButtonAndHideSpinner(searchButton,spinnerSearch);
