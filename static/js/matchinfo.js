@@ -112,6 +112,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         })
         .catch(error => {
+            if(response.status === 429){
+                exampleSummonerName.innerHTML = "Przekroczono limit API. Daj chwilę :)"
+            }
             console.error("Wystąpił błąd:", error);
             exampleSummonerName.textContent = "Odśwież aby pobrać losowego gracza";
         });
@@ -141,6 +144,9 @@ async function matchSearch(event) {
             activeSearchButtonAndHideSpinner(searchButton,spinnerBorder);
             var beforeFillMatchCard = document.getElementById("beforeFillMatchCard");
             beforeFillMatchCard.textContent = "Wystąpił problem z pobraniem karty meczu. Upewnij się że mecz jest rozpoczęty!";
+            if(response.status === 429){
+                beforeFillMatchCard.innerHTML = "Przekroczono limit API. Daj chwilę :)"
+            }
             beforeFillMatchCard.style.color = 'red';
             throw new Error(`Błąd HTTP: ${response.status}`);
         }
@@ -232,7 +238,7 @@ function setMatchType(data) {
     aboutMatch.textContent = matchCard;
 }
 
-async function getLast10Matches(event, id) {
+async function getLast3Matches(event, id) {
     event.preventDefault();
 
     var spinnerPlayer = document.getElementById("spinnerPlayer");
@@ -240,7 +246,7 @@ async function getLast10Matches(event, id) {
 
     var clickedElement = document.getElementById(id);
     var summonerName = clickedElement.innerText || clickedElement.textContent;
-    const apiUrl = `${window.home_url}/last10matches?summonerName=${encodeURIComponent(summonerName)}`;
+    const apiUrl = `${window.home_url}/last3matches?summonerName=${encodeURIComponent(summonerName)}`;
 
     try {
         //const response = await fetch(apiUrl)
@@ -253,6 +259,9 @@ async function getLast10Matches(event, id) {
     if(!response.ok){
         var selectPlayerElement = document.getElementById("selectPlayer");
         selectPlayerElement.innerHTML = "Coś poszło nie tak! Spróbuj jeszcze raz." + `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`;
+        if(response.status === 429){
+            selectPlayerElement.innerHTML = "Przekroczono limit API. Daj chwilę :)"
+        }
         selectPlayerElement.style.color = 'red';
         activeSearchButtonAndHideSpinner(null,spinnerPlayer)
         throw new Error(`Błąd HTTP: ${response.status}`);
@@ -263,23 +272,36 @@ async function getLast10Matches(event, id) {
     var matchList = document.getElementById("matchList");
     matchList.innerHTML = '';
 
-    let hasMatches = true;
-
     setSummonerNameLvAndRank(data);
 
     if (Array.isArray(data["matches"]) && data["matches"].length > 0) {
         for (var i = 0; i < data["matches"].length; i++) {
-            addLast10MatchesToView(hasMatches,matchList,i,data);
+            addLast3MatchesToView(matchList,i,data);
             activeSearchButtonAndHideSpinner(null,spinnerPlayer);
         }
+        setWinLosses(data);
     } else {
-        hasMatches = false;
-        addLast10MatchesToView(hasMatches,matchList,i,data);
         activeSearchButtonAndHideSpinner(null,spinnerPlayer);
+        clearLastWinsAndLosses();
+        lastRankedGames.innerHTML = "Brak rankedów z ostatnich 20 gier";
+        lastRankedGames.style.color = 'red';
     }
     } catch(error) {
         console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
+        lastRankedGames.innerHTML = "Błąd poczas pobierania";
+        lastRankedGames.style.color = 'red';
         activeSearchButtonAndHideSpinner(null,spinnerPlayer)
+    } 
+}
+
+function clearLastWinsAndLosses(){
+    var winLosses = document.getElementById("winLosses");
+    var leagueInfoWins = document.getElementById("leagueInfoWins");
+    var leagueInfoLosses = document.getElementById("leagueInfoLosses");
+    if (winLosses && leagueInfoWins && leagueInfoLosses) {
+        winLosses.textContent = '';
+        leagueInfoWins.textContent = '';
+        leagueInfoLosses.textContent = '';
     }
 }
 
@@ -295,73 +317,53 @@ function setSummonerNameLvAndRank(data) {
     matchesSummonerRank.style.color = data["rankColor"];
 }
 
-function addLast10MatchesToView(hasMatches,matchList,i,data){
-    var matchList = document.getElementById("matchList");
-    var winLosses = document.getElementById("winLosses");
-
+function addLast3MatchesToView(matchList,i,data){
     var listItem = document.createElement("li");
     var contentDiv = document.createElement("div");
 
-    let wins = 0;
-    let losses = 0;
-
-    if(data["leagueInfo"] !== null) {
-        wins = data["wins"];
-        losses = data["losses"];
-        winLosses.textContent = data["leagueInfo"]["losses"] === undefined ? "" : "Wygrane - Przegrane(Solo/Duo)";      
-    } 
-
-    if (hasMatches) {
-        var selectPlayer = document.getElementById("selectPlayer");
-        selectPlayer.innerHTML = '';
-        selectPlayer.style.margin = 0;
-
-        var lastRankedGames = document.getElementById("lastRankedGames");
-        lastRankedGames.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>` + "OSTATNIE RANKEDY";
-
-        let win = "";
+    let win = "";
         
-        if(data["matches"][i]["win"] === "WYGRANA") {
-            win = `<span class="badge bg-success rounded-pill">${data["matches"][i]["win"]}</span>`;
-        } else {
-            win = `<span class="badge bg-danger rounded-pill">${data["matches"][i]["win"]}</span>`;
-        }
+    if(data["matches"][i]["win"] === "WYGRANA") {
+        win = `<span class="badge bg-success rounded-pill">${data["matches"][i]["win"]}</span>`;
+    } else {
+        win = `<span class="badge bg-danger rounded-pill">${data["matches"][i]["win"]}</span>`;
+    }
         
-        contentDiv.innerHTML = 
-            `<div class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                    <div class="item">
-                        <img class="last10MatchesImg" src="img/champions/${data["matches"][i]["matchChampName"]}.jpeg">
-                        <div class="nameAndKda">
-                            <div class="fw-bold" id="last10MatchesName">${data["matches"][i]["matchChampName"]}</div>
-                            <div id="last10MachesKda">${data["matches"][i]["kills"]} | ${data["matches"][i]["deaths"]} | ${data["matches"][i]["assists"]}</div>   
-                        </div>
-                        <div class="damage">
+    contentDiv.innerHTML = 
+         `<div class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="item">
+                    <img class="last10MatchesImg" src="img/champions/${data["matches"][i]["matchChampName"]}.jpeg">
+                    <div class="nameAndKda">
+                        <div class="fw-bold" id="last10MatchesImg">${data["matches"][i]["matchChampName"]}</div>
+                        <div id="last10MatchesImg">${data["matches"][i]["kills"]} | ${data["matches"][i]["deaths"]} | ${data["matches"][i]["assists"]}</div>   
+                    </div> 
+                    <div class="damage">
                         <div class="fw-bold" id="last10MatchesImg">DMG</div>
                         <div id="last10MatchesImg">${data["matches"][i]["dealtDamage"]}</div>   
                     </div> 
-                    </div>
                 </div>
-                <div class="last10MatchesWinAndLane">
-                    ${win}
-                    <div class="lane">${data["matches"][i]["lane"]}</div>
-                </div>
-            </div>`;
-    } else {
-        var selectPlayer = document.getElementById("selectPlayer");
-        selectPlayer.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`+"Wybierz gracza";
-        selectPlayer.style.marginTop = '240px';
-        selectPlayer.style.color = "#363949";
-        contentDiv.innerHTML = "Brak rozegranych rankedów w ostatnich 20 grach(Solo/Duo)";
-    }
-
-    setWinLosses(wins,losses);
+            </div>
+            <div class="last10MatchesWinAndLane">
+                ${win}
+                <div class="lane">${data["matches"][i]["lane"]}</div>
+           </div>
+        </div>`;
 
     listItem.appendChild(contentDiv);
     matchList.appendChild(listItem);
 }
 
-function setWinLosses(wins,losses) {
+function setWinLosses(data,winLosses) {
+    var winLosses = document.getElementById("winLosses");
+    const wins = data["wins"];
+    const losses = data["losses"];
+    const sumMatch = data["wins"]+data["losses"];
+    winLosses.textContent = "Wygrane - Przegrane";  
+
+    lastRankedGames.innerHTML = "OSTATNIE RANKEDY - " + sumMatch;
+    lastRankedGames.style.color = "#363949";
+
     const leagueInfoWins = document.getElementById("leagueInfoWins");
     leagueInfoWins.textContent = wins;
     leagueInfoWins.style.color = "green";
@@ -369,5 +371,4 @@ function setWinLosses(wins,losses) {
     const leagueInfoLosses = document.getElementById("leagueInfoLosses");
     leagueInfoLosses.textContent = losses;
     leagueInfoLosses.style.color = "red";
-
 }

@@ -28,8 +28,11 @@ async function searchSummoner(event) {
         //const response = await fetch(apiUrl);
 
         if(!response.ok){
-            activeSearchButtonAndHideSpinner(searchButton,spinnerSearch);
             beforeFillSummonerCard.textContent = "Wystąpił problem z pobraniem profilu użytkownika!";
+            if(response.status === 429){
+                beforeFillSummonerCard.innerHTML = "Przekroczono limit API. Daj chwilę :)"
+            }
+            activeSearchButtonAndHideSpinner(searchButton,spinnerSearch);
             beforeFillSummonerCard.style.color = "red";
 
             throw new Error(`Błąd HTTP: ${response.status}`);
@@ -237,6 +240,9 @@ async function getLast20Matches(summonerName,matchList,lastRankedGames) {
 
     if(!response.ok){
         lastRankedGames.innerHTML = "Coś poszło nie tak! Spróbuj jeszcze raz.";
+        if(response.status === 429){
+            lastRankedGames.innerHTML = "Przekroczono limit API. Daj chwilę :)"
+        }
         lastRankedGames.style.color = 'red';
         throw new Error(`Błąd HTTP: ${response.status}`);
     }
@@ -293,8 +299,6 @@ function addLast20MatchesToView(matchList,i,data){
                 <div class="lane">${data["matches"][i]["lane"]}</div>
            </div>
         </div>`;
-    
-
 
     listItem.appendChild(contentDiv);
     matchList.appendChild(listItem);
