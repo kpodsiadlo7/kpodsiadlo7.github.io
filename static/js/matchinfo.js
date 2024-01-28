@@ -100,14 +100,15 @@ function activeSearchButtonAndHideSpinner(searchButton,spinnerBorder){
 // Pobranie przykładowej nazwy gracza z losowego rozgrywanego meczu
 document.addEventListener("DOMContentLoaded", function() {
     const apiUrl = `http://localhost:8080/randomMatch`;
+    var exampleSummonerName = document.getElementById("exampleSummonerName");
     fetch(apiUrl)
         .then(response => response.json())
-        .then(data => {
-            var exampleSummonerName = document.getElementById("exampleSummonerName");
+        .then(data => {   
             exampleSummonerName.textContent = "Losowy gracz: " + data;
         })
         .catch(error => {
             console.error("Wystąpił błąd:", error);
+            exampleSummonerName.textContent = "Odśwież aby pobrać losowego gracza";
         });
 });
 
@@ -158,8 +159,19 @@ async function matchSearch(event) {
             playedTeam = "teamRight";
         } 
 
-        let leftArray = [];
-        let rightArray = [];
+        setBothTeamDependsOnTeamId(data);
+        setBannedList(data["bannedChampions"]);
+        RemoveBeforeFillMatchCardAndExampleSummonerName();
+
+        } catch (error) {
+        console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
+        activeSearchButtonAndHideSpinner(searchButton,spinnerBorder)
+    }
+}
+
+function setBothTeamDependsOnTeamId(data) {
+    let leftArray = [];
+    let rightArray = [];
 
         for (const summoner of data["summoners"]) {
             if (summoner["teamId"] === 100) { 
@@ -180,14 +192,6 @@ async function matchSearch(event) {
                 setRightTeam(rightArray[i-1], i);
             }
         }
-
-        setBannedList(data["bannedChampions"]);
-        RemoveBeforeFillMatchCardAndExampleSummonerName();
-
-        } catch (error) {
-        console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
-        activeSearchButtonAndHideSpinner(searchButton,spinnerBorder)
-    }
 }
 
 function RemoveBeforeFillMatchCardAndExampleSummonerName(){
@@ -198,9 +202,13 @@ function RemoveBeforeFillMatchCardAndExampleSummonerName(){
 }
 
 function displaySelectSummonerTextInRightSideBar() {
-    var selectPlayer = document.getElementById("selectPlayer");
-    var textNode = document.createTextNode(" Wybierz gracza");
-    selectPlayer.appendChild(textNode);
+    var lastRankedGames = document.getElementById("lastRankedGames");
+
+    if (!lastRankedGames.textContent.includes("OSTATNIE RANKEDY")) {
+        var selectPlayer = document.getElementById("selectPlayer");
+        var textNode = document.createTextNode("Wybierz gracza");
+        selectPlayer.appendChild(textNode);
+    }
 }
 
 function setMatchType(data) {
@@ -223,8 +231,9 @@ async function getLast10Matches(event, id) {
         const response = await fetch(apiUrl)
 
     if(!response.ok){
-        clickedElement.textContent = "Coś poszło nie tak! Spróbuj jeszcze raz.";
-        clickedElement.style.color = 'red';
+        var selectPlayerElement = document.getElementById("selectPlayer");
+        selectPlayerElement.innerHTML = "Coś poszło nie tak! Spróbuj jeszcze raz." + `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`;
+        selectPlayerElement.style.color = 'red';
         activeSearchButtonAndHideSpinner(null,spinnerPlayer)
         throw new Error(`Błąd HTTP: ${response.status}`);
     }
@@ -232,9 +241,29 @@ async function getLast10Matches(event, id) {
     const data = await response.json();
 
     var matchList = document.getElementById("matchList");
-    let hasMatches = true;
     matchList.innerHTML = '';
 
+    let hasMatches = true;
+
+    setSummonerNameLvAndRank(data);
+
+    if (Array.isArray(data["matches"]) && data["matches"].length > 0) {
+        for (var i = 0; i < data["matches"].length; i++) {
+            addLast10MatchesToView(hasMatches,matchList,i,data);
+            activeSearchButtonAndHideSpinner(null,spinnerPlayer);
+        }
+    } else {
+        hasMatches = false;
+        addLast10MatchesToView(hasMatches,matchList,i,data);
+        activeSearchButtonAndHideSpinner(null,spinnerPlayer);
+    }
+    } catch(error) {
+        console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
+        activeSearchButtonAndHideSpinner(null,spinnerPlayer)
+    }
+}
+
+function setSummonerNameLvAndRank(data) {
     const matchesSummonerName = document.getElementById("matchesSummonerName");
     matchesSummonerName.textContent = data["name"];
 
@@ -244,24 +273,11 @@ async function getLast10Matches(event, id) {
     const matchesSummonerRank = document.getElementById("matchesSummonerRank");
     matchesSummonerRank.textContent = data["rank"];
     matchesSummonerRank.style.color = data["rankColor"];
-
-
-    if (Array.isArray(data["matches"]) && data["matches"].length > 0) {
-        for (var i = 0; i < data["matches"].length; i++) {
-            addLast10MatchesToView(hasMatches,matchList,i,data);
-        }
-    } else {
-        hasMatches = false;
-        addLast10MatchesToView(hasMatches,matchList,i,data);
-    }
-    } catch(error) {
-        console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
-        activeSearchButtonAndHideSpinner(null,spinnerPlayer)
-    }
 }
 
 function addLast10MatchesToView(hasMatches,matchList,i,data){
     var matchList = document.getElementById("matchList");
+    var winLosses = document.getElementById("winLosses");
 
     var listItem = document.createElement("li");
     var contentDiv = document.createElement("div");
@@ -272,23 +288,19 @@ function addLast10MatchesToView(hasMatches,matchList,i,data){
     if(data["leagueInfo"] !== null) {
         wins = data["leagueInfo"]["wins"];
         losses = data["leagueInfo"]["losses"];
+        winLosses.textContent = data["leagueInfo"]["losses"] === undefined ? "" : "Wygrane - Przegrane";      
     } 
 
     if (hasMatches) {
         var selectPlayer = document.getElementById("selectPlayer");
-        var lastRankedGames = document.getElementById("lastRankedGames");
-        var winLosses = document.getElementById("winLosses");
-       
-
-        lastRankedGames.textContent = "OSTATNIE RANKEDY";
-        winLosses.textContent = "WYGRANE - PRZEGRANE";
-        
-
         selectPlayer.innerHTML = '';
         selectPlayer.style.margin = 0;
 
-        let win = "";
+        var lastRankedGames = document.getElementById("lastRankedGames");
+        lastRankedGames.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>` + "OSTATNIE RANKEDY";
 
+        let win = "";
+        
         if(data["matches"][i]["win"] === "WYGRANA") {
             win = `<span class="badge bg-success rounded-pill">${data["matches"][i]["win"]}</span>`;
         } else {
@@ -311,15 +323,18 @@ function addLast10MatchesToView(hasMatches,matchList,i,data){
                     <div class="lane">${data["matches"][i]["lane"]}</div>
                 </div>
             </div>`;
-
     } else {
+        var selectPlayer = document.getElementById("selectPlayer");
+        selectPlayer.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`+"Wybierz gracza";
+        selectPlayer.style.marginTop = '240px';
+        selectPlayer.style.color = "#363949";
         contentDiv.innerHTML = "Brak rozegranych rankedów w ostatnich 20 grach";
     }
 
     setWinLosses(wins,losses);
 
     listItem.appendChild(contentDiv);
-    matchList.appendChild(listItem);   
+    matchList.appendChild(listItem);
 }
 
 function setWinLosses(wins,losses) {
@@ -330,4 +345,5 @@ function setWinLosses(wins,losses) {
     const leagueInfoLosses = document.getElementById("leagueInfoLosses");
     leagueInfoLosses.textContent = losses;
     leagueInfoLosses.style.color = "red";
+
 }

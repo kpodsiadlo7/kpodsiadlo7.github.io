@@ -18,6 +18,7 @@ async function searchSummoner(event) {
           });
           */
         var beforeFillSummonerCard = document.getElementById("beforeFillSummonerCard");
+        var exampleNames = document.getElementById("exampleNames");
         
         const response = await fetch(apiUrl);
 
@@ -31,7 +32,7 @@ async function searchSummoner(event) {
         const data = await response.json();
 
         activeSearchButtonAndHideSpinner(searchButton,spinnerSearch);
-        removeBeforeFillSummonerCard(beforeFillSummonerCard);
+        removeBeforeFillSummonerCard(beforeFillSummonerCard,exampleNames);
         setRanks(data);
         setBackgroundImage(data);
         displayBlurOnBackgroundImage();
@@ -71,9 +72,10 @@ function activeSearchButtonAndHideSpinner(searchButton,spinnerBorder){
     }
 }
 
-function removeBeforeFillSummonerCard(beforeFillSummonerCard) {
-    if(beforeFillSummonerCard){
+function removeBeforeFillSummonerCard(beforeFillSummonerCard,exampleNames) {
+    if(beforeFillSummonerCard && exampleNames){
         beforeFillSummonerCard.remove();
+        exampleNames.remove();
     }
 }
 
@@ -98,6 +100,8 @@ function setRanks(data){
 
     userHasRankSolo = false;
     userHasRankFlex = false;
+    removeRankSolo();
+    removeRankFlex();
 
     if( data !== null && Array.isArray(data["ranks"]) && data["ranks"] !== null) {
             let ranksArray = data.ranks;
@@ -115,6 +119,8 @@ function setRanks(data){
                 }
             });
             setProfileIconWithRank(data);
+        } else {
+            
         }
 }
 
@@ -147,18 +153,20 @@ function setRankSolo(rank,data) {
 
     summonerTier = rank["rankSolo"]["tier"];
     if(rank["rankSolo"]["tier"] === "EMERALD"){
-        summonerTier = "";
+        summonerTier = "MASTER";
     }
 }
 
 function removeRankSolo() {
-    rankedSolo.textContent = "";
+    rankedSolo.textContent = "Ranga Solo/Duo: BRAK RANGI";
+    rankedSolo.style.color = "white";
     leaugePointsSolo.textContent = "";
     winLossesSolo.textContent = "";
 }
 
 function removeRankFlex() {
-    rankedFlex.textContent = "";
+    rankedFlex.textContent = "Ranga Flex: BRAK RANGI";
+    rankedFlex.style.color = "white";
     leaguePointsFlex.textContent = "";
     winLossesFlex.textContent = "";
 }
@@ -167,13 +175,14 @@ function setProfileIconWithRank(data){
 
     var profileIcon = document.getElementById("profileIcon");
     var contentDiv = document.createElement("div");
+    var tierName = summonerTier === null ? "IRON" : summonerTier; 
     profileIcon.innerHTML = '';
     contentDiv.innerHTML = `
                                 <div class="centeredContainer">
                                     <img src="https://ddragon.leagueoflegends.com/cdn/14.2.1/img/profileicon/${data["profileIconId"]}.png" 
-                                    style="max-width: 150px; max-height: 150px; border-radius: 50%; position: relative; z-index: 1; margin-bottom: 10px">
+                                    style="max-width: 140px; max-height: 140px; border-radius: 50%; position: relative; z-index: 1; margin-bottom: 20px">
                                 </div>
-                                <img src="img/tiers/${summonerTier}.png" 
+                                <img src="img/tiers/${tierName}.png" 
                                 style="max-width: 350px; max-height: 350px; position: absolute; top: 50%; left: 50%; transform: translate(-181.5%, -52%); border-radius: 50%; z-index: 2;">
                             `;
 
