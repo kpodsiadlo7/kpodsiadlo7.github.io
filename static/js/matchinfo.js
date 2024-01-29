@@ -345,7 +345,7 @@ function addLast3MatchesToView(matchList,i,data){
                 <div class="item">
                     <img class="last10MatchesImg" src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${data["matches"][i]["championId"]}.png">
                     <div class="nameAndKda">
-                        <div class="fw-bold" id="last10MatchesImg">${data["matches"][i]["championId"]}</div>
+                        <div class="fw-bold" id="last10MatchesImg">${data["matches"][i]["matchChampName"]}</div>
                         <div id="last10MatchesImg">${data["matches"][i]["kills"]} | ${data["matches"][i]["deaths"]} | ${data["matches"][i]["assists"]}</div>   
                     </div> 
                     <div class="damage">
