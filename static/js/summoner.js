@@ -78,12 +78,13 @@ function displayBlurOnBackgroundImage(){
 
 function setBackgroundAndSideImage(data) {
     const backgroundImage = document.getElementById("matchBackground");
+    const mainChampName = data["mainChamp"] === undefined ? "Darius" : data["mainChamp"];
     backgroundImage.style = 
-        `background-image: url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${data["mainChamp"]}_0.jpg); 
+        `background-image: url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${mainChampName}_0.jpg); 
         background-size: cover; --box-shadow: 0 0 0.7rem 3px;`
 
     const sideBarImage = document.getElementById("sideBar");
-    sideBarImage.style = `background-image: url(https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${data["mainChamp"]}_1.jpg);`;
+    sideBarImage.style = `background-image: url(https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${mainChampName}_1.jpg);`;
         
 }
 
