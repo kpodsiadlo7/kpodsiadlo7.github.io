@@ -261,8 +261,11 @@ async function getLast20Matches(summonerName,matchList,lastRankedGames) {
         lastRankedGames.style.color = 'red';
     }
     } catch(error) {
-        console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
         lastRankedGames.innerHTML = "Błąd poczas pobierania";
+        if(error.message.includes("429")){
+            lastRankedGames.innerHTML = "Przekroczono limit API. Daj chwilę :)"
+        }
+        console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
         lastRankedGames.style.color = 'red';
     }
 }

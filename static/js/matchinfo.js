@@ -75,7 +75,7 @@ function setBannedList(champions){
             img.src = `img/champions/${champions[i-1]}.jpeg`;
             img.style.setProperty('box-shadow', '0 0 0.5rem rgba(255, 0, 0, 1)');
         }
-        bannedText.textContent = "Zbanowane";
+        bannedText.textContent = "Zbanowani";
     }
 }
 
