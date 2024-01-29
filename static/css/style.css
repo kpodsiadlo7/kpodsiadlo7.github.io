@@ -492,7 +492,14 @@ small {
     position: relative;
   }
 
-
+  .github {
+    margin-top: 40%;
+    background-image: url('/img/GitHub_Logo.png');
+    background-size: contain;
+    background-repeat: no-repeat; 
+    height: 95px;
+    width: 100%; 
+  }
 
   main .matchSearchBtn {
     background-color: rebeccapurple;
