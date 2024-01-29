@@ -117,8 +117,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }})
         .then(response => response.text())
         .then(data => {   
-            exampleSummonerName.textContent = data === "Spróbuj ponownie za chwilę" ? "Spróbuj ponownie za chwilę" : ("Losowy gracz: " + data) ;
-            exampleSummonerName.style.color = data === "Spróbuj ponownie za chwilę" ? "red" : "black";
+            exampleSummonerName.textContent = data === "Brak listy gier. Spróbuj ponownie za chwilę" ? "Brak listy gier. Spróbuj ponownie za chwilę" : ("Losowy gracz: " + data) ;
+            exampleSummonerName.style.color = data === "Brak listy gier. Spróbuj ponownie za chwilę" ? "red" : "black";
 
         })
         .catch(error => {
