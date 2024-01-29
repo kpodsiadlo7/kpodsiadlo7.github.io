@@ -67,16 +67,26 @@ function setRightTeam(summoner,i){
 }
 
 function setBannedList(champions){
-    if(champions && champions.length > 0){
+    if (champions && champions.length > 0) {
         var bannedText = document.getElementById("bannedText");
+        var bannedList = document.getElementById("bannedList");
+    
+        let bannedChampDiv;
+    
         bannedText.textContent = "";
-        for (let i = 1; i <= 10; i++) {
-            const img = document.getElementById(`champBannedIcon${i}`)
-            img.src = `img/champions/${champions[i-1]}.jpeg`;
+        for (let i = 0; i < 10; i++) {
+            bannedChampDiv = document.createElement("div");
+            bannedChampDiv.className = `banned${i + 1}`;
+            bannedChampDiv.innerHTML = `<img class="champBannedIcon" id="champBannedIcon${i + 1}" src="" alt="ChampIcon">`;
+            bannedList.appendChild(bannedChampDiv);
+    
+            const img = document.getElementById(`champBannedIcon${i + 1}`);
+            img.src = `img/champions/${champions[i]}.jpeg`;
             img.style.setProperty('box-shadow', '0 0 0.5rem rgba(255, 0, 0, 1)');
         }
         bannedText.textContent = "Zbanowani";
     }
+    
 }
 
 function disableButtonAndShowSpinner(searchButton,spinnerBorder){
