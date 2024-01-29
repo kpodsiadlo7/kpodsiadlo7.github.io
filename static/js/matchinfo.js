@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => {
             if(response.status === 429){
-                exampleSummonerName.innerHTML = "Przekroczono limit API. Daj chwilę :)"
+                exampleSummonerName.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>` + "Przekroczono limit API. Daj chwilę :)"
             }
             console.error("Wystąpił błąd:", error);
             exampleSummonerName.textContent = "Odśwież aby pobrać losowego gracza";
@@ -238,8 +238,8 @@ function displaySelectSummonerTextInRightSideBar() {
         var textNode = selectPlayer.textContent.includes("Wybierz gracza") ? "" : document.createTextNode("Wybierz gracza");
         if(textNode !== ""){
             selectPlayer.appendChild(textNode);
-        }     
-    }
+        } 
+    } 
 }
 
 function setMatchType(data) {
@@ -257,6 +257,8 @@ async function getLast3Matches(event, id) {
     var clickedElement = document.getElementById(id);
     var summonerName = clickedElement.innerText || clickedElement.textContent;
     const apiUrl = `${window.home_url}/last3matches?summonerName=${encodeURIComponent(summonerName)}`;
+    var selectPlayerElement = document.getElementById("selectPlayer");
+    
 
     try {
         //const response = await fetch(apiUrl)
@@ -267,16 +269,16 @@ async function getLast3Matches(event, id) {
           });
 
     if(!response.ok){
-        var selectPlayerElement = document.getElementById("selectPlayer");
-        selectPlayerElement.innerHTML = "Coś poszło nie tak! Spróbuj jeszcze raz." + `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`;
+        lastRankedGames.innerHTML = "Coś poszło nie tak! Spróbuj jeszcze raz." + `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`;
         if(response.status === 429){
-            selectPlayerElement.innerHTML = "Przekroczono limit API. Daj chwilę :)"
+            lastRankedGames.innerHTML = "Przekroczono limit API. Daj chwilę :)"
         }
-        selectPlayerElement.style.color = 'red';
+        lastRankedGames.style.color = 'red';
         activeSearchButtonAndHideSpinner(null,spinnerPlayer)
         throw new Error(`Błąd HTTP: ${response.status}`);
     }
 
+    selectPlayerElement.textContent = '';
     const data = await response.json();
 
     var matchList = document.getElementById("matchList");
@@ -289,7 +291,7 @@ async function getLast3Matches(event, id) {
             addLast3MatchesToView(matchList,i,data);
             activeSearchButtonAndHideSpinner(null,spinnerPlayer);
         }
-        setWinLosses(data);
+        setWinLosses(data,lastRankedGames);
     } else {
         activeSearchButtonAndHideSpinner(null,spinnerPlayer);
         clearLastWinsAndLosses();
@@ -297,8 +299,11 @@ async function getLast3Matches(event, id) {
         lastRankedGames.style.color = 'red';
     }
     } catch(error) {
-        console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
         lastRankedGames.innerHTML = "Błąd poczas pobierania";
+        if(error.message.includes("429")){
+            lastRankedGames.innerHTML = "Przekroczono limit API. Daj chwilę :)"
+        }
+        console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
         lastRankedGames.style.color = 'red';
         activeSearchButtonAndHideSpinner(null,spinnerPlayer)
     } 
@@ -364,14 +369,14 @@ function addLast3MatchesToView(matchList,i,data){
     matchList.appendChild(listItem);
 }
 
-function setWinLosses(data,winLosses) {
+function setWinLosses(data,lastRankedGames) {
     var winLosses = document.getElementById("winLosses");
     const wins = data["wins"];
     const losses = data["losses"];
     const sumMatch = data["wins"]+data["losses"];
     winLosses.textContent = "Wygrane - Przegrane";  
 
-    lastRankedGames.innerHTML = "OSTATNIE RANKEDY - " + sumMatch;
+    lastRankedGames.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`+"OSTATNIE RANKEDY - " + sumMatch;
     lastRankedGames.style.color = "#363949";
 
     const leagueInfoWins = document.getElementById("leagueInfoWins");
