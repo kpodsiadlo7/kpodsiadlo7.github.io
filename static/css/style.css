@@ -635,8 +635,7 @@ main .whichTeamTextLeft {
     padding-top: 10px;
     height: 50px;
     text-align: center;
-    margin-top: 5px;
-    
+    margin-top: 5px; 
     transition: all 0.3s ease;
 }
 
@@ -646,6 +645,7 @@ main .leftMatchTeamContainer {
     height: 63vh;
     margin-left: auto;
     transition: all 0.3s ease;
+    border-radius: 6px;
 }
 
 main .middleMatchTeamContainer {
@@ -669,6 +669,7 @@ main .rightMatchTeamContainer {
     height: 63vh;
     margin-right: 2px;
     transition: all 0.3s ease;
+    border-radius: 6px;
 }
 
 html {

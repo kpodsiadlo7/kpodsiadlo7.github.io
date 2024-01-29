@@ -295,7 +295,7 @@ async function getLast3Matches(event, id) {
     } else {
         activeSearchButtonAndHideSpinner(null,spinnerPlayer);
         clearLastWinsAndLosses();
-        lastRankedGames.innerHTML = "Brak rankedów z ostatnich 20 gier";
+        lastRankedGames.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>` + "Brak rankedów z ostatnich 20 gier";
         lastRankedGames.style.color = 'red';
     }
     } catch(error) {
