@@ -287,7 +287,7 @@ function addLast20MatchesToView(matchList,i,data){
          `<div class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
                 <div class="item">
-                    <img class="last10MatchesImg" src="img/champions/${data["matches"][i]["matchChampName"]}.jpeg">
+                <img class="last10MatchesImg" src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${data["matches"][i]["championId"]}.png">
                     <div class="nameAndKda">
                         <div class="fw-bold" id="last10MatchesImg">${data["matches"][i]["matchChampName"]}</div>
                         <div id="last10MatchesImg">${data["matches"][i]["kills"]} | ${data["matches"][i]["deaths"]} | ${data["matches"][i]["assists"]}</div>   

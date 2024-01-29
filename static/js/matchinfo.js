@@ -26,7 +26,7 @@ function setLeftTeam(summoner,i){
     const spellL = document.getElementById(`champPerkLeft${i}`);
     const spellR = document.getElementById(`champPerkRight${i}`);
 
-    img.src = `img/champions/${summoner['champName']}.jpeg`;
+    img.src = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${summoner["championId"]}.png`;
     spellL.src = `img/spells/${summoner['1spellName']}.png`;
     spellR.src = `img/spells/${summoner['2spellName']}.png`;
 
@@ -51,7 +51,7 @@ function setRightTeam(summoner,i){
     const spellR = document.getElementById(`champPerkRightR${i}`);
 
 
-    img.src = `img/champions/${summoner['champName']}.jpeg`;
+    img.src = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${summoner["championId"]}.png`;
     spellL.src = `img/spells/${summoner['1spellName']}.png`;
     spellR.src = `img/spells/${summoner['2spellName']}.png`;
 
@@ -77,11 +77,11 @@ function setBannedList(champions){
         for (let i = 0; i < 10; i++) {
             bannedChampDiv = document.createElement("div");
             bannedChampDiv.className = `banned${i + 1}`;
-            bannedChampDiv.innerHTML = `<img class="champBannedIcon" id="champBannedIcon${i + 1}" src="" alt="ChampIcon">`;
+            bannedChampDiv.innerHTML = `<img class="champBannedIcon" id="champBannedIcon${i+1}" src="" alt="ChampIcon">`;
             bannedList.appendChild(bannedChampDiv);
     
             const img = document.getElementById(`champBannedIcon${i + 1}`);
-            img.src = `img/champions/${champions[i]}.jpeg`;
+            img.src = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${champions[i]}.png`;   
             img.style.setProperty('box-shadow', '0 0 0.5rem rgba(255, 0, 0, 1)');
         }
         bannedText.textContent = "Zbanowani";
@@ -343,9 +343,9 @@ function addLast3MatchesToView(matchList,i,data){
          `<div class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
                 <div class="item">
-                    <img class="last10MatchesImg" src="img/champions/${data["matches"][i]["matchChampName"]}.jpeg">
+                    <img class="last10MatchesImg" src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${data["matches"][i]["championId"]}.png">
                     <div class="nameAndKda">
-                        <div class="fw-bold" id="last10MatchesImg">${data["matches"][i]["matchChampName"]}</div>
+                        <div class="fw-bold" id="last10MatchesImg">${data["matches"][i]["championId"]}</div>
                         <div id="last10MatchesImg">${data["matches"][i]["kills"]} | ${data["matches"][i]["deaths"]} | ${data["matches"][i]["assists"]}</div>   
                     </div> 
                     <div class="damage">
