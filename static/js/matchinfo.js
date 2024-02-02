@@ -81,7 +81,7 @@ function setBannedList(champions){
             bannedList.appendChild(bannedChampDiv);
     
             const img = document.getElementById(`champBannedIcon${i + 1}`);
-            img.src = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${champions[i]}.png`;   
+            img.src = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${champions[i]["name"]}.png`;   
             img.style.setProperty('box-shadow', '0 0 0.5rem rgba(255, 0, 0, 1)');
         }
         bannedText.textContent = "Zbanowani";
