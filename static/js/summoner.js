@@ -140,12 +140,12 @@ function setRanks(data){
     if( data !== null && Array.isArray(data["ranks"]) && data["ranks"] !== null) {
             let ranksArray = data.ranks;
             ranksArray.forEach(rank => {
-                if(rank["rankFlex"]) {
+                if(rank["queueType"] === "RANKED_FLEX_SR") {
                     setRankFlex(rank,data);
                     if(!userHasRankSolo){
                         removeRankSolo();
                     }
-                } else if (rank["rankSolo"]) {
+                } else if (rank["queueType"] === "RANKED_SOLO_5x5") {
                     setRankSolo(rank,data);
                     if(!userHasRankFlex){
                         removeRankFlex();
@@ -165,11 +165,15 @@ function setRankFlex(rank,data) {
     const leaguePointsFlex = document.getElementById("leaguePointsFlex");
     const winLossesFlex = document.getElementById("winLossesFlex");
 
-    rankedFlex.textContent = "Ranga Flex: " + rank["rankFlex"]["tier"] + "-" + rank["rankFlex"]["rank"];
+    rankedFlex.textContent = "Ranga Flex: " + rank["tier"] + "-" + rank["rank"];
     rankedFlex.style.color = data["rankFlexColor"];
 
-    leaguePointsFlex.textContent = "Punkty league: " + rank["rankFlex"]["leaguePoints"];
-    winLossesFlex.textContent = "Wygrane-Przegrane: " + rank["rankFlex"]["wins"] + " / " + rank["rankFlex"]["losses"];
+    leaguePointsFlex.textContent = "Punkty league: " + rank["leaguePoints"];
+    winLossesFlex.textContent = "Wygrane-Przegrane: " + rank["wins"] + " / " + rank["losses"];
+
+    if(rank["tier"] === "EMERALD"){
+        summonerTier = "MASTER";
+    }
 }
 
 function setRankSolo(rank,data) {
@@ -179,14 +183,14 @@ function setRankSolo(rank,data) {
     const leaugePointsSolo = document.getElementById("leaugePointsSolo");
     const winLossesSolo = document.getElementById("winLossesSolo");
 
-    rankedSolo.textContent = "Ranga Solo/Duo: " + rank["rankSolo"]["tier"] + "-" + rank["rankSolo"]["rank"];
+    rankedSolo.textContent = "Ranga Solo/Duo: " + rank["tier"] + "-" + rank["rank"];
     rankedSolo.style.color = data["rankSoloColor"];
 
-    leaugePointsSolo.textContent = "Punkty league: " + rank["rankSolo"]["leaguePoints"];
-    winLossesSolo.textContent = "Wygrane-Przegrane: " + rank["rankSolo"]["wins"] + " / " + rank["rankSolo"]["losses"];
+    leaugePointsSolo.textContent = "Punkty league: " + rank["leaguePoints"];
+    winLossesSolo.textContent = "Wygrane-Przegrane: " + rank["wins"] + " / " + rank["losses"];
 
-    summonerTier = rank["rankSolo"]["tier"];
-    if(rank["rankSolo"]["tier"] === "EMERALD"){
+    summonerTier = rank["tier"];
+    if(rank["tier"] === "EMERALD"){
         summonerTier = "MASTER";
     }
 }
@@ -312,10 +316,10 @@ function setWinLosses(data,winLosses) {
     var winLosses = document.getElementById("winLosses");
     const wins = data["wins"];
     const losses = data["losses"];
-    const sumMatch = data["wins"]+data["losses"];
+    const matchQty = data["wins"] + data["losses"];
     winLosses.textContent = "Wygrane - Przegrane";  
 
-    lastRankedGames.innerHTML = "OSTATNIE RANKEDY - " + sumMatch;
+    lastRankedGames.innerHTML = "OSTATNIE RANKEDY - " + matchQty;
 
     const leagueInfoWins = document.getElementById("leagueInfoWins");
     leagueInfoWins.textContent = wins;

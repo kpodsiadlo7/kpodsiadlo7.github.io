@@ -27,8 +27,8 @@ function setLeftTeam(summoner,i){
     const spellR = document.getElementById(`champPerkRight${i}`);
 
     img.src = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${summoner["championId"]}.png`;
-    spellL.src = `img/spells/${summoner['1spellName']}.png`;
-    spellR.src = `img/spells/${summoner['2spellName']}.png`;
+    spellL.src = `img/spells/${summoner['spellName1']}.png`;
+    spellR.src = `img/spells/${summoner['spellName2']}.png`;
 
     name.textContent = summoner['summonerName'];
     rank.textContent = summoner['rank'];
@@ -52,8 +52,8 @@ function setRightTeam(summoner,i){
 
 
     img.src = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${summoner["championId"]}.png`;
-    spellL.src = `img/spells/${summoner['1spellName']}.png`;
-    spellR.src = `img/spells/${summoner['2spellName']}.png`;
+    spellL.src = `img/spells/${summoner['spellName1']}.png`;
+    spellR.src = `img/spells/${summoner['spellName2']}.png`;
 
     name.textContent = summoner['summonerName'];
     rank.textContent = summoner['rank'];
@@ -155,7 +155,7 @@ async function matchSearch(event) {
             var beforeFillMatchCard = document.getElementById("beforeFillMatchCard");
             beforeFillMatchCard.textContent = "Wystąpił problem z pobraniem karty meczu. Upewnij się że mecz jest rozpoczęty!";
             if(response.status === 429){
-                beforeFillMatchCard.innerHTML = "Przekroczono limit API. Daj chwilę :)"
+                beforeFillMatchCard.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>` + "Przekroczono limit API. Daj chwilę :)"
             }
             beforeFillMatchCard.style.color = 'red';
             throw new Error(`Błąd HTTP: ${response.status}`);
@@ -271,7 +271,7 @@ async function getLast3Matches(event, id) {
     if(!response.ok){
         lastRankedGames.innerHTML = "Coś poszło nie tak! Spróbuj jeszcze raz." + `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`;
         if(response.status === 429){
-            lastRankedGames.innerHTML = "Przekroczono limit API. Daj chwilę :)"
+            lastRankedGames.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>` + "Przekroczono limit API. Daj chwilę :)"
         }
         lastRankedGames.style.color = 'red';
         activeSearchButtonAndHideSpinner(null,spinnerPlayer)
@@ -299,9 +299,9 @@ async function getLast3Matches(event, id) {
         lastRankedGames.style.color = 'red';
     }
     } catch(error) {
-        lastRankedGames.innerHTML = "Błąd poczas pobierania";
+        lastRankedGames.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>` + "Błąd poczas pobierania";
         if(error.message.includes("429")){
-            lastRankedGames.innerHTML = "Przekroczono limit API. Daj chwilę :)"
+            lastRankedGames.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>` + "Przekroczono limit API. Daj chwilę :)"
         }
         console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
         lastRankedGames.style.color = 'red';
