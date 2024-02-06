@@ -130,7 +130,7 @@ function setRanks(data){
     summonerName.textContent = data["name"];
 
     const sumonnerLv = document.getElementById("summonerLevel");
-    sumonnerLv.textContent = "Level " + data["summonerLevel"];
+    sumonnerLv.textContent = "Poziom " + data["summonerLevel"];
 
     userHasRankSolo = false;
     userHasRankFlex = false;
