@@ -230,7 +230,7 @@ function setProfileIconWithRank(data){
 
 async function getLast20Matches(puuId,matchList,lastRankedGames) {
     
-    const apiUrl = `${window.home_url}/last20matches?summonerName=${encodeURIComponent(puuId)}`;
+    const apiUrl = `${window.home_url}/last20matches?puuId=${encodeURIComponent(puuId)}`;
 
     try {
         const response = await fetch(apiUrl, {
@@ -282,10 +282,10 @@ function addLast20MatchesToView(matchList,i,data){
 
     let win = "";
         
-    if(data["matches"][i]["win"] === "WYGRANA") {
-        win = `<span class="badge bg-success rounded-pill">${data["matches"][i]["win"]}</span>`;
+    if(data["matches"][i]["win"] === true) {
+        win = `<span class="badge bg-success rounded-pill">Wygrana</span>`;
     } else {
-        win = `<span class="badge bg-danger rounded-pill">${data["matches"][i]["win"]}</span>`;
+        win = `<span class="badge bg-danger rounded-pill">Przegrana</span>`;
     }
         
     contentDiv.innerHTML = 

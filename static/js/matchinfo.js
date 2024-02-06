@@ -262,7 +262,7 @@ async function getLast3Matches(event, id) {
     var clickedElement = document.getElementById(id);
     var summonerPuuId = clickedElement.innerText || clickedElement.textContent;
 
-    const apiUrl = `${window.home_url}/last3matches?summonerName=${encodeURIComponent(summonerPuuId)}`;
+    const apiUrl = `${window.home_url}/last3matches?puuId=${encodeURIComponent(summonerPuuId)}`;
     var selectPlayerElement = document.getElementById("selectPlayer");
 
     try {
@@ -337,37 +337,41 @@ function setSummonerNameLvAndRank(data) {
     matchesSummonerRank.style.color = data["rankColor"];
 }
 
+function showPopUp(data, champName) {
+    alert(champName)
+}
+
 function addLast3MatchesToView(matchList,i,data){
     var listItem = document.createElement("li");
     var contentDiv = document.createElement("div");
 
     let win = "";
         
-    if(data["matches"][i]["win"] === "WYGRANA") {
-        win = `<span class="badge bg-success rounded-pill">${data["matches"][i]["win"]}</span>`;
+    if(data["matches"][i]["win"] === true) {
+        win = `<span class="badge bg-success rounded-pill">Wygrana</span>`;
     } else {
-        win = `<span class="badge bg-danger rounded-pill">${data["matches"][i]["win"]}</span>`;
+        win = `<span class="badge bg-danger rounded-pill">Przegrana</span>`;
     }
         
     contentDiv.innerHTML = 
          `<div class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
-                <div class="item">
+                <div class="item" onclick="showPopUp(event, '${data["matches"][i]["matchId"]}')" style="cursor: pointer;">
                     <img class="last10MatchesImg" src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${data["matches"][i]["championId"]}.png">
                     <div class="nameAndKda">
-                        <div class="fw-bold" id="last10MatchesImg">${data["matches"][i]["matchChampName"]}</div>
-                        <div id="last10MatchesImg">${data["matches"][i]["kills"]} | ${data["matches"][i]["deaths"]} | ${data["matches"][i]["assists"]}</div>   
+                        <div class="fw-bold">${data["matches"][i]["matchChampName"]}</div>
+                        <div>${data["matches"][i]["kills"]} | ${data["matches"][i]["deaths"]} | ${data["matches"][i]["assists"]}</div>   
                     </div> 
                     <div class="damage">
-                        <div class="fw-bold" id="last10MatchesImg">DMG</div>
-                        <div id="last10MatchesImg">${data["matches"][i]["dealtDamage"]}</div>   
+                        <div class="fw-bold">DMG</div>
+                        <div>${data["matches"][i]["dealtDamage"]}</div>   
                     </div> 
                 </div>
             </div>
             <div class="last10MatchesWinAndLane">
                 ${win}
                 <div class="lane">${data["matches"][i]["lane"]}</div>
-           </div>
+            </div>
         </div>`;
 
     listItem.appendChild(contentDiv);
