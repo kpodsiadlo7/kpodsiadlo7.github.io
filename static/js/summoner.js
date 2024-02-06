@@ -47,7 +47,8 @@ async function searchSummoner(event) {
         setBackgroundAndSideImage(data);
         displayBlurOnBackgroundImage();
         displayInfoAboutLoading20LatMatches(lastRankedGames,matchList);
-        getLast20Matches(name,matchList,lastRankedGames);
+        var puuId = data.puuid;
+        getLast20Matches(puuId,matchList,lastRankedGames);
         
     } catch (error) {
         console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
@@ -227,9 +228,9 @@ function setProfileIconWithRank(data){
     profileIcon.appendChild(contentDiv);  
 }
 
-async function getLast20Matches(summonerName,matchList,lastRankedGames) {
+async function getLast20Matches(puuId,matchList,lastRankedGames) {
     
-    const apiUrl = `${window.home_url}/last20matches?summonerName=${encodeURIComponent(summonerName)}`;
+    const apiUrl = `${window.home_url}/last20matches?summonerName=${encodeURIComponent(puuId)}`;
 
     try {
         const response = await fetch(apiUrl, {
@@ -238,7 +239,7 @@ async function getLast20Matches(summonerName,matchList,lastRankedGames) {
             },
           });
 
-    //const apiUrl = `http://localhost:8080/last20matches?summonerName=${encodeURIComponent(summonerName)}`;
+    //const apiUrl = `http://localhost:8080/last20matches?summonerName=${encodeURIComponent(puuId)}`;
 
     //try {
         //const response = await fetch(apiUrl)

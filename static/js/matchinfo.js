@@ -25,6 +25,7 @@ function setLeftTeam(summoner,i){
     const champ = document.getElementById(`champ${i}`);
     const spellL = document.getElementById(`champPerkLeft${i}`);
     const spellR = document.getElementById(`champPerkRight${i}`);
+    const puuId = document.getElementById(`puuId${i}`);
 
     img.src = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${summoner["championId"]}.png`;
     spellL.src = `img/spells/${summoner['spellName1']}.png`;
@@ -33,6 +34,7 @@ function setLeftTeam(summoner,i){
     name.textContent = summoner['summonerName'];
     rank.textContent = summoner['rank'];
     rank.style.color = summoner['rankColor'];
+    puuId.textContent = summoner['puuid'];
 
     if (summoner['rank'] !== "BRAK RANGI") {
         rank.style.fontWeight = 700;
@@ -49,6 +51,7 @@ function setRightTeam(summoner,i){
     const champ = document.getElementById(`champR${i}`);
     const spellL = document.getElementById(`champPerkLeftR${i}`);
     const spellR = document.getElementById(`champPerkRightR${i}`);
+    const puuIdR = document.getElementById(`puuIdR${i}`);
 
 
     img.src = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${summoner["championId"]}.png`;
@@ -58,6 +61,8 @@ function setRightTeam(summoner,i){
     name.textContent = summoner['summonerName'];
     rank.textContent = summoner['rank'];
     rank.style.color = summoner['rankColor'];
+    puuIdR.textContent = summoner['puuid'];
+
     if (summoner['rank'] !== "BRAK RANGI") {
         rank.style.fontWeight = 700;
     } else {
@@ -255,10 +260,10 @@ async function getLast3Matches(event, id) {
     disableButtonAndShowSpinner(null,spinnerPlayer);
 
     var clickedElement = document.getElementById(id);
-    var summonerName = clickedElement.innerText || clickedElement.textContent;
-    const apiUrl = `${window.home_url}/last3matches?summonerName=${encodeURIComponent(summonerName)}`;
+    var summonerPuuId = clickedElement.innerText || clickedElement.textContent;
+
+    const apiUrl = `${window.home_url}/last3matches?summonerName=${encodeURIComponent(summonerPuuId)}`;
     var selectPlayerElement = document.getElementById("selectPlayer");
-    
 
     try {
         //const response = await fetch(apiUrl)
