@@ -1,18 +1,191 @@
-.popup {
-    display: none;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: 0;
+    border: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.backgroundColor {
     position: fixed;
+    top: 0;
+    left: 0;
+    width: 99%;
+    height: 98%;
+    backdrop-filter: blur(6px);
+    z-index: 9997; 
+}
+.content {
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-image: url('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg');
+    max-width: 1200px;
+    max-height: 700px;
+    width: 95%;
+    height: 95%;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
     z-index: 9999;
+    animation: fadeInPopup 0.3s ease forwards;
 }
-.popup h2 {
-    margin-top: 0;
+
+@keyframes fadeInPopup {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
-.popup p {
-    margin-bottom: 0;
+
+@keyframes fadeOutPopup {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes blurOut {
+    from {
+        backdrop-filter: blur(6px);
+    }
+    to {
+        backdrop-filter: blur(0px);
+    }
+}
+
+#closeButton {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0);
+    color: red;
+    font-weight: 500;
+    font-size: 40px;
+}
+
+.topCenter {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5%;
+}
+
+.time {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#text {
+    float: left;
+    font-size: 22px;
+    font-weight: 600;
+    color: #363949;
+    color: white;
+}
+
+#time {
+    float: left;
+    font-size: 20px;
+    color: #363949;
+    color: white;
+}
+
+.upContainer{
+    clear: both;
+    height: 40%;
+    border-radius: 6px;
+    box-shadow: 0 0 1rem 0.1px rgba(30, 255, 0, 0.7);
+    padding: 5px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.botContainer {
+    clear: both;
+    height: 40%;
+    border-radius: 6px;
+    box-shadow: 0 0 1rem 0.1px rgba(255, 0, 0, 0.7);
+    padding: 5px;
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.containerLeft {
+    float: left;
+    width: 65%;
+}
+
+.containerRightTop {
+    padding: 5px;
+    color: white;
+    float: left;
+    width: 35%;
+    text-align: right;
+    font-size: 16px;
+    height: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-color: rgb(30, 255, 0, 0.5);
+}
+
+.containerRightBot {
+    padding: 5px;
+    color: white;
+    float: left;
+    width: 35%;
+    text-align: right;
+    font-size: 16px;
+    height: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-color: rgba(146, 0, 0, 0.7);
+}
+
+.midContainer {
+    clear: both;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.braonKills,
+.dragonKills {
+    height: 10%;
+    margin-right: 50%;
+    font-weight: 700;
+}
+.championKills {
+    height: 10%;
+    margin-right: 50%;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.win {
+    height: 70%;
+    text-align: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }

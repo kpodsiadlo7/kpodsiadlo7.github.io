@@ -3,14 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <title>Popup</title>
 </head>
 <body>
     <script src="static/js/popup.js"></script>
     <div class="popup" id="myPopup">
-        <h2>Numer meczu</h2>
-        <p id="text"></p>
-        <button onclick="closePopup()">Zamknij</button>
+        <div class="backgroundColor" id="backgroundColor">
+            <div class="content" id="content">
+                <button onclick="closePopup()" id="closeButton">X</button>
+                <div class="topCenter">
+                    <div class="time">
+                        <div id="text">Czas:</div>
+                        <div id="time">n/a</div>
+                    </div>
+                </div>
+                <div class="upContainer">
+                    <div class="containerLeft">
+                        left
+                        <div class="topSummonerList" id="topSummonerList"></div>
+                    </div>
+                    <div class="containerRightTop">
+                        <div class="braonKills">Barony: </div>
+                        <div class="dragonKills">Smoki: </div>
+                        <div class="championKills">Przeciwnicy: </div>
+                        <div class="win">
+                            <div id="win">Wygrana</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="midContainer">
+                    <div class="footerBannedList" style="margin-top: 0px;">   
+                        <div class="bannedList" id="bannedList"></div>
+                    </div>
+                </div>
+                <div class="botContainer">
+                    <div class="containerLeft">
+                        left
+                        <div class="bottomSummonerList" id="bottomSummonerList"></div>
+                    </div>
+                    <div class="containerRightBot">
+                        <div class="braonKills">Barony: </div>
+                        <div class="dragonKills">Smoki: </div>
+                        <div class="championKills">Przeciwnicy: </div>
+                        <div class="win">
+                            <div id="win">Przegrana</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
     </div>
 </body>
 </html>
+
