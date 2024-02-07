@@ -179,7 +179,7 @@ async function matchSearch(event) {
         const RightTeamContainer = document.querySelector('.rightMatchTeamContainer');
 
         //which team is currently playing the user you are looking for. 
-        //100 - left container | 200 - right container
+        //100 - left array | 200 - right array
         if(data["userTeam"] === "100"){
             setPropertiesForLeftTeam(teamLeft,leftTeamContainer);
             removePropertiesForRightTeam(teamRight,RightTeamContainer);
@@ -337,10 +337,6 @@ function setSummonerNameLvAndRank(data) {
     matchesSummonerRank.style.color = data["rankColor"];
 }
 
-function showPopUp(data, champName) {
-    alert(champName)
-}
-
 function addLast3MatchesToView(matchList,i,data){
     var listItem = document.createElement("li");
     var contentDiv = document.createElement("div");
@@ -356,7 +352,7 @@ function addLast3MatchesToView(matchList,i,data){
     contentDiv.innerHTML = 
          `<div class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
-                <div class="item" onclick="showPopUp(event, '${data["matches"][i]["matchId"]}')" style="cursor: pointer;">
+                <div class="item" onclick="openPopup(event, '${data["matches"][i]["matchId"]}')" style="cursor: pointer;">
                     <img class="last10MatchesImg" src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${data["matches"][i]["championId"]}.png">
                     <div class="nameAndKda">
                         <div class="fw-bold">${data["matches"][i]["matchChampName"]}</div>
@@ -385,7 +381,7 @@ function setWinLosses(data,lastRankedGames) {
     const sumMatch = data["wins"]+data["losses"];
     winLosses.textContent = "Wygrane - Przegrane";  
 
-    lastRankedGames.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`+"OSTATNIE RANKEDY - " + sumMatch;
+    lastRankedGames.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`+" OSTATNIE RANKEDY - " + sumMatch;
     lastRankedGames.style.color = "#363949";
 
     const leagueInfoWins = document.getElementById("leagueInfoWins");
