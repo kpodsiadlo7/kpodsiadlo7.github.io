@@ -291,7 +291,7 @@ function addLast20MatchesToView(matchList,i,data){
     contentDiv.innerHTML = 
          `<div class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
-                <div class="item">
+                <div class="item" onclick="openPopup(event,'${data["matches"][i]["matchId"]}','${data.puuid}')" style="cursor: pointer;">
                 <img class="last10MatchesImg" src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${data["matches"][i]["championId"]}.png">
                     <div class="nameAndKda">
                         <div class="fw-bold" id="last10MatchesImg">${data["matches"][i]["matchChampName"]}</div>
