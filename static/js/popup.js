@@ -38,16 +38,28 @@ async function openPopup(event,matchId,puuId) {
 }
 
 function setObjectives(data) {
+    var championKillsForTeam100 = "" ;
+    var championKillsForTeam200 = "" ;
+
+    // first set championKills from enemy team
     for(var obj of data['teamObjective']) {
         if(data.teamId === 100) {
-            createObjective(obj);
+            championKillsForTeam200 = obj.championKills;
         } else {
-            createObjective(obj);
+            championKillsForTeam100 = obj.championKills;
+        }
+    }
+
+    for(var obj of data['teamObjective']) {
+        if(data.teamId === 100) {
+            createObjective(obj,championKillsForTeam100);
+        } else {
+            createObjective(obj,championKillsForTeam200);
         }
     }
 }
 
-function createObjective(obj) {
+function createObjective(obj,championKills) {
     var baronDiv = document.createElement('div');
     baronDiv.classList.add('baron');
 
@@ -73,7 +85,7 @@ function createObjective(obj) {
     `
     championDiv.innerHTML = `
         <div class="championText">Przeciwników: </div>
-        <div class="championKills">${obj.championKills}</div>
+        <div class="championKills">${championKills}</div>
     `
     winDiv.innerHTML = `
         <div id="win">${obj.teamId === 100 ? "Wygrana" : "Przegrana"}</div>
