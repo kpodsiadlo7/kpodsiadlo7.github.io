@@ -6,7 +6,7 @@ function redirectToMatches(){
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
-    fetch(`${window.home_url}`, {
+    fetch(`${window.home_url}/warmup`, {
         headers: {
           'ngrok-skip-browser-warning': 'true',
         }})
