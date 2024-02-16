@@ -26,7 +26,6 @@ function switchLanguage(event,language) {
     } else {
         language = langButton.textContent.toLowerCase() === 'switch' ? 'eng' : 'pl';
     }
-    
 
     var desc = document.getElementById('desc');
     var buttonText = language === 'eng' ? 'Zmień' : 'Switch';
@@ -35,54 +34,20 @@ function switchLanguage(event,language) {
     langButton.textContent = buttonText;
     desc.textContent = descriptionText;
 
-    var firstDesc = document.getElementById('firstDesc');
-    var secondDesc = document.getElementById('secondDesc');
-    var thirdDesc = document.getElementById('thirdDesc');
-    var inviteText = document.getElementById('inviteText');
-    var infoText = document.getElementById('infoText');
-    var aboutMatch = document.getElementById('aboutMatch');
-
-    //MENUS
-    var homeButton = document.getElementById('homeBtn');
-    var searchMatchBtn = document.getElementById('searchMatchBtn');
-    var searchSumonnerBtn = document.getElementById('searchSumonnerBtn');
-    var exitBtn = document.getElementById('logoutText');
-
     if(language === 'eng') {
-        englishVersion(
-            firstDesc,
-            secondDesc,
-            thirdDesc,
-            inviteText,
-            infoText,
-            aboutMatch,
-            homeButton,
-            searchMatchBtn,
-            searchSumonnerBtn,
-            exitBtn);
-
-            sessionStorage.setItem('language', 'eng');
+        sessionStorage.setItem('language', 'eng');
+        englishVersion();
         
     } else {
-        polishVersion(
-            firstDesc,
-            secondDesc,
-            thirdDesc,
-            inviteText,
-            infoText,
-            aboutMatch,
-            homeButton,
-            searchMatchBtn,
-            searchSumonnerBtn,
-            exitBtn);
-
-            sessionStorage.setItem('language', 'pl');
+        sessionStorage.setItem('language', 'pl');
+        polishVersion();
     } 
+    changeMenuLanguage(language);
 }
 
-function polishVersion(firstDesc,secondDesc,thirdDesc,inviteText,infoText,aboutMatch,homeButton,searchMatchBtn,searchSumonnerBtn,exitBtn) {
+function polishVersion() {
     firstDesc.innerHTML = `
-        <p style="font-size: 16px; color: #fff;" id="firstDesc">
+        <p style="font-size: 16px; color: #fff;">
             To jest aplikacja, która umożliwia śledzenie graczy aktualnie uczestniczących w rozgrywce.
             Dzięki niej możemy szybko znaleźć swoich znajomych, zobaczyć z kim obecnie grają, 
             sprawdzić ich poziom doświadczenia, oraz uzyskać 
@@ -93,7 +58,7 @@ function polishVersion(firstDesc,secondDesc,thirdDesc,inviteText,infoText,aboutM
     `;
 
     secondDesc.innerHTML = `
-        <p style="font-size: 16px; color: #fff;" id="secondDesc">
+        <p style="font-size: 16px; color: #fff;">
             Na podstronie <a href="summoner.html" style="color: white"><b>"Szukaj gracza"</b></a>, po wprowadzeniu dowolnej nazwy gracza uzyskamy dostęp do jego profilu, 
             z informacjami o poziomie, rangach w grach rankingowych solo/duo oraz flex, jeżeli są dostępne. Na ekranie pojawi się ikona profilu gracza wraz z 
             grafiką zależną od jego rangi (solo/duo). Tło karty profilu zostanie ustawione zgodnie z głównym championem gracza.
@@ -102,7 +67,7 @@ function polishVersion(firstDesc,secondDesc,thirdDesc,inviteText,infoText,aboutM
     `;
 
     thirdDesc.innerHTML = `
-        <p style="font-size: 16px; color: #fff;" id="thirdDesc">
+        <p style="font-size: 16px; color: #fff;">
             Na podstronie <a href="matchinfo.html" style="color: white;"><b>"Wyszukaj mecz"</b></a>, po wprowadzeniu nazwy użytkownika obecnie uczestniczącego w rozgrywce, 
             otrzymamy statystyki dotyczące tego konkretnego meczu. Znajdziemy informacje dotyczące wybranych championów, używanych masterków oraz wszystkich zbanowanych 
             bohaterów(obecni w meczach rankingowych, a nie w trybie ARAM).
@@ -123,17 +88,11 @@ function polishVersion(firstDesc,secondDesc,thirdDesc,inviteText,infoText,aboutM
     `;
 
     aboutMatch.textContent = 'Strona główna aplikacji';
-    sourceCode.textContent = 'Kod źródłowy';
-
-    homeButton.textContent = 'Strona główna';
-    searchMatchBtn.textContent = 'Wyszukaj mecz';
-    searchSumonnerBtn.textContent = 'Szukaj gracza';
-    exitBtn.textContent = 'Wyjdź z aplikacji';
 }
 
-function englishVersion(firstDesc,secondDesc,thirdDesc,inviteText,infoText,aboutMatch,homeButton,searchMatchBtn,searchSumonnerBtn,exitBtn) {
+function englishVersion() {
     firstDesc.innerHTML = `
-        <p style="font-size: 16px; color: #fff;" id="firstDesc">
+        <p style="font-size: 16px; color: #fff;">
             This is an application that allows tracking of players currently participating in the game.
             With it, we can quickly find our friends, see who they are currently playing with, 
             check their level of experience, and obtain general statistics regarding the number of wins and losses, 
@@ -142,7 +101,7 @@ function englishVersion(firstDesc,secondDesc,thirdDesc,inviteText,infoText,about
         </p>
     `;
     secondDesc.innerHTML = `
-        <p style="font-size: 16px; color: #fff;" id="secondtDesc">
+        <p style="font-size: 16px; color: #fff;">
             On the <a href="summoner.html" style="color: white"><b>"Search Player"</b></a> subpage, after entering any player name, we will gain access to their profile,
             with information about their level, ranks in solo/duo and flex ranked games, if available. On the screen, the player's profile icon will appear along with
             graphics dependent on their rank (solo/duo). The background of the profile card will be set according to the player's main champion.
@@ -152,7 +111,7 @@ function englishVersion(firstDesc,secondDesc,thirdDesc,inviteText,infoText,about
 
     thirdDesc.innerHTML = `
         <p style="font-size: 16px; color: #fff;">
-            On the <a href="matchinfo.html" style="color: white;" id="thirdDesc"><b>"Search Match"</b></a> subpage, after entering the username of the player currently participating in the game,
+            On the <a href="matchinfo.html" style="color: white;"><b>"Search Match"</b></a> subpage, after entering the username of the player currently participating in the game,
             we will receive statistics regarding that specific match. We will find information about the selected champions, used masteries, and all banned
             heroes (present in ranked matches, not in ARAM mode).
             As part of the tests, Riot provides information about a random, currently ongoing match, allowing to check any random match.
@@ -172,11 +131,5 @@ function englishVersion(firstDesc,secondDesc,thirdDesc,inviteText,infoText,about
     `;
 
     aboutMatch.textContent = 'Application home page';
-    sourceCode.textContent = 'Source code';
-
-    homeButton.textContent = 'Home page';
-    searchMatchBtn.textContent = 'Search match';
-    searchSumonnerBtn.textContent = 'Search player';
-    exitBtn.textContent = 'Exit application';
 }
 

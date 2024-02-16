@@ -1,3 +1,28 @@
+window.onload = function() {
+    var language = sessionStorage.getItem('language');
+    changeMenuLanguage(language);
+
+    if(language) {
+        var spinnerToActive = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerSearch"></span>';
+        var searchText = language === 'pl' ? 'Wyszukaj' : 'Search';
+        searchButton.innerHTML = spinnerToActive + searchText;
+
+        document.getElementById('name').placeholder = language === 'pl' ? 'Wpisz nick gracza #' : 'Enter user name #';
+
+        beforeFillSummonerCard.textContent = language === 'pl' ? 
+        'Aby wyszukać profil gracza, wprowadź jego nazwę powyżej' :
+        'To search for a player profile, enter their name above';
+
+        exampleNames.textContent = language === 'pl' ? 
+        "Przykład: 'ZiomekMasala#777', 'mOzi' lub 'MrJokz'" :
+        "E.g. 'ZiomekMasala#777', 'mOzi' or 'MrJokz'";
+
+        lastRankedGames.textContent = language === 'pl' ? 'Ostatnie rankedy' : 'Last ranked games';
+
+        aboutMatch.textContent = language === 'pl' ? 'Karta profilu' : 'Profile card';
+    }
+};
+
 async function searchSummoner(event) {
     event.preventDefault();
 

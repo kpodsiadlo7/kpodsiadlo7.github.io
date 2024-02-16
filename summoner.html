@@ -11,6 +11,7 @@
 </head>
 <body class="bodyMatch">
     <script src="static/js/config.js"></script>
+    <script src="static/js/globalFunction.js"></script>
     <div class="matchcontainer">
         <!-- Left menu-->
         <aside>
@@ -27,19 +28,19 @@
                         <span class="material-icons-sharp">
                             home
                         </span>
-                        <h3 id="leftTextButtons">Strona główna</h3>
+                        <h3 class="leftTextButtons" id="homeBtn">Strona główna</h3>
                     </a>
                     <a href="matchinfo.html">
                         <span class="material-icons-sharp">
                             groups
                         </span>
-                        <h3 id="leftTextButtons">Wyszukaj mecz</h3>
+                        <h3 class="leftTextButtons" id="searchMatchBtn">Wyszukaj mecz</h3>
                     </a>
                     <a href="summoner.html" class="active">
                         <span class="material-icons-sharp">
                             person_search
                         </span>
-                        <h3 id="leftTextButtons">Szukaj gracza</h3>
+                        <h3 class="leftTextButtons" id="searchSumonnerBtn">Szukaj gracza</h3>
                     </a>
                     <div class="logoutBtn">
                         <a href="#">
@@ -52,7 +53,7 @@
                 </div>
             </div>
             <a href="https://github.com/kpodsiadlo7/LeagueOfLegendsSTATS" target="_blank">
-                <div class="github"><p style="font-weight: 600; color: black; text-align: center;">Kod źródłowy</p></div>
+                <div class="github"><p style="font-weight: 600; color: black; text-align: center;" id="sourceCode">Kod źródłowy</p></div>
             </a> 
         </aside>
         <!-- End left menu -->
@@ -62,7 +63,7 @@
             <div class="topBarMatchInfo">
                 <form class="row g-3 searchMatch"  onsubmit="searchSummoner(event)">
                     <div class="col-auto matchInput">
-                        <input type="text" class="form-control" id="name" name="name" style="font-size: 13px;" placeholder="Wprowiadź nazwę gracza z # lub bez">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Wpisz nick gracza #">
                     </div>
                     <div class="col-auto">
                         <button type="submit" class="btn matchSearchBtn" id="searchButton">
@@ -72,7 +73,7 @@
                 <!-- Info about match -->             
             </div>
             <div id="middleContainerMatchInfo">
-                <h1 id="aboutMatch">Profil gracza</h1>   
+                <h1 id="aboutMatch">Karta profilu</h1>   
                 <div class="match" id="matchBackground">
                     <div class="centerSummonerContainer" id="boxBlurShadow">
                         <div class="topSummonerContainer">

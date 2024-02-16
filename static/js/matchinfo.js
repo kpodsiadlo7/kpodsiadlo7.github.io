@@ -1,11 +1,26 @@
 window.onload = function() {
     var language = sessionStorage.getItem('language');
-    switchLanguage(language);
-};
+    changeMenuLanguage(language);
+    if(language) {
+        var spinnerToActive = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerSearch"></span>';
+        var spinnerActive = '<span class="spinner-border m-2" aria-hidden="true" role="status" style="font-size: 5px; height: 15px; width: 15px;"></span>';
 
-function switchLanguage(language) {
-    
-}
+        beforeFillMatchCard.textContent = language === 'pl' ? 
+        'Aby wyszukać grę, wprowadź nazwę gracza powyżej. Pamiętaj, mecz musi trwać' : 
+        "To search for a game, enter the player's name above. The match must be ongoing.";
+       
+        var loadingText = language === 'pl' ? 'Pobieranie losowego meczu' : 'Fetching a random match...';
+        exampleSummonerName.innerHTML = loadingText + spinnerActive;
+        
+        title.textContent = language === 'pl' ? 'Wyszukaj mecz' : 'Search match';
+        var searchText = language === 'pl' ? 'Wyszukaj' : 'Search';
+        searchButton.innerHTML = spinnerToActive + searchText;
+
+        document.getElementById('name').placeholder = language === 'pl' ? 'Szukaj mecz po nazwie gracza' : 'Search a match by player name';
+
+        aboutMatch.textContent = language === 'pl' ? 'Karta meczu' : 'Match card';
+    }
+};
 
 function setPropertiesForLeftTeam(teamLeft,leftTeamContainer){
     teamLeft.textContent = "Twoja drużyna";
