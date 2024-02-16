@@ -17,7 +17,7 @@ window.onload = function() {
         "Przykład: 'ZiomekMasala#777', 'mOzi' lub 'MrJokz'" :
         "E.g. 'ZiomekMasala#777', 'mOzi' or 'MrJokz'";
 
-        lastRankedGames.textContent = language === 'pl' ? 'Ostatnie rankedy' : 'Last ranked games';
+        lastRankedGames.textContent = language === 'pl' ? 'Ostatnie rankedy' : 'Last ranked matches';
 
         aboutMatch.textContent = language === 'pl' ? 'Karta profilu' : 'Profile card';
     }
@@ -54,8 +54,14 @@ async function searchSummoner(event) {
 
         if(!response.ok){
             beforeFillSummonerCard.textContent = "Wystąpił problem z pobraniem profilu użytkownika!";
+            let reason = "Przekroczono limit API. Daj chwilę :)";
+            // english version
+            if(language && language !== 'pl'){
+                beforeFillSummonerCard.textContent = "There was a problem retrieving the user profile!";
+                reason = 'API limit exceeded. Please wait a moment :)';
+            }
             if(response.status === 429){
-                beforeFillSummonerCard.innerHTML = "Przekroczono limit API. Daj chwilę :)"
+                beforeFillSummonerCard.innerHTML = reason;
             }
             activeSearchButtonAndHideSpinner(searchButton,spinnerSearch);
             beforeFillSummonerCard.style.color = "red";
@@ -90,10 +96,14 @@ function displayInfoAboutLoading20LatMatches(lastRankedGames,matchList) {
         leagueInfoLosses.textContent = '';
     }
     matchList.textContent = '';
+    var spinner = '<span class="spinner-border m-2" aria-hidden="true" role="status" style="font-size: 5px; height: 15px; width: 15px;"></span>';
     lastRankedGames.innerHTML = `
-                            Pobieranie 20 rankedów z ostatnich 50 gier
-                            <span class="spinner-border m-2" aria-hidden="true" role="status" style="font-size: 5px; height: 15px; width: 15px;"></span>
-                            `; 
+                            Pobieranie 20 rankedów z ostatnich 50 gier` + spinner; 
+
+    // english version
+    if(language && language !== 'pl') {
+        lastRankedGames.innerHTML = 'Fetching 20 ranked games from last 50 matches' + spinner;
+    }
     lastRankedGames.style.color = "#363949";
 }
 
@@ -191,11 +201,22 @@ function setRankFlex(rank,data) {
     const leaguePointsFlex = document.getElementById("leaguePointsFlex");
     const winLossesFlex = document.getElementById("winLossesFlex");
 
-    rankedFlex.textContent = "Ranga Flex: " + rank["tier"] + "-" + rank["rank"];
-    rankedFlex.style.color = data["rankFlexColor"];
+    var tier = rank["tier"] + "-" + rank["rank"];
+    var leaguePoints = rank["leaguePoints"];
+    var winAndLosses = rank["wins"] + " / " + rank["losses"];;
 
-    leaguePointsFlex.textContent = "Punkty league: " + rank["leaguePoints"];
-    winLossesFlex.textContent = "Wygrane-Przegrane: " + rank["wins"] + " / " + rank["losses"];
+    rankedFlex.textContent = "Ranga Flex: " + tier;
+    leaguePointsFlex.textContent = "Punkty league: " + leaguePoints;
+    winLossesFlex.textContent = "Wygrane-Przegrane: " + winAndLosses;
+
+    // english version
+    if(language && language !== 'pl') {
+        rankedFlex.textContent = "Flex rank: " + tier;
+        leaguePointsFlex.textContent = "League points: " + leaguePoints;
+        winLossesFlex.textContent = "Win-Losses: " + winAndLosses;
+    }
+    
+    rankedFlex.style.color = data["rankFlexColor"]; 
 
     if(rank["tier"] === "EMERALD"){
         summonerTier = "MASTER";
@@ -209,11 +230,22 @@ function setRankSolo(rank,data) {
     const leaugePointsSolo = document.getElementById("leaugePointsSolo");
     const winLossesSolo = document.getElementById("winLossesSolo");
 
-    rankedSolo.textContent = "Ranga Solo/Duo: " + rank["tier"] + "-" + rank["rank"];
-    rankedSolo.style.color = data["rankSoloColor"];
+    var tier = rank["tier"] + "-" + rank["rank"];
+    var leaguePoints = rank["leaguePoints"];
+    var winAndLosses = rank["wins"] + " / " + rank["losses"];;
 
-    leaugePointsSolo.textContent = "Punkty league: " + rank["leaguePoints"];
-    winLossesSolo.textContent = "Wygrane-Przegrane: " + rank["wins"] + " / " + rank["losses"];
+    rankedSolo.textContent = "Ranga Solo/Duo: " + tier;
+    leaugePointsSolo.textContent = "Punkty league: " + leaguePoints;
+    winLossesSolo.textContent = "Wygrane-Przegrane: " + winAndLosses;
+
+    // english version
+    if(language && language !== 'pl') {
+        rankedSolo.textContent = "Flex rank: " + tier;
+        leaugePointsSolo.textContent = "League points: " + leaguePoints;
+        winLossesSolo.textContent = "Win-Losses: " + winAndLosses;
+    }
+
+    rankedSolo.style.color = data["rankSoloColor"];
 
     summonerTier = rank["tier"];
     if(rank["tier"] === "EMERALD"){
@@ -223,6 +255,11 @@ function setRankSolo(rank,data) {
 
 function removeRankSolo() {
     rankedSolo.textContent = "Ranga Solo/Duo: BRAK RANGI";
+
+    // english version
+    if(language && language !== 'pl') {
+        rankedSolo.textContent = "Solo/Duo Rank: NONE";
+    }
     rankedSolo.style.color = "white";
     leaugePointsSolo.textContent = "";
     winLossesSolo.textContent = "";
@@ -230,6 +267,11 @@ function removeRankSolo() {
 
 function removeRankFlex() {
     rankedFlex.textContent = "Ranga Flex: BRAK RANGI";
+
+    // english version
+    if(language && language !== 'pl') {
+        rankedFlex.textContent = "Flex Rank: NONE";
+    }
     rankedFlex.style.color = "white";
     leaguePointsFlex.textContent = "";
     winLossesFlex.textContent = "";
@@ -271,8 +313,16 @@ async function getLast20Matches(puuId,matchList,lastRankedGames) {
 
     if(!response.ok){
         lastRankedGames.innerHTML = "Coś poszło nie tak! Spróbuj jeszcze raz.";
+        let reason = "Przekroczono limit API. Daj chwilę :)";
+
+        // english version
+        if(language && language !== 'pl') {
+            lastRankedGames.innerHTML = "Something went wrong! Please try again.";
+            reason = "API limit exceeded. Please wait a moment :)";
+        }
+
         if(response.status === 429){
-            lastRankedGames.innerHTML = "Przekroczono limit API. Daj chwilę :)"
+            lastRankedGames.innerHTML = reason;
         }
         lastRankedGames.style.color = 'red';
         throw new Error(`Błąd HTTP: ${response.status}`);
@@ -289,12 +339,25 @@ async function getLast20Matches(puuId,matchList,lastRankedGames) {
         setWinLosses(data);
     } else {
         lastRankedGames.innerHTML = "Brak rankedów z ostatnich 50 gier";
+
+        // english version
+        if(language && language !== 'pl') {
+            lastRankedGames.innerHTML = "No ranked games from last 50 matches";
+        }
         lastRankedGames.style.color = 'red';
     }
     } catch(error) {
         lastRankedGames.innerHTML = "Błąd poczas pobierania";
+        let reason = "Przekroczono limit API. Daj chwilę :)";
+
+        // english version
+        if(language && language !== 'pl') {
+            lastRankedGames.innerHTML = "Error during fetching matches";
+            reason = "API limit exceeded. Please wait a moment :)";
+        }
+
         if(error.message.includes("429")){
-            lastRankedGames.innerHTML = "Przekroczono limit API. Daj chwilę :)"
+            lastRankedGames.innerHTML = reason;
         }
         console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
         lastRankedGames.style.color = 'red';
@@ -343,9 +406,13 @@ function setWinLosses(data,winLosses) {
     const wins = data["wins"];
     const losses = data["losses"];
     const matchQty = data["wins"] + data["losses"];
-    winLosses.textContent = "Wygrane - Przegrane";  
-
+    winLosses.textContent = "Wygrane - Przegrane"; 
     lastRankedGames.innerHTML = "OSTATNIE RANKEDY - " + matchQty;
+
+    if(language && language !== 'pl') {
+        winLosses.textContent = "Wins - Losses"; 
+        lastRankedGames.innerHTML = "LAST RANKED MATCHES - " + matchQty;
+    }
 
     const leagueInfoWins = document.getElementById("leagueInfoWins");
     leagueInfoWins.textContent = wins;
