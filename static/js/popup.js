@@ -17,10 +17,8 @@ async function openPopup(event,matchId,puuId) {
             },
           });
 
-        if (!response.ok) {
-            
+        if (!response.ok) {            
             if(response.status === 429){
-                var apiLimit = "Przekroczono limit API. Daj chwilę :)"
             }
             throw new Error(`Błąd HTTP: ${response.status}`);
         }
@@ -31,6 +29,7 @@ async function openPopup(event,matchId,puuId) {
         setTime(data);
         fillUpBannedList(data);
         setObjectives(data);
+        translateDescription();
 
     } catch (error) {
         console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
@@ -47,7 +46,18 @@ function setObjectives(data) {
     }
 }
 
-function createObjective(obj,championKills) {
+function translateDescription(){
+    // english version
+    var language = sessionStorage.getItem('language');
+    if(language) {
+        lane.textContent = language === 'pl' ? 'Linia' : 'Lane';
+        champion.textContent = language === 'pl' ? 'Bohater' : 'Champion';
+        summonerName.textContent = language === 'pl' ? 'Nazwa gracza' : 'Summoner name';
+        rank.textContent = language === 'pl' ? 'Ranga' : 'Rank';
+    }
+}
+
+function createObjective(obj) {
     var baronDiv = document.createElement('div');
     baronDiv.classList.add('baron');
 
@@ -63,21 +73,40 @@ function createObjective(obj,championKills) {
     var whichTeam = obj.teamId === 100 ? 'containerRightTop' : 'containerRightBot';
     var list = document.getElementById(whichTeam);
 
+    var baronText = 'Baronów: ';
+    var dragonText = 'Smoków: ';
+    var enemiesText = 'Przeciwników: ';
+
+    // english version
+    var language = sessionStorage.getItem('language');
+    if(language && language !== 'pl') {
+        winDiv.innerHTML = `
+        <div id="win">${obj.teamId === 100 ? "Win" : "Losses"}</div>
+    
+    `;
+
+    baronText = 'Barons: ';
+    dragonText = 'Dragons: ';
+    enemiesText = 'Enemies: ';
+    }
+
     baronDiv.innerHTML = `
         <div class="baronText">Baronów: </div>
         <div class="baronKills">${obj.baronKills}</div>
-    `
+    `;
     dragonDiv.innerHTML = `
         <div class="dragonText">Smoków: </div>
         <div class="dragonKills">${obj.dragonKills}</div>
-    `
+    `;
     championDiv.innerHTML = `
         <div class="championText">Przeciwników: </div>
         <div class="championKills">${obj.championKills}</div>
-    `
+    `;
     winDiv.innerHTML = `
         <div id="win">${obj.teamId === 100 ? "Wygrana" : "Przegrana"}</div>
-    `
+    
+    `;
+
     list.appendChild(baronDiv);
     list.appendChild(dragonDiv);
     list.appendChild(championDiv);
@@ -99,6 +128,13 @@ function fillUpBannedList(data) {
 }
 
 function setTime(data) {
+    text.textContent = 'Czas:';
+    // english version
+    var language = sessionStorage.getItem('language');
+    if(language && language !== 'pl') {
+        text.textContent = 'Time:';
+    }
+
     var minutes = Math.floor(data.timeInSeconds / 60);
     var remainingSeconds = data.timeInSeconds % 60;
     var formattedMinutes = String(minutes).padStart(2, '0');

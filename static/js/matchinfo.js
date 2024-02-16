@@ -330,7 +330,12 @@ function displaySelectSummonerTextInRightSideBar() {
 
 function setMatchType(data) {
     const aboutMatch = document.getElementById("aboutMatch");
-    const matchCard = "Karta meczu - " + (data["gameMode"] === "CLASSIC" ? "Rankedowy" : data["gameMode"]);
+    var matchCardtext = "Karta meczu - ";
+    var language = sessionStorage.getItem('language');
+        if(language && language !== 'pl') {
+            var matchCardtext = "Match card - ";
+        }
+    const matchCard = matchCardtext + (data["gameMode"] === "CLASSIC" ? "Rankedowy" : data["gameMode"]);
     aboutMatch.textContent = matchCard;
 }
 
