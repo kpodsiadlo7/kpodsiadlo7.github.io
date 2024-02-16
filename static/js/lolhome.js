@@ -29,7 +29,7 @@ function switchLanguage(event,language) {
 
     var desc = document.getElementById('desc');
     var buttonText = language === 'eng' ? 'Zmień' : 'Switch';
-    var descriptionText = language === 'eng' ? 'na polski język' : 'to english language';
+    var descriptionText = language === 'eng' ? 'język polski' : 'to english language';
 
     langButton.textContent = buttonText;
     desc.textContent = descriptionText;

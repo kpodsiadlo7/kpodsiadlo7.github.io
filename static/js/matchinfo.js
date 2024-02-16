@@ -332,11 +332,13 @@ function displaySelectSummonerTextInRightSideBar() {
 function setMatchType(data) {
     const aboutMatch = document.getElementById("aboutMatch");
     var matchCardtext = "Karta meczu - ";
+    var matchKind = "Rankedowy";
     var language = sessionStorage.getItem('language');
         if(language && language !== 'pl') {
-            var matchCardtext = "Match card - ";
+            matchCardtext = "Match card - ";
+            matchKind = 'Ranked';
         }
-    const matchCard = matchCardtext + (data["gameMode"] === "CLASSIC" ? "Rankedowy" : data["gameMode"]);
+    const matchCard = matchCardtext + (data["gameMode"] === "CLASSIC" ? matchKind : data["gameMode"]);
     aboutMatch.textContent = matchCard;
 }
 
