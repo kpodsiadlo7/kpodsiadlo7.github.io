@@ -399,7 +399,7 @@ async function getLast3Matches(event, id) {
         clearLastWinsAndLosses();
         
         if(language && language !== 'pl') {
-            reason = 'API limit exceeded. Please wait a moment :)';
+            reason = 'No ranked games from the last 20 matches';
         }
         lastRankedGames.innerHTML = reason + spinner;
         lastRankedGames.style.color = 'red';

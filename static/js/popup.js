@@ -50,10 +50,10 @@ function translateDescription(){
     // english version
     var language = sessionStorage.getItem('language');
     if(language) {
-        lane.textContent = language === 'pl' ? 'Linia' : 'Lane';
-        champion.textContent = language === 'pl' ? 'Bohater' : 'Champion';
-        summonerName.textContent = language === 'pl' ? 'Nazwa gracza' : 'Summoner name';
-        rank.textContent = language === 'pl' ? 'Ranga' : 'Rank';
+        querySelector('.lane').textContent = language === 'pl' ? 'Linia' : 'Lane';
+        querySelector('.champion').textContent = language === 'pl' ? 'Bohater' : 'Champion';
+        querySelector('.summonerName').textContent = language === 'pl' ? 'Nazwa gracza' : 'Summoner name';
+        querySelector('.rank').textContent = language === 'pl' ? 'Ranga' : 'Rank';
     }
 }
 
@@ -77,34 +77,35 @@ function createObjective(obj) {
     var dragonText = 'Smoków: ';
     var enemiesText = 'Przeciwników: ';
 
+    winDiv.innerHTML = `
+        <div id="win">${obj.teamId === 100 ? "Wygrana" : "Przegrana"}</div>
+    
+    `;
+
     // english version
     var language = sessionStorage.getItem('language');
     if(language && language !== 'pl') {
         winDiv.innerHTML = `
         <div id="win">${obj.teamId === 100 ? "Win" : "Losses"}</div>
     
-    `;
+        `;
 
-    baronText = 'Barons: ';
-    dragonText = 'Dragons: ';
-    enemiesText = 'Enemies: ';
+        baronText = 'Barons: ';
+        dragonText = 'Dragons: ';
+        enemiesText = 'Enemies: ';
     }
 
     baronDiv.innerHTML = `
-        <div class="baronText">Baronów: </div>
+        <div class="baronText">${baronText}</div>
         <div class="baronKills">${obj.baronKills}</div>
     `;
     dragonDiv.innerHTML = `
-        <div class="dragonText">Smoków: </div>
+        <div class="dragonText">${dragonText}</div>
         <div class="dragonKills">${obj.dragonKills}</div>
     `;
     championDiv.innerHTML = `
-        <div class="championText">Przeciwników: </div>
+        <div class="championText">${enemiesText}</div>
         <div class="championKills">${obj.championKills}</div>
-    `;
-    winDiv.innerHTML = `
-        <div id="win">${obj.teamId === 100 ? "Wygrana" : "Przegrana"}</div>
-    
     `;
 
     list.appendChild(baronDiv);
