@@ -1,7 +1,7 @@
-window.onload = function(event) {
+document.addEventListener('DOMContentLoaded', function() {
     var language = sessionStorage.getItem('language');
     switchLanguage(event,language);
-};
+});
 
 function redirectToSummoner(){
     window.location.href="/summoner.html";
@@ -86,8 +86,6 @@ function polishVersion() {
     infoText.innerHTML = `
             Ze względu na korzystanie z bezpłatnego hostingu dla backendu, możliwe jest, że aplikacja będzie działać wolniej i wymagać dłuższego czasu przetwarzania.
     `;
-
-    aboutMatch.textContent = 'Strona główna aplikacji';
 }
 
 function englishVersion() {
@@ -129,7 +127,5 @@ function englishVersion() {
     infoText.innerHTML = `
             Due to using free hosting for the backend, it is possible that the application will operate slower and require longer processing times.
     `;
-
-    aboutMatch.textContent = 'Application home page';
 }
 

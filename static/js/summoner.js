@@ -1,4 +1,4 @@
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
     var language = sessionStorage.getItem('language');
     changeMenuLanguage(language);
 
@@ -21,7 +21,7 @@ window.onload = function() {
 
         aboutMatch.textContent = language === 'pl' ? 'Karta profilu' : 'Profile card';
     }
-};
+});
 
 async function searchSummoner(event) {
     event.preventDefault();
@@ -55,7 +55,9 @@ async function searchSummoner(event) {
         if(!response.ok){
             beforeFillSummonerCard.textContent = "Wystąpił problem z pobraniem profilu użytkownika!";
             let reason = "Przekroczono limit API. Daj chwilę :)";
+
             // english version
+            var language = sessionStorage.getItem('language');
             if(language && language !== 'pl'){
                 beforeFillSummonerCard.textContent = "There was a problem retrieving the user profile!";
                 reason = 'API limit exceeded. Please wait a moment :)';
@@ -101,6 +103,7 @@ function displayInfoAboutLoading20LatMatches(lastRankedGames,matchList) {
                             Pobieranie 20 rankedów z ostatnich 50 gier` + spinner; 
 
     // english version
+    var language = sessionStorage.getItem('language');
     if(language && language !== 'pl') {
         lastRankedGames.innerHTML = 'Fetching 20 ranked games from last 50 matches' + spinner;
     }
@@ -210,6 +213,7 @@ function setRankFlex(rank,data) {
     winLossesFlex.textContent = "Wygrane-Przegrane: " + winAndLosses;
 
     // english version
+    var language = sessionStorage.getItem('language');
     if(language && language !== 'pl') {
         rankedFlex.textContent = "Flex rank: " + tier;
         leaguePointsFlex.textContent = "League points: " + leaguePoints;
@@ -239,6 +243,7 @@ function setRankSolo(rank,data) {
     winLossesSolo.textContent = "Wygrane-Przegrane: " + winAndLosses;
 
     // english version
+    var language = sessionStorage.getItem('language');
     if(language && language !== 'pl') {
         rankedSolo.textContent = "Flex rank: " + tier;
         leaugePointsSolo.textContent = "League points: " + leaguePoints;
@@ -257,6 +262,7 @@ function removeRankSolo() {
     rankedSolo.textContent = "Ranga Solo/Duo: BRAK RANGI";
 
     // english version
+    var language = sessionStorage.getItem('language');
     if(language && language !== 'pl') {
         rankedSolo.textContent = "Solo/Duo Rank: NONE";
     }
@@ -269,6 +275,7 @@ function removeRankFlex() {
     rankedFlex.textContent = "Ranga Flex: BRAK RANGI";
 
     // english version
+    var language = sessionStorage.getItem('language');
     if(language && language !== 'pl') {
         rankedFlex.textContent = "Flex Rank: NONE";
     }
@@ -316,6 +323,7 @@ async function getLast20Matches(puuId,matchList,lastRankedGames) {
         let reason = "Przekroczono limit API. Daj chwilę :)";
 
         // english version
+        var language = sessionStorage.getItem('language');
         if(language && language !== 'pl') {
             lastRankedGames.innerHTML = "Something went wrong! Please try again.";
             reason = "API limit exceeded. Please wait a moment :)";
@@ -341,6 +349,7 @@ async function getLast20Matches(puuId,matchList,lastRankedGames) {
         lastRankedGames.innerHTML = "Brak rankedów z ostatnich 50 gier";
 
         // english version
+        var language = sessionStorage.getItem('language');
         if(language && language !== 'pl') {
             lastRankedGames.innerHTML = "No ranked games from last 50 matches";
         }
@@ -351,6 +360,7 @@ async function getLast20Matches(puuId,matchList,lastRankedGames) {
         let reason = "Przekroczono limit API. Daj chwilę :)";
 
         // english version
+        var language = sessionStorage.getItem('language');
         if(language && language !== 'pl') {
             lastRankedGames.innerHTML = "Error during fetching matches";
             reason = "API limit exceeded. Please wait a moment :)";
@@ -409,6 +419,7 @@ function setWinLosses(data,winLosses) {
     winLosses.textContent = "Wygrane - Przegrane"; 
     lastRankedGames.innerHTML = "OSTATNIE RANKEDY - " + matchQty;
 
+    var language = sessionStorage.getItem('language');
     if(language && language !== 'pl') {
         winLosses.textContent = "Wins - Losses"; 
         lastRankedGames.innerHTML = "LAST RANKED MATCHES - " + matchQty;

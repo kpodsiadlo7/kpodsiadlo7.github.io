@@ -1,4 +1,4 @@
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
     var language = sessionStorage.getItem('language');
     changeMenuLanguage(language);
     if(language) {
@@ -20,10 +20,17 @@ window.onload = function() {
 
         aboutMatch.textContent = language === 'pl' ? 'Karta meczu' : 'Match card';
     }
-};
+});
 
 function setPropertiesForLeftTeam(teamLeft,leftTeamContainer){
     teamLeft.textContent = "Twoja drużyna";
+
+    // english version
+    var language = sessionStorage.getItem('language');
+    if(language && language !== 'pl') {
+        teamLeft.textContent = "Your team";
+    }
+    
     leftTeamContainer.style.setProperty('box-shadow', '0 0px 15px rgba(102, 51, 153, 0.3)');
 }
 
@@ -34,6 +41,12 @@ function removePropertiesForRightTeam(teamRight,rightTeamContainer){
 
 function setPropertiesForRightTeam(teamRight,rightTeamContainer){
     teamRight.textContent = "Twoja drużyna";
+
+    // english version
+    var language = sessionStorage.getItem('language');
+    if(language && language !== 'pl') {
+        teamRight.textContent = "Your team";
+    }
     rightTeamContainer.style.setProperty('box-shadow', '0 0px 15px rgba(102, 51, 153, 0.3)');
 }
 
@@ -100,10 +113,10 @@ function setBannedList(champions){
         var bannedText = document.getElementById("bannedText");
         var bannedList = document.getElementById("bannedList");
     
-        let bannedChampDiv;
+        var bannedChampDiv;
     
         bannedText.textContent = "";
-        for (let i = 0; i < 10; i++) {
+        for (var i = 0; i < 10; i++) {
             bannedChampDiv = document.createElement("div");
             bannedChampDiv.className = `banned${i + 1}`;
             bannedChampDiv.innerHTML = `<img class="champBannedIcon" id="champBannedIcon${i+1}" src="" alt="ChampIcon">`;
@@ -146,16 +159,30 @@ document.addEventListener("DOMContentLoaded", function() {
         }})
         .then(response => response.text())
         .then(data => {   
-            exampleSummonerName.textContent = data === "Brak listy gier. Spróbuj ponownie za chwilę" ? "Brak listy gier. Spróbuj ponownie za chwilę" : ("Losowy gracz: " + data) ;
+            var language = sessionStorage.getItem('language');
+            exampleSummonerName.textContent = data === "Brak listy gier. Spróbuj ponownie za chwilę" ? "Brak listy gier. Spróbuj ponownie za chwilę" : ("Losowy gracz: " + data);
+            if(language && language !== 'pl') {
+                exampleSummonerName.textContent = data === "Brak listy gier. Spróbuj ponownie za chwilę" ? "No game list. Please try again later" : ("Random user: " + data) ;
+            }
             exampleSummonerName.style.color = data === "Brak listy gier. Spróbuj ponownie za chwilę" ? "red" : "black";
-
         })
         .catch(error => {
+            var spinner = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`;
+            exampleSummonerName.textContent = "Odśwież aby pobrać losowego gracza";
+            var reason = "Przekroczono limit API. Daj chwilę :)";
+
+            // english version
+            var language = sessionStorage.getItem('language');
+            if(language && language !== 'pl') {
+                reason = "API limit exceeded. Please wait a moment :)";
+                exampleSummonerName.textContent = "Refresh to fetch a random player";
+            }
+
             if(response.status === 429){
-                exampleSummonerName.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>` + "Przekroczono limit API. Daj chwilę :)"
+                exampleSummonerName.innerHTML =  spinner + reason;
             }
             console.error("Wystąpił błąd:", error);
-            exampleSummonerName.textContent = "Odśwież aby pobrać losowego gracza";
+            
         });
 });
 
@@ -182,9 +209,20 @@ async function matchSearch(event) {
         if (!response.ok) {
             activeSearchButtonAndHideSpinner(searchButton,spinnerBorder);
             var beforeFillMatchCard = document.getElementById("beforeFillMatchCard");
+            var spinner = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`;
+
             beforeFillMatchCard.textContent = "Wystąpił problem z pobraniem karty meczu. Upewnij się że mecz jest rozpoczęty!";
+            var reason = "Przekroczono limit API. Daj chwilę :)";
+
+            // english version
+            var language = sessionStorage.getItem('language');
+            if(language && language !== 'pl') {
+                beforeFillMatchCard.textContent = "There was a problem retrieving the match card. Make sure the match has started!";
+                reason = "API limit exceeded. Please wait a moment :)";
+            }
+
             if(response.status === 429){
-                beforeFillMatchCard.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>` + "Przekroczono limit API. Daj chwilę :)"
+                beforeFillMatchCard.innerHTML = spinner + reason;
             }
             beforeFillMatchCard.style.color = 'red';
             throw new Error(`Błąd HTTP: ${response.status}`);
@@ -195,7 +233,6 @@ async function matchSearch(event) {
         displaySelectSummonerTextInRightSideBar();
         setMatchType(data);
         
-        let playedTeam = "";
 
         const teamLeft = document.getElementById('teamLeft');
         const teamRight = document.getElementById('teamRight');
@@ -207,12 +244,10 @@ async function matchSearch(event) {
         if(data["userTeam"] === "100"){
             setPropertiesForLeftTeam(teamLeft,leftTeamContainer);
             removePropertiesForRightTeam(teamRight,RightTeamContainer);
-            playedTeam = "teamLeft";
 
         } else {
             setPropertiesForRightTeam(teamRight,RightTeamContainer);
             removePropertiesForLeftTeam(teamLeft,leftTeamContainer);
-            playedTeam = "teamRight";
         } 
 
         setBothTeamDependsOnTeamId(data);
@@ -226,8 +261,8 @@ async function matchSearch(event) {
 }
 
 function setBothTeamDependsOnTeamId(data) {
-    let leftArray = [];
-    let rightArray = [];
+    var leftArray = [];
+    var rightArray = [];
 
         for (const summoner of data["summoners"]) {
             if (summoner["teamId"] === 100) { 
@@ -237,13 +272,13 @@ function setBothTeamDependsOnTeamId(data) {
             }
         }
 
-        for(let i = 1; i <=5; i++){
+        for(var i = 1; i <=5; i++){
             if (leftArray[i-1]["teamId"] === 100) {
                 setLeftTeam(leftArray[i-1], i);
             }
         }
 
-        for(let i = 1; i <=5; i++){
+        for(var i = 1; i <=5; i++){
             if (rightArray[i-1]["teamId"] === 200) {
                 setRightTeam(rightArray[i-1], i);
             }
@@ -296,11 +331,21 @@ async function getLast3Matches(event, id) {
               'ngrok-skip-browser-warning': 'true',
             },
           });
+    var language = sessionStorage.getItem('language');
+    var spinner = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`;
 
     if(!response.ok){
-        lastRankedGames.innerHTML = "Coś poszło nie tak! Spróbuj jeszcze raz." + `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`;
+        var reason = "Coś poszło nie tak! Spróbuj jeszcze raz.";
+        var spinner = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`;
+        lastRankedGames.innerHTML = reason + spinner;
+
+        // english version
+        if(language && language !== 'pl') {
+            reason = 'API limit exceeded. Please wait a moment :)';
+        }
+
         if(response.status === 429){
-            lastRankedGames.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>` + "Przekroczono limit API. Daj chwilę :)"
+            lastRankedGames.innerHTML = spinner + reason;
         }
         lastRankedGames.style.color = 'red';
         activeSearchButtonAndHideSpinner(null,spinnerPlayer)
@@ -312,6 +357,7 @@ async function getLast3Matches(event, id) {
 
     var matchList = document.getElementById("matchList");
     matchList.innerHTML = '';
+    var reason = "Brak rankedów z ostatnich 20 gier";
 
     setSummonerNameLvAndRank(data);
 
@@ -324,13 +370,23 @@ async function getLast3Matches(event, id) {
     } else {
         activeSearchButtonAndHideSpinner(null,spinnerPlayer);
         clearLastWinsAndLosses();
-        lastRankedGames.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>` + "Brak rankedów z ostatnich 20 gier";
+        
+        if(language && language !== 'pl') {
+            reason = 'API limit exceeded. Please wait a moment :)';
+        }
+        lastRankedGames.innerHTML = reason + spinner;
         lastRankedGames.style.color = 'red';
     }
     } catch(error) {
-        lastRankedGames.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>` + "Błąd poczas pobierania";
+        var err = 'Błąd poczas pobierania';
+        if(language && language !== 'pl') {
+            reason = 'API limit exceeded. Please wait a moment :)';
+            err = 'Error during featching player';
+        }
+        lastRankedGames.innerHTML = spinner + err;
+
         if(error.message.includes("429")){
-            lastRankedGames.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>` + "Przekroczono limit API. Daj chwilę :)"
+            lastRankedGames.innerHTML = spinner + reason;
         }
         console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
         lastRankedGames.style.color = 'red';
@@ -365,7 +421,7 @@ function addLast3MatchesToView(matchList,i,data){
     var listItem = document.createElement("li");
     var contentDiv = document.createElement("div");
 
-    let win = "";
+    var win = "";
         
     if(data["matches"][i]["win"] === true) {
         win = `<span class="badge bg-success rounded-pill">Wygrana</span>`;
@@ -403,9 +459,16 @@ function setWinLosses(data,lastRankedGames) {
     const wins = data["wins"];
     const losses = data["losses"];
     const sumMatch = data["wins"]+data["losses"];
-    winLosses.textContent = "Wygrane - Przegrane";  
-
-    lastRankedGames.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`+" OSTATNIE RANKEDY - " + sumMatch;
+    var lastRankedText = " OSTATNIE RANKEDY - ";
+    var winAndLossesText = "Wygrane - Przegrane";
+    
+    var language = sessionStorage.getItem('language');
+    if(language && language !== 'pl') {
+        lastRankedText = " LAST RANKED MATCHES - ";
+        winAndLossesText = "Wins - Losses";
+    }
+    winLosses.textContent =   winAndLossesText;
+    lastRankedGames.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="spinnerPlayer"></span>`+ lastRankedText + sumMatch;
     lastRankedGames.style.color = "#363949";
 
     const leagueInfoWins = document.getElementById("leagueInfoWins");
