@@ -74,13 +74,13 @@ function setLeftTeam(summoner,i){
     puuId.textContent = summoner['puuid'];
 
     if (summoner['rank'] !== "BRAK RANGI") {
+        rank.style.fontWeight = 700;
+    } else {
         // english version
         var language = sessionStorage.getItem('language');
         if(language && language !== 'pl') {
             rank.textContent = 'NONE';
         }
-        rank.style.fontWeight = 700;
-    } else {
         rank.style.fontWeight = 500;
     }
     champ.textContent = summoner['champName'];
@@ -106,12 +106,13 @@ function setRightTeam(summoner,i){
     puuIdR.textContent = summoner['puuid'];
 
     if (summoner['rank'] !== "BRAK RANGI") {
+        rank.style.fontWeight = 700;
+    } else {
+        // english version
         var language = sessionStorage.getItem('language');
         if(language && language !== 'pl') {
             rank.textContent = 'NONE';
         }
-        rank.style.fontWeight = 700;
-    } else {
         rank.style.fontWeight = 500;
     }
     champ.textContent = summoner['champName'];
