@@ -1,3 +1,4 @@
+// update menu buttons depends on seleted language 
 function changeMenuLanguage(language) {
     if(language){
         homeBtn.textContent = language === 'pl' ? 'Strona główna' : 'Home page';

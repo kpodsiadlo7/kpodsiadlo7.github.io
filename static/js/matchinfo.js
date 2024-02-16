@@ -74,8 +74,13 @@ function setLeftTeam(summoner,i){
     puuId.textContent = summoner['puuid'];
 
     if (summoner['rank'] !== "BRAK RANGI") {
+        // english version
+        var language = sessionStorage.getItem('language');
+        if(language && language !== 'pl') {
+            rank.textContent = 'NONE';
+        }
         rank.style.fontWeight = 700;
-    }  else {
+    } else {
         rank.style.fontWeight = 500;
     }
     champ.textContent = summoner['champName'];
@@ -101,6 +106,10 @@ function setRightTeam(summoner,i){
     puuIdR.textContent = summoner['puuid'];
 
     if (summoner['rank'] !== "BRAK RANGI") {
+        var language = sessionStorage.getItem('language');
+        if(language && language !== 'pl') {
+            rank.textContent = 'NONE';
+        }
         rank.style.fontWeight = 700;
     } else {
         rank.style.fontWeight = 500;
@@ -127,6 +136,12 @@ function setBannedList(champions){
             img.style.setProperty('box-shadow', '0 0 0.5rem rgba(255, 0, 0, 1)');
         }
         bannedText.textContent = "Zbanowani";
+
+        // english version
+        var language = sessionStorage.getItem('language');
+        if(language && language !== 'pl') {
+            bannedText.textContent = "Banned";
+        }
     }
     
 }
@@ -301,7 +316,14 @@ function displaySelectSummonerTextInRightSideBar() {
         var selectPlayer = document.getElementById("selectPlayer");
         var textNode = selectPlayer.textContent.includes("Wybierz gracza") ? "" : document.createTextNode("Wybierz gracza");
         if(textNode !== ""){
-            selectPlayer.appendChild(textNode);
+
+            // english version
+        var language = sessionStorage.getItem('language');
+        if(language && language !== 'pl') {
+            textNode = document.createTextNode("Select player")
+        }
+
+        selectPlayer.appendChild(textNode);
         } 
     } 
 }

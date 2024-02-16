@@ -245,7 +245,7 @@ function setRankSolo(rank,data) {
     // english version
     var language = sessionStorage.getItem('language');
     if(language && language !== 'pl') {
-        rankedSolo.textContent = "Flex rank: " + tier;
+        rankedSolo.textContent = "Solo rank: " + tier;
         leaugePointsSolo.textContent = "League points: " + leaguePoints;
         winLossesSolo.textContent = "Win-Losses: " + winAndLosses;
     }
