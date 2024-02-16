@@ -612,6 +612,20 @@ main #aboutMatch {
     color: #363949;
 }
 
+.upContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.upContainer p {
+    width: 400px
+}
+
+.upContainer:last-child {
+    width: 50%;
+}
+
 main #middleContainerMatchInfo {
     clear: both;
     margin-top: 45px;
@@ -1268,7 +1282,7 @@ html {
     text-align: center;
 }
 
-#leftTextButtons {
+.leftTextButtons {
     margin-top: 7px;;
 }
 
@@ -1276,9 +1290,6 @@ html {
     backdrop-filter: blur(10px);
     border-radius: 6px;
     margin: 10px;
-}
-
-.about p {
     padding-top: 12px;
 }
 
@@ -1306,7 +1317,7 @@ html {
     text-align: center;
 }
 
-.warningContent #warningText {
+.warningContent #infoText {
     margin-left: 1rem;
     margin-right: 1rem;
 }

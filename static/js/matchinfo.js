@@ -1,3 +1,12 @@
+window.onload = function() {
+    var language = sessionStorage.getItem('language');
+    switchLanguage(language);
+};
+
+function switchLanguage(language) {
+    
+}
+
 function setPropertiesForLeftTeam(teamLeft,leftTeamContainer){
     teamLeft.textContent = "Twoja drużyna";
     leftTeamContainer.style.setProperty('box-shadow', '0 0px 15px rgba(102, 51, 153, 0.3)');
