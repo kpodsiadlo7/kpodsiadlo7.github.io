@@ -52,15 +52,15 @@
                 </div>
             </div>
             <a href="https://github.com/kpodsiadlo7/LeagueOfLegendsSTATS" target="_blank">
-                <div class="github"><p style="font-weight: 600; color: black; text-align: center;" id="sourceCode"></p></div>
+                <div class="github"><p style="font-weight: 600; color: black; text-align: center;" id="sourceCode">Kod źródłowy</p></div>
             </a>            
         </aside>
         <main>
             <div id="middleContainerMatchInfo">
                 <div class="upContainer">
                     <div class="switchLanguage">
-                        <button type="button" style="float: left; margin-right: 5px;" id="languageButton" onclick="switchLanguage(event)" class="btn btn-warning"></button>
-                        <p style="color: #363936; font-size: 24px;" id="desc"></p>
+                        <button type="button" style="float: left; margin-right: 5px;" class="btn matchSearchBtn" id="searchButton" onclick="switchLanguage(event)">Switch</button>
+                        <p style="color: #363936; font-size: 24px;" id="desc">to english description</p>
                     </div>
                 </div>
                 <div class="match" id="matchBackground" style="background-image: url('https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jax_0.jpg'); background-size: cover;">
@@ -68,18 +68,32 @@
                         <h1 style="color: #fff; margin-bottom: 20px; font-size: 35px; font-weight: 700;">League of Legends Profile Search</h1>
                         <div class="about">
                         <p style="font-size: 16px; color: #fff;" id="firstDesc">
-                            
+                            To jest aplikacja, która umożliwia śledzenie graczy aktualnie uczestniczących w rozgrywce.
+                                Dzięki niej możemy szybko znaleźć swoich znajomych, zobaczyć z kim obecnie grają, 
+                                sprawdzić ich poziom doświadczenia, oraz uzyskać 
+                                ogólne statystyki dotyczące liczby zwycięstw i porażek, jeśli posiadają rangę. Ponadto, aplikacja umożliwia przeglądanie profili i statystyk 
+                                dowolnego gracza w League of Legends.
                             </p>
                         </div>
                         <div class="about">
                             <p style="font-size: 16px; color: #fff;" id="secondDesc">
-                                
+                                Na podstronie <a href="summoner.html" style="color: white"><b>"Szukaj gracza"</b></a>, po wprowadzeniu dowolnej nazwy gracza uzyskamy dostęp do jego profilu, 
+                                z informacjami o poziomie, rangach w grach rankingowych solo/duo oraz flex, jeżeli są dostępne. Na ekranie pojawi się ikona profilu gracza wraz z 
+                                grafiką zależną od jego rangi (solo/duo). Tło karty profilu zostanie ustawione zgodnie z głównym championem gracza.
+                                Na panelu bocznym pojawią się informacje dotyczące ostatnich 20 gier rankingowych gracza, w tym nazwa wybranego championa, obrażenia jakie zadał, wynik starcia oraz wskaźnik KDA.
                             </p>
                             </div>
                         <div class="about">
                         <p style="font-size: 16px; color: #fff;" id="thirdDesc">
+                            Na podstronie <a href="matchinfo.html" style="color: white;"><b>"Wyszukaj mecz"</b></a>, po wprowadzeniu nazwy użytkownika obecnie uczestniczącego w rozgrywce, 
+                            otrzymamy statystyki dotyczące tego konkretnego meczu. Znajdziemy informacje dotyczące wybranych championów, używanych masterków oraz wszystkich zbanowanych 
+                            bohaterów(obecni w meczach rankingowych, a nie w trybie ARAM).
+                            W ramach testów Riot udostępnia informacje dotyczące losowego, aktualnie trwającego meczu, co pozwala sprawdzić dowolne przypadkowe starcie.
+                            Ponadto, po kliknięciu na nazwę gracza, po prawej stronie panelu pojawią się informacje dotyczące jego ostatnich wyników w meczach rankingowych. 
+                            Z uwagi na ograniczenia API, udostępniane są dane z ostatnich trzech starć, obejmujące nazwę gracza, poziom, rangę oraz ogólne statystyki zwycięstw i porażek, 
+                            o ile profil League jest dostępny. Dodatkowo, dla każdego z tych trzech ostatnich meczów widoczna będzie postać, którą dany gracz grał, jego KDA, obrażenia oraz wynik starcia.
                             </p>
-                            <p style="color: wheat; font-weight: 600; text-align: center;" id="inviteText">
+                            <p style="color: wheat; font-weight: 600; text-align: center;" id="inviteText">Zapraszam do przetestowania mojej aplikacji. Wszystko, czego potrzebujesz, znajdziesz na podstronach 'Szukaj gracza' i 'Wyszukaj mecz'.
                             </p>
                         </div>
                     </div>
@@ -92,7 +106,7 @@
                     info
                     </span>
                 <p style="color: #ffda6a; font-size: 15px;" id="infoText">
-                    </p>
+                    Ze względu na korzystanie z bezpłatnego hostingu dla backendu, możliwe jest, że aplikacja będzie działać wolniej i wymagać dłuższego czasu przetwarzania.</p>
             </div>
         </aside>
     </div>
