@@ -380,10 +380,20 @@ function addLast20MatchesToView(matchList,i,data){
 
     let win = "";
         
+    var winText = 'Wygrana';
+    var loseText = 'Przegrana';
+
+    // english version
+    var language = sessionStorage.getItem('language');
+    if(language && language !== 'pl') {
+        winText = 'Win';
+        loseText = 'Lose';
+    }
+        
     if(data["matches"][i]["win"] === true) {
-        win = `<span class="badge bg-success rounded-pill">Wygrana</span>`;
+        win = `<span class="badge bg-success rounded-pill">${winText}</span>`;
     } else {
-        win = `<span class="badge bg-danger rounded-pill">Przegrana</span>`;
+        win = `<span class="badge bg-danger rounded-pill">${loseText}</span>`;
     }
         
     contentDiv.innerHTML = 
