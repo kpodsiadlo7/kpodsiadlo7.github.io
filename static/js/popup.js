@@ -29,7 +29,6 @@ async function openPopup(event,matchId,puuId) {
         setTime(data);
         fillUpBannedList(data);
         setObjectives(data);
-        translateDescription();
 
     } catch (error) {
         console.error('Błąd podczas przetwarzania odpowiedzi JSON:', error);
@@ -43,17 +42,6 @@ function setObjectives(data) {
         } else {
             createObjective(obj);
         }
-    }
-}
-
-function translateDescription(){
-    // english version
-    var language = sessionStorage.getItem('language');
-    if(language) {
-        document.querySelector('.lane').textContent = language === 'pl' ? 'Linia' : 'Lane';
-        document.querySelector('.champion').textContent = language === 'pl' ? 'Bohater' : 'Champion';
-        document.querySelector('.summonerName').textContent = language === 'pl' ? 'Nazwa gracza' : 'Summoner name';
-        document.querySelector('.rank').textContent = language === 'pl' ? 'Ranga' : 'Rank';
     }
 }
 
@@ -166,7 +154,7 @@ function makeDivForSummoner(summoner,teamId,puuId) {
         <div class="championIcon"><img class="champ" src="https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${summoner.championId}.png"></div>
         <div class="summonerName">${summoner.summonerName}</div>
         <div class="kda">${summoner.kills} / ${summoner.deaths} / ${summoner.assists}</div>
-        <div class="dmg">${summoner.dealtDamage}</div>
+        <div class="dmg"><img src="img/fighticon.png" style="max-height: 30px; max-width: 30px;">${summoner.dealtDamage}</div>
         <div class="rank">${summoner.rank}</div>
     `;
     summonerDiv.querySelector('.rank').style.color = summoner.rankColor;
