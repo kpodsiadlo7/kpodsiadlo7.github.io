@@ -86,7 +86,7 @@ function createObjective(obj) {
     var language = sessionStorage.getItem('language');
     if(language && language !== 'pl') {
         winDiv.innerHTML = `
-        <div id="win">${obj.teamId === 100 ? "Win" : "Losses"}</div>
+        <div id="win">${obj.teamId === 100 ? "Win" : "Lose"}</div>
     
         `;
 
