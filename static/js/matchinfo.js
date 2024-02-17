@@ -122,12 +122,11 @@ function setBannedList(champions){
     if (champions && champions.length > 0) {
         var bannedText = document.getElementById("bannedText");
         var bannedList = document.getElementById("bannedList");
-    
-        var bannedChampDiv;
-    
-        bannedText.textContent = "";
+        bannedList.textContent = '';  
+        bannedText.textContent = '';
+
         for (var i = 0; i < 10; i++) {
-            bannedChampDiv = document.createElement("div");
+            var bannedChampDiv = document.createElement("div");
             bannedChampDiv.className = `banned${i + 1}`;
             bannedChampDiv.innerHTML = `<img class="champBannedIcon" id="champBannedIcon${i+1}" src="" alt="ChampIcon">`;
             bannedList.appendChild(bannedChampDiv);
