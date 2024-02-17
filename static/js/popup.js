@@ -50,10 +50,10 @@ function translateDescription(){
     // english version
     var language = sessionStorage.getItem('language');
     if(language) {
-        querySelector('.lane').textContent = language === 'pl' ? 'Linia' : 'Lane';
-        querySelector('.champion').textContent = language === 'pl' ? 'Bohater' : 'Champion';
-        querySelector('.summonerName').textContent = language === 'pl' ? 'Nazwa gracza' : 'Summoner name';
-        querySelector('.rank').textContent = language === 'pl' ? 'Ranga' : 'Rank';
+        document.querySelector('.lane').textContent = language === 'pl' ? 'Linia' : 'Lane';
+        document.querySelector('.champion').textContent = language === 'pl' ? 'Bohater' : 'Champion';
+        document.querySelector('.summonerName').textContent = language === 'pl' ? 'Nazwa gracza' : 'Summoner name';
+        document.querySelector('.rank').textContent = language === 'pl' ? 'Ranga' : 'Rank';
     }
 }
 
