@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     var language = sessionStorage.getItem('language');
-    switchLanguage(language);
+    switchLanguage(undefined,language);
 });
 
 function redirectToSummoner(){
@@ -18,8 +18,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 function switchLanguage(event,language) {
-    event.preventDefault();
-    var langButton = document.getElementById('languageButton');
+    if(event !== undefined ) event.preventDefault();
+
+    var langButton = document.getElementById('searchButton');
 
     if(language) {
         language = language;
