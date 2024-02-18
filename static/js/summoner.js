@@ -304,7 +304,7 @@ function setProfileIconWithRank(data){
 
 async function getLast20Matches(puuId,matchList,lastRankedGames) {
     
-    const apiUrl = `${window.home_url}/lastMatches?puuId=${encodeURIComponent(puuId)}?matchesListCount=50?rankedCount=20`;
+    const apiUrl = `${window.home_url}/lastMatches?puuId=${encodeURIComponent(puuId)}&matchesListCount=50&rankedCount=20`;
 
     try {
         const response = await fetch(apiUrl, {

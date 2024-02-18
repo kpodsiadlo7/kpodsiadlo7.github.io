@@ -350,7 +350,7 @@ async function getLast3Matches(event, id) {
     var clickedElement = document.getElementById(id);
     var summonerPuuId = clickedElement.innerText || clickedElement.textContent;
 
-    const apiUrl = `${window.home_url}/lastMatches?puuId=${encodeURIComponent(summonerPuuId)}?matchesListCount=20?rankedCount=3`;
+    const apiUrl = `${window.home_url}/lastMatches?puuId=${encodeURIComponent(summonerPuuId)}&matchesListCount=20&rankedCount=3`;
     var selectPlayerElement = document.getElementById("selectPlayer");
 
     try {
