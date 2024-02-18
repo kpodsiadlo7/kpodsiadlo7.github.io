@@ -38,7 +38,7 @@ async function searchSummoner(event) {
 
 
 
-    const apiUrl = `${window.home_url}/?summonerName=${encodeURIComponent(name)}`;
+    const apiUrl = `${window.home_url}/summoner/${encodeURIComponent(name)}`;
     try {
         
         const response = await fetch(apiUrl, {
@@ -304,7 +304,7 @@ function setProfileIconWithRank(data){
 
 async function getLast20Matches(puuId,matchList,lastRankedGames) {
     
-    const apiUrl = `${window.home_url}/last20matches?puuId=${encodeURIComponent(puuId)}`;
+    const apiUrl = `${window.home_url}/lastMatches?puuId=${encodeURIComponent(puuId)}?matchesListCount=50?rankedCount=20`;
 
     try {
         const response = await fetch(apiUrl, {
