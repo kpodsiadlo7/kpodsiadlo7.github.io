@@ -4,9 +4,19 @@ Welcome to the frontend of the League of Legends Profile Search Application! Thi
 
 ## Features
 - Search Player Profile: Users can search for any League of Legends player's profile and retrieve basic information such as League Points, ranks in Solo/Duo and Flex queues, and dynamically updated background based on their main champion.
+
+<img src='img/profile search.png'>
+
 - View Recent Match History: Users can view the recent match history of a player, including basic match information like champion icons, K/D/A ratios, damage dealt, lane played, and match outcome.
+
+<img src='img/active match.png'>
+
 - Detailed Match Information: Detailed information about each match can be accessed by clicking on it, revealing all participants of that particular match.
-Active Match Search: Users can search for information about an ongoing match, including ranks of all players, banned champions, selected spells, etc.
+
+- Active Match Search: Users can search for information about an ongoing match, including ranks of all players, banned champions, selected spells, etc.
+
+<img src='img/recent match.png'>
+
 - Individual Recent Games Lookup: Users can view the recent 3 ranked games out of the last 20 games for each player, with detailed information available for each match.
 ## Technologies Used
 - JavaScript
