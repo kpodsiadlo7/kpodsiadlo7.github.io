@@ -3,19 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>kpodsiadlo7.github.io</title>
+    <link rel="stylesheet" href="static/css/index.css">
+    <title>Projektuję, Tworzę, Koduję: Moje Portfolio</title>
 </head>
-<body class="bodyMatch">
-    <div class="container homecontainer">
-        <div>
-            <h1>League of Legends Profile Search</h1>
+<body style="background-color: #f2f2f2">
+
+<div class="container">
+    <div class="row">
+        <div class="header">
+            <h1>Projektuję, Tworzę, Koduję: Moje Portfolio</h1>
+            <p>Cześć! z tej strony Karol, <br> Jako hobbystyczny twórca, zajmuję się głównie projektami aplikacji webowych w Javie, które znajdziesz tutaj jako moje portfolio. Dodatkowo, pracuję nad projektem gry na silniku Unreal Engine, wykorzystując język C++. Projekt ten obecnie jest we wczesnej fazie, nad którym skupiam się najbardziej. Pozatym mój <a style="text-decoration: none; color: black; font-weight: 900;" href="https://github.com/kpodsiadlo7">Github</a> ;)
+                <div style="text-align: center;">
+                    <img src="https://skills.thijs.gg/icons?i=aws,gitlab,github&theme=light&perline=3" alt="icons"/>
+                </div>
+            </p>   
         </div>
-        <div>
-            <button class="btn btn-primary" onclick="redirectToLol()">Przejdź</button>
-        </div> 
+        <div class="divider"></div>
+            <div class="applicationText">Aplikacje <div>
+                <img src="https://skills.thijs.gg/icons?i=java,js,docker,mysql,html,css,idea&theme=light&perline=7" alt="icons"/>
+                <p>aby przetestować, kliknij na wybraną</p>
+            </div> 
+        </div>
+        <div class="content">
+             <div class="card" onclick="redirectToLol()">
+                <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Morgana_2.jpg" alt="">
+                <h3>League of Legends - Profile Search</h3>
+                <p>Aplikacja, która umożliwia śledzenie graczy uczestniczących aktualnie w rozgrywce. Dzięki niej możemy szybko znaleźć swoich znajomych, zobaczyć, z kim aktualnie grają, sprawdzić ich poziom doświadczenia oraz uzyskać ogólne statystyki dotyczące liczby zwycięstw i porażek z gier rankingowych. Dodatkowo, aplikacja umożliwia przeglądanie profili i statystyk dowolnego gracza w League of Legends a także pozwala na podgląd dowolnego meczu wraz ze wszystkimi jego uczestnikami, KDA wszystkich osób, ilość zabitych smoków, heroldów, graczy, zadanego DMG oraz ostateczny wynik starcia.</p>
+             </div>
+             <div class="card" onclick="redirectToMarsWeather()">
+                <img src="img/mars.jpg" alt="">
+                <h3>Mars Weather - Pogoda na Marsie</h3>
+                <p>Jeden pełny dzień na Marsie trwa około 24 godziny i 40 minut 
+                <br>'Sol' to marsjański dzień
+                </p>
+                <p>Zasoby API dostarczane przez oficjalną strone NASA https://mars.nasa.gov/</p>
+             </div>
+        </div>
+        <div class="applicationText" style="margin-bottom: 30px; margin-top: 50px;">...</div>
+        <div class="divider"></div>
+
+        <div class="applicationText">UnrealEngine <div><img src="https://skills.thijs.gg/icons?i=cpp,unreal,rider&theme=light&perline=3" alt="icons"/></div>
+        </div>
+        <p style="margin-top: 50px; margin-bottom: 200px; text-align: center;">Sekcja w przygotowaniu...</p>
     </div>
-<script src="static/js/index.js"></script>
+    <footer></footer>
+</div>
+<div class="copyright" style="text-align: center; font-size: 12px; margin-bottom: 10px;">2024 - bez pośpiechu, bez przerwy</div>
 </body>
+<script src="static/js/mars.js"></script>
+<script src="static/js/index.js"></script>
 </html>

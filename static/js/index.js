@@ -1,6 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
+function redirectToLol() {
     window.location.href = "/lolhome.html";
-});
-
-
-
+}

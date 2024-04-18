@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Copperplate');
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: 0;
+    border: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 0; 
+    background-image: url('/img/planetamarstlo.jpeg');
+    background-size: cover;
+    background-position: center; 
+    opacity: 0.85;
+}
+
+body h1 {
+    text-align: center; 
+    color: black; 
+    font-size: 77px; 
+    font-family: 'Copperplate';
+}
