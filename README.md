@@ -42,4 +42,6 @@ Welcome to the frontend of the League of Legends Profile Search Application! Thi
 - Click on any player's name within the application to view their recent 3 ranked games out of their last 20 games, with detailed information available including all participants. for each match.
 ###
 Enjoy using the League of Legends Profile Search Application!
-## [LeagueProfileSearch Backend](https://github.com/kpodsiadlo7/LeagueProfileSearch)
+#### [LeagueProfileSearch Backend](https://github.com/kpodsiadlo7/LeagueProfileSearch)
+#### [Source](https://ddragon.leagueoflegends.com)
+#### [Api](https://developer.riotgames.com)
