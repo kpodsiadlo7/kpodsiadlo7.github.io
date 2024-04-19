@@ -22,3 +22,7 @@ function addPhotoWithData({copyright, url, title, date}) {
     document.getElementById('author').innerText = ' Autor: '+copyright; 
     document.getElementById('date').innerText = date;
 }
+
+function redirectToNasa(){
+    window.location.href='https://apod.nasa.gov/apod/astropix.html';
+}

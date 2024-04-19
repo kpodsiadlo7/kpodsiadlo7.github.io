@@ -124,11 +124,24 @@ footer {
 }
 
 .astronomyData #img {
-    float: left;
     margin-bottom: 30px;
+    cursor: pointer;
+    text-align: center;
+    clear: both;
 }
 
-#titleAndAuthor {
-    float: left;
-    margin-left: 25px;
+#title {
+    text-align: center;
+    font-weight: 600;
+}
+
+#author {
+    text-align: center;
+    font-weight: 600;
+}
+
+#date {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
