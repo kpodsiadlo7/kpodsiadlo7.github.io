@@ -16,11 +16,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 });
 
-function addPhotoWithData({copyright, url, title, date}) {
+function addPhotoWithData({copyright, url, title, date, explanation}) {
     document.getElementById('astronomyImg').src = url;
     document.getElementById('title').innerText = 'Tytuł: '+title; 
     document.getElementById('author').innerText = ' Autor: '+copyright; 
     document.getElementById('date').innerText = date;
+    document.getElementById('explanation').innerText = explanation;
 }
 
 function redirectToNasa(){
