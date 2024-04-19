@@ -24,6 +24,19 @@ body {
 body h1 {
     text-align: center; 
     color: black; 
-    font-size: 77px; 
+    font-size: 57px; 
     font-family: 'Copperplate';
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        text-shadow: 0 0 1px #fff9ef; 
+    }
+    50% {
+        text-shadow: 0 0 10px #fff9ef; 
+    }
+    100% {
+        text-shadow: 0 0 1px #fff9ef; 
+    }
 }
