@@ -76,6 +76,7 @@ footer {
     height: 2px;
     background-color: rgba(0, 0, 0, 0.5);
     margin-bottom: 50px;
+    clear: both;
 }
 
 .content .card {
@@ -116,4 +117,18 @@ footer {
     .content{
         flex-direction: column;
     }
+}
+
+.astronomyData {
+    margin-top: 30px;
+}
+
+.astronomyData #img {
+    float: left;
+    margin-bottom: 30px;
+}
+
+#titleAndAuthor {
+    float: left;
+    margin-left: 25px;
 }
