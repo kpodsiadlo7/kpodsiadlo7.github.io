@@ -1,5 +1,5 @@
 function redirectToLol() {
-    window.location.href = "/lolhome.html";
+    window.location.href = "LeagueProfileSearch/lolhome.html";
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
@@ -24,6 +24,6 @@ function addPhotoWithData({copyright, url, title, date, explanation}) {
     document.getElementById('explanation').innerText = explanation;
 }
 
-function redirectToNasa(){
-    window.location.href='https://apod.nasa.gov/apod/astropix.html';
+function redirectToMarsWeather(){
+    window.location.href='MarsWeatherApp/mars.html';
 }
