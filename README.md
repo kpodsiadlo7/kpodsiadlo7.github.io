@@ -24,7 +24,7 @@ Welcome to the frontend of the League of Legends Profile Search Application! Thi
 - CSS
 ## How to Use
 1.<b>Navigate to the Website:</b>
-- Go to the website [LeagueProfileSearch](https://kpodsiadlo7.github.io).
+- Go to the website [LeagueProfileSearch](https://kpodsiadlo7.github.io/LeagueProfileSearch/lolhome.html).
 - <b>Everything you need can be found on the 'Search Player' and 'Search Match' subpages such as example names and example match.</b>
 
 2.<b>Search for Player Profile:</b>
