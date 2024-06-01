@@ -46,7 +46,6 @@ function checkWhichDayWasHottestAndColdest() {
     var month;
     var pressure;
     var coldDate;
-    var coldestSol;
 
     var coldestDayTemp = 0;
     var hottesDayTemp = 0;
@@ -62,7 +61,6 @@ function checkWhichDayWasHottestAndColdest() {
         }
         if (coldestDayTemp > sol.min_temp) {
             coldestDayTemp = sol.min_temp;
-            coldestSol = sol.sol;
             coldDate = sol.terrestrial_date;
         }
     });
@@ -244,17 +242,81 @@ function toggleClickedDayColor(sol) {
     }
 }
 
-document.getElementById("futureWeather").addEventListener("click", function() {
+document.getElementById("futureWeather").addEventListener("click", function () {
     // Pogoda na 20 dni do przodu
+    if (soles && soles.soles && soles.soles.length > 0) {
+        var {
+            lastYearSols,
+            howManyDaysForward,
+            howManyYearsLeftToCheckWeather,
+            lastYearDays,
+            marsYearDays
+        } = prepareVariables();
 
-    if(soles && soles.soles && soles.soles.length > 0) {
-        var currentSol = soles.soles[0].sol;
-        var marsYearDays = 687;
-        var howManyYearsLeftToCheckWeather = Math.floor(currentSol / marsYearDays);
+        var i;
+        ({
+            i,
+            lastYearSols,
+            howManyDaysForward
+        } = aggregateMaxTempsForYears(howManyYearsLeftToCheckWeather, lastYearSols, lastYearDays, howManyDaysForward, marsYearDays));
 
-        for(var i=0; i <= howManyYearsLeftToCheckWeather; i++){
-            
-        }
-        var lastYear = currentSol-marsYearDays;
+        var i;
+        ({
+            i,
+            i
+        } = calculateAverageForLastYearDays(i, lastYearDays));
+        console.log(lastYearDays);
     }
 });
+
+function prepareVariables() {
+    var currentSol = soles.soles[0].sol;
+    var marsYearDays = 687;
+    var howManyYearsLeftToCheckWeather = Math.floor(currentSol / marsYearDays);
+    var lastYearDays = new Map();
+
+    var lastYearSols = currentSol - marsYearDays + 20;
+    var howManyDaysForward = 20;
+    return {
+        lastYearSols,
+        howManyDaysForward,
+        howManyYearsLeftToCheckWeather,
+        lastYearDays,
+        marsYearDays
+    };
+}
+
+function aggregateMaxTempsForYears(howManyYearsLeftToCheckWeather, lastYearSols, lastYearDays, howManyDaysForward, marsYearDays) {
+    for (var i = 1; i <= howManyYearsLeftToCheckWeather; i++) {
+        for (var j = 0; j < soles.soles.length; j++) {
+            var sol = soles.soles[j];
+            if (sol.sol.toString() === lastYearSols.toString()) {
+                if (sol.max_temp === '--') continue;
+                var currentVal = lastYearDays.get(howManyDaysForward) || 0;
+                lastYearDays.set(howManyDaysForward, Number(sol.max_temp) + currentVal);
+                lastYearSols--;
+                howManyDaysForward--;
+                if (howManyDaysForward === 0) {
+                    howManyDaysForward = 20;
+                    break;
+                }
+            }
+        }
+        lastYearSols -= marsYearDays;
+    }
+    return {
+        i,
+        lastYearSols,
+        howManyDaysForward
+    };
+}
+
+function calculateAverageForLastYearDays(i, lastYearDays) {
+    for (var i = 1; i <= 20; i++) {
+        lastYearDays.set(i, Math.floor(lastYearDays.get(i) / 6));
+    }
+    return {
+        i,
+        i
+    };
+}

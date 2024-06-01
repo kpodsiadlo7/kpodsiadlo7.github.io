@@ -153,13 +153,27 @@ body {
     color: #FF6347;
 }
 
+.details-bottom {
+    height: 20%;
+    text-align: left;
+    margin-top: 20px;
+}
+
 @media screen and (max-width: 768px) {
     body {
         flex-direction: column;
-        height: 250vh;
+        height: 300vh;
     }
 
-    .weather-app,
+    .details-bottom {
+        height: auto;
+    }
+
+    .weather-app {
+        height: 60%;
+        margin: auto;
+        width: 90%;
+    }
     .information-app {
         width: 90%;
         height: 100%;
