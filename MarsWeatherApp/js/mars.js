@@ -35,7 +35,7 @@ function fillInfoAboutWeather() {
     var detailsBottomDiv = document.querySelector(".details-bottom");
     var aboutWeather = document.createElement("div");
     aboutWeather.innerHTML = `
-    W dniu ${warmDate} roku na Marsie zanotowano rekordową dotychczasową temperaturę dodatnią, dochodzącą do około <a style="color:red; font-weight: bold;">${hottesDayTemp}°C</a>. Był to <a style="color:#FF6347; font-weight: bold;">sol ${hottestSol}</a>, miesiąc ${month.replace(/^Month\s+/i, '')}. Wówczas ciśnienie atmosferyczne oscylowało w granicach ${pressure} paskali, a atmosfera charakteryzowała się wyjątkową przejrzystością, intensywność promieniowania ultrafioletowego była wysoka. Natomiast najzimniejszy dzień to ${coldDate}, wówczas temperatura spadła do<a style="color:rgb(54, 171, 255); font-weight: bold;"> ${coldestDayTemp}°C</a>.
+    W dniu ${warmDate} roku na Marsie zanotowano rekordową dotychczasową temperaturę dodatnią, dochodzącą do około <a style="color:red; font-weight: bold;">${hottesDayTemp}°C</a>. Był to <a style="color:#FF6347; font-weight: bold;">sol ${hottestSol}</a>, miesiąc ${month.replace(/^Month\s+/i, '')}. Wówczas ciśnienie atmosferyczne oscylowało w granicach ${pressure} paskali, a atmosfera charakteryzowała się wyjątkową przejrzystością, intensywność promieniowania ultrafioletowego była wysoka. Natomiast najzimniejszy dzień to ${coldDate}, wówczas temperatura spadła do<a style="color:rgb(54, 171, 255); font-weight: bold;"> ${coldestDayTemp}°C</a>. Marsjański rok ma 687 dni.
     `;
     detailsBottomDiv.appendChild(aboutWeather);
 }
@@ -243,3 +243,18 @@ function toggleClickedDayColor(sol) {
         });
     }
 }
+
+document.getElementById("futureWeather").addEventListener("click", function() {
+    // Pogoda na 20 dni do przodu
+
+    if(soles && soles.soles && soles.soles.length > 0) {
+        var currentSol = soles.soles[0].sol;
+        var marsYearDays = 687;
+        var howManyYearsLeftToCheckWeather = Math.floor(currentSol / marsYearDays);
+
+        for(var i=0; i <= howManyYearsLeftToCheckWeather; i++){
+            
+        }
+        var lastYear = currentSol-marsYearDays;
+    }
+});
