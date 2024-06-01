@@ -11,11 +11,9 @@ function openPopup() {
 function closePopup() {
     var popup = document.getElementById('myPopup');
     var content = document.getElementById('content');
-    var blur = document.getElementById('backgroundColor');
 
     content.style.animation = 'none';
     content.style.animation = 'fadeOutPopup 0.3s ease forwards';
-    blur.style.animation = 'blurOut 0.3s ease forwards';
 
     setTimeout(function() {
         popup.style.display = 'none';

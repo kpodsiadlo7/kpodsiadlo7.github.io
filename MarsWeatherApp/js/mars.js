@@ -35,7 +35,7 @@ function fillInfoAboutWeather() {
     var detailsBottomDiv = document.querySelector(".details-bottom");
     var aboutWeather = document.createElement("div");
     aboutWeather.innerHTML = `
-    W dniu ${warmDate} roku na Marsie zanotowano rekordową dotychczasową temperaturę dodatnią, dochodzącą do około <a style="color:red; font-weight: bold;">${hottesDayTemp}°C</a>. Był to <a style="color:#FF6347; font-weight: bold;">sol ${hottestSol}</a>, miesiąc ${month.replace(/^Month\s+/i, '')}. Wówczas ciśnienie atmosferyczne oscylowało w granicach ${pressure} paskali, a atmosfera charakteryzowała się wyjątkową przejrzystością, intensywność promieniowania ultrafioletowego była wysoka. Natomiast najzimniejszy dzień to ${coldDate}, wówczas temperatura spadła do<a style="color:rgb(54, 171, 255); font-weight: bold;"> ${coldestDayTemp}°C</a>. Marsjański rok ma 687 dni.
+    W dniu ${warmDate}, na Marsie zanotowano rekordową dotychczasową temperaturę dodatnią, dochodzącą do około <a style="color:red; font-weight: bold;">${hottesDayTemp}°C</a>. Był to <a style="color:#FF6347; font-weight: bold;">sol ${hottestSol}</a>, miesiąc ${month.replace(/^Month\s+/i, '')}. Wówczas ciśnienie atmosferyczne oscylowało w granicach ${pressure} paskali, a atmosfera charakteryzowała się wyjątkową przejrzystością, intensywność promieniowania ultrafioletowego była wysoka. Natomiast najzimniejszy dzień to ${coldDate}, wówczas temperatura spadła do<a style="color:rgb(54, 171, 255); font-weight: bold;"> ${coldestDayTemp}°C</a>. Marsjański rok ma 687 dni.
     `;
     detailsBottomDiv.appendChild(aboutWeather);
 }
@@ -161,6 +161,7 @@ function getSol(i) {
 
 function provideDetailsByCurrentDay(sol) {
     toggleClickedDayColor(sol);
+    document.querySelector('.details-container').scrollIntoView({ behavior: 'smooth' });
     var dayDiv = document.querySelector('.details-day');
     var solDiv = document.querySelector('.details-sol');
     var dayTempDiv = document.querySelector('.day-temp-details');
@@ -260,11 +261,7 @@ document.getElementById("futureWeather").addEventListener("click", function () {
             howManyDaysForward
         } = aggregateMaxTempsForYears(howManyYearsLeftToCheckWeather, lastYearSols, lastYearDays, howManyDaysForward, marsYearDays));
 
-        var i;
-        ({
-            i,
-            i
-        } = calculateAverageForLastYearDays(i, lastYearDays));
+        calculateAverageForLastYearDays(lastYearDays);
         console.log(lastYearDays);
     }
 });
@@ -311,12 +308,8 @@ function aggregateMaxTempsForYears(howManyYearsLeftToCheckWeather, lastYearSols,
     };
 }
 
-function calculateAverageForLastYearDays(i, lastYearDays) {
+function calculateAverageForLastYearDays(lastYearDays) {
     for (var i = 1; i <= 20; i++) {
         lastYearDays.set(i, Math.floor(lastYearDays.get(i) / 6));
     }
-    return {
-        i,
-        i
-    };
 }
