@@ -118,7 +118,6 @@ function provideDetailsByCurrentDay(sol) {
     var monthDiv = document.getElementsByClassName("month")[0];
     var seasonDiv = document.getElementsByClassName("season")[0];
 
-    console.log(dateDiv);
     soles.soles.forEach((element) => {
         if (element.sol === sol.toString()) {
             dayDiv.innerHTML = formatDate(element.terrestrial_date).dayName;
@@ -126,7 +125,6 @@ function provideDetailsByCurrentDay(sol) {
             dayTempDiv.innerHTML = 'Temperatura powietrza: ' + element.max_temp + '°C / ' + element.min_temp + '°C';
             groundTempDiv.innerHTML = 'Temperatura przy ziemi: ' + element.max_gts_temp + '°C / ' + element.min_gts_temp + '°C';
             pressureDiv.innerHTML = 'Ciśnienie: ' + element.pressure + 'Pa';
-            console.log(element.local_uv_irradiance_index);
             uvDiv.innerHTML = 'Promieniowanie UV: ' + getPolishNameUV(element.local_uv_irradiance_index);
             opacityDiv.innerHTML = 'Pogoda: ' + getPolishNameWeather(element.atmo_opacity);
             sunriseDiv.innerHTML = 'Wschód słońca: ' + element.sunrise;
@@ -136,28 +134,28 @@ function provideDetailsByCurrentDay(sol) {
         }
     });
 
-    function getPolishNameUV(local_uv_irradiance_index){
-        if(local_uv_irradiance_index === 'Low') {
+    function getPolishNameUV(local_uv_irradiance_index) {
+        if (local_uv_irradiance_index === 'Low') {
             return 'Niskie';
         }
-        if(local_uv_irradiance_index === 'Moderate') {
+        if (local_uv_irradiance_index === 'Moderate') {
             return 'Umiarkowane';
         }
-        if(local_uv_irradiance_index === 'High') {
+        if (local_uv_irradiance_index === 'High') {
             return 'Wysokie';
         }
         return "Brak danych";
     }
 
     function getPolishNameWeather(weatherName) {
-        if(weatherName === 'Sunny') return 'Słonecznie';
+        if (weatherName === 'Sunny') return 'Słonecznie';
         return 'Brak danych';
     }
 
     function getMonth(ls) {
-        if(ls >= 0 && ls < 90) return 'Wiosna';
-        if(ls >= 90 && ls < 180) return 'Lato';
-        if(ls >= 180 && ls < 270 ) return 'Jesień';
-        if(ls >= 270 && ls <= 360) return 'Zima';
+        if (ls >= 0 && ls < 90) return 'Wiosna';
+        if (ls >= 90 && ls < 180) return 'Lato';
+        if (ls >= 180 && ls < 270) return 'Jesień';
+        if (ls >= 270 && ls <= 360) return 'Zima';
     }
 }
