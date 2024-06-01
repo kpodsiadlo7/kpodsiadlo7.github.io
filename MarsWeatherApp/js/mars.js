@@ -33,7 +33,7 @@ function getDataFromNasa() {
   )
     .then((response) => response.json())
     .then((data) => {
-      localStorage.setItem("soles", data);
+      localStorage.setItem("soles", JSON.stringify(data));
       localStorage.setItem("time", new Date());
       console.log("Dane pobrane i zapisane w localStorage:", data);
       soles = data;
