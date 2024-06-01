@@ -53,7 +53,7 @@ function getLast7DaysInfo() {
       var { minTemp, maxTemp } = getTemp(i);
       var { sol } = getSol(i);
       day.innerHTML = `
-      <div class="day" onclick="testing(${sol})">
+      <div class="day" onclick="provideDetailsByCurrentDay(${sol})">
         <div class="day-temp" style="float: left;">
             <div class="day-name">${dayName}</div>
             <div class="day-temperature">${minTemp}°C / ${maxTemp}°C</div>
@@ -89,6 +89,10 @@ function getSol(i) {
   return { sol };
 }
 
-function testing(sol) {
-  soles.soles.forEach((element) => {});
+function provideDetailsByCurrentDay(sol) {
+  soles.soles.forEach((element) => {
+    if(element.sol === sol.toString()) {
+        console.log(element);
+    }
+  });
 }
