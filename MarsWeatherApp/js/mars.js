@@ -243,6 +243,11 @@ function toggleClickedDayColor(sol) {
     }
 }
 
+function intoSelectWeahterDay() {
+    document.querySelector('.weather-app').scrollIntoView({ behavior: 'smooth' });
+
+}
+
 document.getElementById("futureWeather").addEventListener("click", function () {
     // Pogoda na 20 dni do przodu
     if (soles && soles.soles && soles.soles.length > 0) {
