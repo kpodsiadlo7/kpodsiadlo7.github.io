@@ -159,30 +159,38 @@ body {
     margin-top: 20px;
 }
 
+.details-upper {
+    height: 20%;
+    position: relative;
+}
+
+.details-middle {
+    height: 60%;
+    margin-top: 20px;
+    text-align: left;
+}
+
 @media screen and (max-width: 768px) {
     body {
         flex-direction: column;
         height: 300vh;
     }
 
-    .details-bottom {
-        height: auto;
-    }
-
     .weather-app {
-        height: 100%;
+        height: 35%;
         margin: auto;
         width: 90%;
     }
+
     .information-app {
         width: 90%;
-        height: 100%;
+        height: 150vh;
         margin: auto;
     }
 
     .details-container {
         width: 100%;
-        height: 145vh;
+        height: 140vh;
         margin-left: 0;
     }
 
@@ -192,5 +200,13 @@ body {
 
     .details-sol {
         font-size: 20px;
+    }
+
+    .details-upper {
+        height: 10%;
+    }
+
+    .details-middle {
+        height: 40%;
     }
 }
