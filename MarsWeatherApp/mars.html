@@ -1,35 +1,59 @@
 <!DOCTYPE html>
 <html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pogoda na Marsie</title>
-    <link rel="stylesheet" href="/MarsWeatherApp/css/mars.css">
-</head>
-<body>
-    <div class="weather-app">
-        <div class="weather-header">
-            <h1>Marsjańska Pogoda</h1>
-        </div>
-        <div class="weather-info">
-            <div class="location">Gale Crater Teraz</div>
-            <div class="current-weather">
-                <div class="temperature">-65°C</div>
-                <div class="weather-sol">Przeważnie słonecznie</div>
-            </div>
-        </div>
-        <div class="forecast">
 
-        </div>
-        <div class="api" style="position: absolute; bottom: 25px; left: 0; right: 0; text-align: center; font-size: 13px;">
-            Data provided by Nasa <a href="https://mars.nasa.gov" target="_blank" style="color: #FF6347; font-weight: bold;">https://mars.nasa.gov</a>
-        </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pogoda na Marsie</title>
+  <link rel="stylesheet" href="/MarsWeatherApp/css/mars.css">
+</head>
+
+<body>
+  <div class="weather-app">
+    <div class="weather-header">
+      <h1>Marsjańska Pogoda</h1>
     </div>
-    <div class="information-app">
-        <div class="weather-header">
-            <h1>Szczegółowe informacje</h1>
-        </div>
+    <div class="weather-info">
+      <div class="location">Gale Crater Teraz</div>
+      <div class="current-weather">
+        <div class="temperature">-65°C</div>
+        <div class="weather-sol">Przeważnie słonecznie</div>
+      </div>
     </div>
-    <script src="/MarsWeatherApp/js/mars.js"></script>
+    <div class="forecast">
+    </div>
+    <div class="api" style="position: absolute; bottom: 25px; left: 0; right: 0; text-align: center; font-size: 13px;">
+      Data provided by Nasa <a href="https://mars.nasa.gov" target="_blank"
+        style="color: #FF6347; font-weight: bold;">https://mars.nasa.gov</a>
+    </div>
+  </div>
+  <div class="information-app">
+    <div class="weather-header">
+      <h1>Szczegółowe informacje</h1>
+      <div class="details-container">
+        <div class="details-upper" style="height: 20%; position: relative;">
+          <div class="details-day"
+            style="font-size: 60px; font-family: 'Open Sans', sans-serif; font-weight: 700; position: absolute; left: 20px; bottom: 5px; float: left;">Wybierz dzień po lewo</div>
+          <div class="details-sol"
+            style="float: left; left: 25px; position: absolute; top: 5px; font-size: 40px;font-family: 'Open Sans', sans-serif; font-weight: 700; color: #FF6347;"></div>
+        </div>
+        <div class="line" style="height: 1px; width: 100%; background-color: black;"></div>
+        <div class="details-middle" style="height: 60%; margin-top: 20px; text-align: left;">
+          <div class="day-temp-details" style="margin-top: 20px;"></div>
+          <div class="ground-temp" style="margin-top: 20px;"></div>
+          <div class="pressure" style="margin-top: 20px;"></div>
+          <div class="uv" style="margin-top: 20px;"></div>
+          <div class="opacity" style="margin-top: 20px;"></div>
+          <div class="sunrise" style="margin-top: 20px;"></div>
+          <div class="sunset" style="margin-top: 20px;"></div>
+          <div class="month" style="margin-top: 20px;"></div>
+          <div class="season" style="margin-top: 20px;"></div>
+        </div>
+        <div class="line" style="height: 1px; width: 100%; background-color: black;"></div>
+        <div class="details-bottom" style="height: 20%;"></div>
+      </div>
+    </div>
+  </div>
+  <script src="/MarsWeatherApp/js/mars.js"></script>
 </body>
 </html>
