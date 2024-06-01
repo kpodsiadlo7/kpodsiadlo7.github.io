@@ -44,7 +44,7 @@ function getDataFromNasa() {
 
 function getLast7DaysInfo() {
     if (soles && soles.soles && soles.soles.length >= 6) {
-        var list = document.getElementsByClassName("forecast")[0];
+        var list = document.querySelector('.forecast');
 
         for (var i = 0; i <= 6; i++) {
             var day = document.createElement("div");
@@ -104,24 +104,23 @@ function getSol(i) {
 }
 
 function provideDetailsByCurrentDay(sol) {
-    var dayDiv = document.getElementsByClassName("details-day")[0];
-    var dateDiv = document.getElementsByClassName("details-date")[0];
-    var solDiv = document.getElementsByClassName("details-sol")[0];
-
-    var dayTempDiv = document.getElementsByClassName("day-temp-details")[0];
-    var groundTempDiv = document.getElementsByClassName("ground-temp")[0];
-    var pressureDiv = document.getElementsByClassName("pressure")[0];
-    var uvDiv = document.getElementsByClassName("uv")[0];
-    var opacityDiv = document.getElementsByClassName("opacity")[0];
-    var sunriseDiv = document.getElementsByClassName("sunrise")[0];
-    var sunsetDiv = document.getElementsByClassName("sunset")[0];
-    var monthDiv = document.getElementsByClassName("month")[0];
-    var seasonDiv = document.getElementsByClassName("season")[0];
+    toggleClickedDayColor(sol);
+    var dayDiv = document.querySelector('.details-day');
+    var solDiv = document.querySelector('.details-sol');
+    var dayTempDiv = document.querySelector('.day-temp-details');
+    var groundTempDiv = document.querySelector('.ground-temp');
+    var pressureDiv = document.querySelector('.pressure');
+    var uvDiv = document.querySelector('.uv');
+    var opacityDiv = document.querySelector('.opacity');
+    var sunriseDiv = document.querySelector('.sunrise');
+    var sunsetDiv = document.querySelector('.sunset');
+    var monthDiv = document.querySelector('.month');
+    var seasonDiv = document.querySelector('.season');
 
     soles.soles.forEach((element) => {
         if (element.sol === sol.toString()) {
             dayDiv.innerHTML = formatDate(element.terrestrial_date).dayName;
-            solDiv.innerHTML = 'Sol: ' + element.sol;
+            solDiv.innerHTML = 'Sol(dzień): ' + element.sol;
             dayTempDiv.innerHTML = 'Temperatura powietrza: ' + element.max_temp + '°C / ' + element.min_temp + '°C';
             groundTempDiv.innerHTML = 'Temperatura przy ziemi: ' + element.max_gts_temp + '°C / ' + element.min_gts_temp + '°C';
             pressureDiv.innerHTML = 'Ciśnienie: ' + element.pressure + 'Pa';
@@ -157,5 +156,32 @@ function provideDetailsByCurrentDay(sol) {
         if (ls >= 90 && ls < 180) return 'Lato';
         if (ls >= 180 && ls < 270) return 'Jesień';
         if (ls >= 270 && ls <= 360) return 'Zima';
+    }
+}
+let lastClickedSol;
+
+function toggleClickedDayColor(sol) {
+    const daySolElements = document.querySelectorAll('.day');
+    let nowClickedSol = sol;
+
+    daySolElements.forEach(element => {
+        if (element.textContent.includes(sol)) {
+            if (nowClickedSol !== lastClickedSol) {
+                restoreDefaultColor(lastClickedSol, daySolElements);
+                lastClickedSol = sol;
+                element.style.backgroundColor = 'rgb(255, 99, 71,0.1)';
+            }
+        }
+    });
+
+    function restoreDefaultColor(lastClickedSol, daySolElements) {
+        console.log("restore start")
+        daySolElements.forEach(element => {
+            console.log("restore przed if")
+            if (element.textContent.includes(lastClickedSol)) {
+                console.log("restore wewnątrz if")
+                element.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+            }
+        });
     }
 }

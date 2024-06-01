@@ -95,6 +95,10 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
+.day:hover {
+    background-color: rgb(255, 99, 71,0.1);
+}
+
 .day-name {
     font-size: 16px;
     font-weight: bold;
