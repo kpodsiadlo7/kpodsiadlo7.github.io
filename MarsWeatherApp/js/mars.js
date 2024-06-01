@@ -3,39 +3,41 @@ var storedData = localStorage.getItem("soles");
 var soles = JSON.parse(storedData);
 /**Global Variables */
 
-document.addEventListener("DOMContentLoaded", async function () {
-  var timeReqestStorage = new Date(localStorage.getItem("time"));
-  getLast7DaysInfo();
-
+document.addEventListener("DOMContentLoaded", function () {
   if (storedData) {
     console.log("Dane znalezione w localStorage:", soles);
 
-    if (checkIf24HoursPassedSinceDataSaved(timeReqestStorage)) {
+    if (checkIf24HoursPassedSinceDataSaved()) {
       console.log("Doba minęła, aktualizuję dane");
       getDataFromNasa();
+      return;
     } else {
       console.log("Nie minęła doba od ostatniego pobrania danych");
     }
   } else {
     getDataFromNasa();
   }
+  getLast7DaysInfo();
 });
 
-function checkIf24HoursPassedSinceDataSaved(timeReqestStorage) {
+function checkIf24HoursPassedSinceDataSaved() {
+  var timeReqestStorage = new Date(localStorage.getItem("time"));
   return (
     timeReqestStorage.setHours(timeReqestStorage.getHours() + 24) < new Date()
   );
 }
 
-async function getDataFromNasa() {
+function getDataFromNasa() {
   fetch(
     "https://mars.nasa.gov/rss/api/?feed=weather&category=msl&feedtype=json"
   )
     .then((response) => response.json())
     .then((data) => {
-      localStorage.setItem("soles", JSON.stringify(data));
+      localStorage.setItem("soles", data);
       localStorage.setItem("time", new Date());
       console.log("Dane pobrane i zapisane w localStorage:", data);
+      soles = data;
+      getLast7DaysInfo();
     })
     .catch((error) => console.error("Błąd pobierania danych:", error));
 }
@@ -59,11 +61,11 @@ function getLast7DaysInfo() {
         <div class="day-sol" style="text-align: right;">Sol: ${sol}</div>
       </div>
     `;
-      console.log(day);
       list.appendChild(day);
     }
   }
 }
+
 function formatDate(i) {
   var date = new Date(soles.soles[i].terrestrial_date);
   var options = {
@@ -87,6 +89,6 @@ function getSol(i) {
   return { sol };
 }
 
-function testing(sol){
-    alert(sol);
+function testing(sol) {
+  soles.soles.forEach((element) => {});
 }
