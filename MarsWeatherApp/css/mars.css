@@ -170,7 +170,7 @@ body {
     }
 
     .weather-app {
-        height: 60%;
+        height: 100%;
         margin: auto;
         width: 90%;
     }
@@ -182,7 +182,7 @@ body {
 
     .details-container {
         width: 100%;
-        height: 130vh;
+        height: 145vh;
         margin-left: 0;
     }
 
