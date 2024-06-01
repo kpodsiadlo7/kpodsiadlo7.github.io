@@ -18,7 +18,65 @@ document.addEventListener("DOMContentLoaded", function () {
         getDataFromNasa();
     }
     getLast7DaysInfo();
+    fillInfoAboutWeather();
 });
+
+function fillInfoAboutWeather() {
+    var {
+        warmDate,
+        hottesDayTemp,
+        month,
+        pressure,
+        coldDate,
+        coldestDayTemp,
+        hottestSol
+    } = checkWhichDayWasHottestAndColdest();
+
+    var detailsBottomDiv = document.querySelector(".details-bottom");
+    var aboutWeather = document.createElement("div");
+    aboutWeather.innerHTML = `
+    W dniu ${warmDate} roku na Marsie zanotowano rekordową dotychczasową temperaturę dodatnią, dochodzącą do około <a style="color:red; font-weight: bold;">${hottesDayTemp}°C</a>. Był to <a style="color:#FF6347; font-weight: bold;">sol ${hottestSol}</a>, miesiąc ${month.replace(/^Month\s+/i, '')}. Wówczas ciśnienie atmosferyczne oscylowało w granicach ${pressure} paskali, a atmosfera charakteryzowała się wyjątkową przejrzystością, intensywność promieniowania ultrafioletowego była wysoka. Natomiast najzimniejszy dzień to ${coldDate}, wówczas temperatura spadła do<a style="color:rgb(54, 171, 255); font-weight: bold;"> ${coldestDayTemp}°C</a>.
+    `;
+    detailsBottomDiv.appendChild(aboutWeather);
+}
+
+function checkWhichDayWasHottestAndColdest() {
+    var hottestSol;
+    var warmDate;
+    var month;
+    var pressure;
+    var coldDate;
+    var coldestSol;
+
+    var coldestDayTemp = 0;
+    var hottesDayTemp = 0;
+
+    soles.soles.forEach(function (sol) {
+        if (sol.max_temp === '--' || sol.min_temp === '--') return;
+        if (hottesDayTemp < sol.max_temp) {
+            hottesDayTemp = sol.max_temp;
+            hottestSol = sol.sol;
+            warmDate = sol.terrestrial_date;
+            month = sol.season;
+            pressure = sol.pressure;
+        }
+        if (coldestDayTemp > sol.min_temp) {
+            coldestDayTemp = sol.min_temp;
+            coldestSol = sol.sol;
+            coldDate = sol.terrestrial_date;
+        }
+    });
+
+    return {
+        warmDate,
+        hottesDayTemp,
+        month,
+        pressure,
+        coldDate,
+        coldestDayTemp,
+        hottestSol
+    };
+}
 
 function checkIf24HoursPassedSinceDataSaved() {
     var timeReqestStorage = new Date(localStorage.getItem("time"));
@@ -128,7 +186,7 @@ function provideDetailsByCurrentDay(sol) {
             opacityDiv.innerHTML = 'Pogoda: ' + getPolishNameWeather(element.atmo_opacity);
             sunriseDiv.innerHTML = 'Wschód słońca: ' + element.sunrise;
             sunsetDiv.innerHTML = 'Zachód słońca: ' + element.sunset;
-            monthDiv.innerHTML = 'Miesiąc: ' + element.season;
+            monthDiv.innerHTML = 'Miesiąc: ' + element.season.replace(/^Month\s+/i, '');
             seasonDiv.innerHTML = 'Pora roku: ' + getMonth(element.ls);
         }
     });
