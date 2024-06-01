@@ -25,5 +25,5 @@ function addPhotoWithData({copyright, url, title, date, explanation}) {
 }
 
 function redirectToMarsWeather(){
-    window.location.href='MarsWeatherApp/marsMM.html';
+    window.location.href='MarsWeatherApp/mars.html';
 }

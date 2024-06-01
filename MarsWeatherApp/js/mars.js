@@ -5,7 +5,7 @@ var soles = JSON.parse(storedData);
 
 document.addEventListener("DOMContentLoaded", function () {
     if (storedData) {
-        console.log("Dane znalezione w localStorage:", soles);
+        console.log("Dane znalezione w localStorage:");
 
         if (checkIf24HoursPassedSinceDataSaved()) {
             console.log("Doba minęła, aktualizuję dane");
@@ -35,7 +35,7 @@ function getDataFromNasa() {
         .then((data) => {
             localStorage.setItem("soles", JSON.stringify(data));
             localStorage.setItem("time", new Date());
-            console.log("Dane pobrane i zapisane w localStorage:", data);
+            console.log("Dane pobrane i zapisane w localStorage:");
             soles = data;
             getLast7DaysInfo();
         })
