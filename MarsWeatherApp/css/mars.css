@@ -68,7 +68,7 @@ body {
 
 .temperature {
     font-size: 36px;
-    margin: 10px 0;
+    margin-bottom: 10px;
     font-weight: 700;
     font-family: 'Open Sans', sans-serif;
     color: #FF6347;
