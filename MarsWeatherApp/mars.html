@@ -6,7 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pogoda na Marsie</title>
   <link rel="stylesheet" href="/MarsWeatherApp/css/mars.css">
+  <link rel="stylesheet" href="/MarsWeatherApp/css/popup.css">
   <link rel="icon" type="image/png" href="/img/planetamarstlo.jpeg">
+  <link rel="import" href="/MarsWeatherApp/popup.html">
 </head>
 
 <body>
@@ -30,7 +32,7 @@
   </div>
   <div class="information-app">
     <div class="weather-header">
-      <button id="futureWeather" style="float: left; position: absolute; left: 15px; font-size: 20px;">Prognoza na 20 dni do przodu</button><h1>Szczegółowe informacje</h1>
+      <button id="futureWeather" style="float: left; position: absolute; left: 15px; font-size: 20px;" onclick="openPopup()" hidden>Prognoza na 20 dni do przodu</button><h1>Szczegółowe informacje</h1>
       <div class="details-container">
         <div class="details-upper" style="height: 20%; position: relative;">
           <div class="details-day">Wybierz dzień</div>
@@ -53,6 +55,8 @@
       </div>
     </div>
   </div>
+  <div id="popupContainer"></div>
   <script src="/MarsWeatherApp/js/mars.js"></script>
+  <script src="/MarsWeatherApp/js/popup.js"></script>
 </body>
 </html>
