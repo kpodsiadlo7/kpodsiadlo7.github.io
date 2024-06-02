@@ -43,8 +43,9 @@ body {
     background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 18px;
     border: none;
+    margin-top: 5px;
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -201,17 +202,10 @@ body {
     font-size: 60px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    position: absolute;
-    left: 20px;
-    bottom: 5px;
-    float: left;
 }
 
 .details-sol {
     float: left;
-    left: 25px;
-    position: absolute;
-    top: 5px;
     font-size: 40px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
@@ -242,13 +236,6 @@ body {
     right: 0;
     text-align: center;
     font-size: 13px;
-}
-
-#futureWeather {
-    float: left;
-    position: absolute;
-    left: 15px;
-    font-size: 20px;
 }
 
 .line {
@@ -283,6 +270,7 @@ body {
 
     .details-day {
         font-size: 30px;
+        text-align: center;
     }
 
     .details-sol {
@@ -298,13 +286,22 @@ body {
     }
 
     .floor {
-        font-size: 15px;
-        min-width: 30%;
+        font-size: 12px;
+        min-width: 40%;
+    }
+    .floor .temp {
+        font-size: 22px;
     }
     .middle-20-days {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 160px;
+    }
+
+    #futureWeather {
+        font-size: 20px;
+        margin-top: 40px;
+        text-align: center;
     }
 }
