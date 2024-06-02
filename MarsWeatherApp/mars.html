@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pogoda na Marsie</title>
   <link rel="stylesheet" href="/MarsWeatherApp/css/mars.css">
-  <link rel="stylesheet" href="/MarsWeatherApp/css/popup.css">
   <link rel="icon" type="image/png" href="/img/planetamarstlo.jpeg">
-  <link rel="import" href="/MarsWeatherApp/popup.html">
 </head>
 
 <body>
@@ -25,20 +23,20 @@
     </div>
     <div class="forecast">
     </div>
-    <div class="api" style="position: absolute; bottom: 25px; left: 0; right: 0; text-align: center; font-size: 13px;">
+    <div class="api">
       Data provided by Nasa <a href="https://mars.nasa.gov" target="_blank"
         style="color: #FF6347; font-weight: bold;">https://mars.nasa.gov</a>
     </div>
   </div>
   <div class="information-app">
     <div class="weather-header">
-      <button id="futureWeather" style="float: left; position: absolute; left: 15px; font-size: 20px;" onclick="openPopup()" hidden>Prognoza na 20 dni do przodu</button><h1>Szczegółowe informacje</h1>
+      <button id="futureWeather" onclick="" >Prognoza na 20 dni do przodu</button><h1>Szczegółowe informacje</h1>
       <div class="details-container">
         <div class="details-upper">
           <div class="details-day" onclick="intoSelectWeahterDay()">Wybierz dzień</div>
           <div class="details-sol"></div>
         </div>
-        <div class="line" style="height: 1px; width: 100%; background-color: black;"></div>
+        <div class="line"></div>
         <div class="details-middle">
           <div class="day-temp-details" style="margin-top: 20px;"></div>
           <div class="ground-temp" style="margin-top: 20px;"></div>
@@ -50,13 +48,11 @@
           <div class="month" style="margin-top: 20px;"></div>
           <div class="season" style="margin-top: 20px;"></div>
         </div>
-        <div class="line" style="height: 1px; width: 100%; background-color: black;"></div>
+        <div class="line"></div>
         <div class="details-bottom">
       </div>
     </div>
   </div>
-  <div id="popupContainer"></div>
   <script src="/MarsWeatherApp/js/mars.js"></script>
-  <script src="/MarsWeatherApp/js/popup.js"></script>
 </body>
 </html>

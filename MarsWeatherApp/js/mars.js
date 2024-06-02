@@ -245,7 +245,10 @@ function toggleClickedDayColor(sol) {
 
 function intoSelectWeahterDay() {
     document.querySelector('.weather-app').scrollIntoView({ behavior: 'smooth' });
+}
 
+function redirectTo20DaysWeather() {
+    window.location.href = "mars-20-days.html";
 }
 
 document.getElementById("futureWeather").addEventListener("click", function () {
