@@ -27,7 +27,6 @@ body {
 .weather-app-20,
 .information-app,
 .information-app-20 {
-    margin-top: 50px;
     height: 90vh;
     background: rgba(255, 255, 255, 0.8);
     padding: 20px;
@@ -259,9 +258,11 @@ body {
         height: 41%;
         margin: auto;
         width: 90%;
+        margin-top: 50px;
     }
 
     .information-app {
+        margin-top: 50px;
         width: 90%;
         height: 220vh;
         margin: auto;
@@ -269,6 +270,7 @@ body {
 
     .information-app-20 {
         height: 300vh;
+        margin-top: 50px;
     }
 
     .details-container {
@@ -298,9 +300,11 @@ body {
         font-size: 12px;
         min-width: 47%;
     }
+
     .floor .temp {
         font-size: 22px;
     }
+
     .middle-20-days {
         display: flex;
         flex-direction: column;
