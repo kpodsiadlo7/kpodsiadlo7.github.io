@@ -99,7 +99,7 @@ function fillCardsWithWeatherData(lastYearDays) {
             
             var tempDiv = document.createElement('div'); 
             tempDiv.classList.add('temp');
-            tempDiv.textContent = lastYearDays.get(j * 5 + i + 1);
+            tempDiv.textContent = lastYearDays.get(j * 5 + i + 1)+'°C';
         
             floor.appendChild(dateDiv); 
             floor.appendChild(tempDiv); 
