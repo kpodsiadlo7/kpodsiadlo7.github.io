@@ -40,25 +40,32 @@ body {
 }
 
 .backTo7DaysWeather,
-#futureWeather {
-    background-color: rgba(255, 255, 255, 0.8);
+#futureWeatherPC,
+#futureWeatherPhone {
+    background-color: rgb(30, 144, 255, 0.9);
+    color: white;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     font-size: 20px;
     border: none;
     margin-top: 5px;
     padding: 10px;
-    color: black;
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.backTo7DaysWeather:hover {
-    background-color: rgb(255, 99, 71, 0.1);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+#futureWeatherPhone {
+    visibility: hidden;
 }
 
-.backTo7DaysWeather:focus {
+.backTo7DaysWeather:hover,
+#futureWeatherPC:hover {
+    background-color: rgb(30, 144, 255);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+.backTo7DaysWeather:focus
+#futureWeatherPC:focus {
     outline: none;
 }
 
@@ -316,11 +323,19 @@ body {
     }
 
     .backTo7DaysWeather,
-    #futureWeather {
-        font-size: 15px;
+    #futureWeatherPhone {
+        font-size: 17px;
         margin-top: 40px;
         text-align: center;
-        color: black;
+        color: white;
+    }
+
+    #futureWeatherPhone {
+        visibility: visible;
+    }
+
+    #futureWeatherPC {
+        display: none;
     }
 
     .weather-app-20 {
