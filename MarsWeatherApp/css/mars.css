@@ -190,7 +190,8 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-.information-app {
+.information-app,
+.information-app-20 {
     width: 1000px;
     margin-left: 50px;
 }
