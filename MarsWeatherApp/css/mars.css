@@ -38,11 +38,11 @@ body {
     position: relative;
 }
 
-.backTo7DaysWeather {
+.backTo7DaysWeather,
+#futureWeather {
     background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    width: 100%;
     font-size: 20px;
     border: none;
     padding: 10px;
@@ -85,6 +85,17 @@ body {
 
 .floor {
     color: #363949;
+}
+
+.first-floor {
+    height: 20%;
+}
+
+.second-floor,
+.third-floor,
+.fourth-floor {
+    height: 20%;
+    clear: both;
 }
 
 @keyframes fadeIn {
@@ -279,6 +290,17 @@ body {
     }
 
     .details-middle {
-        height: 60%;
+        height: 75%;
+    }
+
+    .floor {
+        font-size: 15px;
+        min-width: 30%;
+    }
+    .middle-20-days {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 160px;
     }
 }
