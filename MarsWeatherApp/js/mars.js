@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
         getDataFromNasa();
     }
     getLast7DaysInfo();
-    fillInfoAboutWeather();
 });
 
 function fillInfoAboutWeather() {
@@ -99,6 +98,7 @@ function getDataFromNasa() {
 }
 
 function getLast7DaysInfo() {
+    fillInfoAboutWeather();
     if (soles && soles.soles && soles.soles.length >= 6) {
         var list = document.querySelector('.forecast');
 
