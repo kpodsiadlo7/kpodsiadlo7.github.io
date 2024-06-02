@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/FishSnap/img/background.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(6px);
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 90vh;
+    max-width: 1460px;
+    background: rgba(0, 100, 0, 0.7);
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.sidebar {
+    flex: 1;
+    background-color: rgba(0, 50, 0, 0.8);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2em;
+    display: block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: radial-gradient(circle, rgba(0, 100, 0, 0.7) 0%, rgba(0, 70, 0, 0.7) 100%);
+    transition: 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background: radial-gradient(circle, rgba(0, 100, 0, 0.7) 0%, rgba(0, 90, 0, 0.7) 100%);
+}
+
+.main-content {
+    flex: 5;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.photo-details {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    background-color: rgba(0, 50, 0);
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.photo-details h2 {
+    font-size: 70px;
+    color: whitesmoke;
+    padding: 0;
+    margin: 15px;
+}
+
+.photo-details p {
+    font-size: 40px;
+    color: whitesmoke;
+    margin: 3px;
+}
+
+.photo-details.active {
+    display: block;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.modal-overlay.active {
+    display: block;
+}
+
+
+.main-content h2 {
+    margin: 0 0 20px 0;
+    color: white;
+    top: 0;
+    background: radial-gradient(circle, rgba(0, 100, 0, 0.7) 0%, rgba(0, 70, 0, 0.7) 100%);
+    padding: 10px;
+    font-size: 30px;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+}
+
+.photo-card {
+    background: rgba(0, 50, 0, 0.8);
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    min-width: 100px;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.photo-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.photo-card p {
+    margin: 0;
+    padding: 10px;
+    font-size: 1em;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+    position: absolute;
+    color: rgb(245, 245, 245, 0.7);
+    bottom: -5px;
+}
+
+@media screen and (max-width: 768px) {
+    .photo-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+    }
+}

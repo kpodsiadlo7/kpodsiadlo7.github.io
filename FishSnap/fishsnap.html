@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FishSnap Dashboard</title>
+    <link rel="stylesheet" href="/FishSnap/styles/styles.css">
+    <link rel="icon" type="image/png" href="/FishSnap/img/logo.jpeg">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#">Dodaj zdjęcie</a></li>
+                <li><a href="#">Twoje zdjęcia</a></li>
+                <li><a href="#" style="margin-top: 80px;">Wyloguj się</a></li>
+                <li><a href="#">Wyjdź z aplikacji</a></li>
+            </ul>
+        </nav>
+        <main class="main-content">
+            <div class="fish-photos">
+                <h2>Twoje rybki</h2>
+                <div class="photo-grid">
+                    <div class="photo-card" onclick="showDetails(this)">
+                        <img src="/FishSnap/img/logo.jpeg" alt="Fish 1">
+                        <p>Sandacz 77cm</p>
+                    </div>
+                    <div class="photo-card" onclick="showDetails(this)">
+                        <img src="/FishSnap/img/logo.jpeg" alt="Fish 2">
+                        <p>Szczupak 63cm</p>
+                    </div>
+                    <div class="photo-card" onclick="showDetails(this)">
+                        <img src="/FishSnap/img/logo.jpeg" alt="Fish 3">
+                        <p>Boleń 60cm</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="modal-overlay" id="modalOverlay" onclick="hideDetails()"></div>
+    <div class="photo-details" id="photoDetails"></div>
+</body>
+<script src="/FishSnap/js/script.js"></script>
+<footer class="footer">
+    <p>© 2024 FishSnap. Wszelkie prawa zastrzeżone.</p>
+</footer>
+
+</html>
