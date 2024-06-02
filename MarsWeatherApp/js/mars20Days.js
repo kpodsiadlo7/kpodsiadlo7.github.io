@@ -70,10 +70,9 @@ function fillCardsWithWeatherData(lastYearDays) {
     var fourthFloor = document.querySelector('.fourth-floor');
 
     var floors = [firstFloor, secondFloor, thirdFloor, fourthFloor];
-    var currentDate = new Date(); // Pobierz aktualną datę
-    currentDate.setDate(currentDate.getDate() + 1); // Przesuń się o jeden dzień w przód
+    var currentDate = new Date(); 
+    currentDate.setDate(currentDate.getDate() + 1);
     
-    // Tablica skrótów dni tygodnia
     var dayOfWeekShort = ['nd', 'pon', 'wt', 'śr', 'czw', 'pt', 'sob'];
     
     for (var j = 0; j < floors.length; j++) {
