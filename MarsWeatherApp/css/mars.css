@@ -255,7 +255,7 @@ body {
     }
 
     .weather-app {
-        height: 41%;
+        height: 36%;
         margin: auto;
         width: 90%;
         margin-top: 50px;
@@ -264,7 +264,7 @@ body {
     .information-app {
         margin-top: 50px;
         width: 90%;
-        height: 220vh;
+        height: 200vh;
         margin: auto;
     }
 
