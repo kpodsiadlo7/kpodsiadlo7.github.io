@@ -64,8 +64,50 @@ function initializeWeatherDataFor20Days() {
 }
 
 function fillCardsWithWeatherData(lastYearDays) {
-    
+    var firstFloor = document.querySelector('.first-floor');
+    var secondFloor = document.querySelector('.second-floor');
+    var thirdFloor = document.querySelector('.third-floor');
+    var fourthFloor = document.querySelector('.fourth-floor');
 
+    var floors = [firstFloor, secondFloor, thirdFloor, fourthFloor];
+    var currentDate = new Date(); // Pobierz aktualną datę
+    currentDate.setDate(currentDate.getDate() + 1); // Przesuń się o jeden dzień w przód
+    
+    // Tablica skrótów dni tygodnia
+    var dayOfWeekShort = ['nd', 'pon', 'wt', 'śr', 'czw', 'pt', 'sob'];
+    
+    for (var j = 0; j < floors.length; j++) {
+        for (var i = 0; i < 5; i++) {
+            var floor = document.createElement('div');
+            floor.classList.add('floor');
+        
+            var dateDiv = document.createElement('div'); 
+            dateDiv.classList.add('date');
+            
+            var day = currentDate.getDate();
+            var month = currentDate.getMonth() + 1;
+            var year = currentDate.getFullYear();
+    
+            day = day < 10 ? '0' + day : day;
+            month = month < 10 ? '0' + month : month;
+    
+            var dayOfWeekIndex = currentDate.getDay();
+            var dayOfWeek = dayOfWeekShort[dayOfWeekIndex];
+    
+            dateDiv.textContent = `${dayOfWeek}, ${day}.${month}.${year}`;
+    
+            currentDate.setDate(currentDate.getDate() + 1);
+            
+            var tempDiv = document.createElement('div'); 
+            tempDiv.classList.add('temp');
+            tempDiv.textContent = lastYearDays.get(j * 5 + i + 1);
+        
+            floor.appendChild(dateDiv); 
+            floor.appendChild(tempDiv); 
+        
+            floors[j].appendChild(floor); 
+        }
+    }
 }
 
 function prepareVariables() {

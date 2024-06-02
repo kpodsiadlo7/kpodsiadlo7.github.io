@@ -161,7 +161,9 @@ function getSol(i) {
 
 function provideDetailsByCurrentDay(sol) {
     toggleClickedDayColor(sol);
-    document.querySelector('.details-container').scrollIntoView({ behavior: 'smooth' });
+    document.querySelector('.details-container').scrollIntoView({
+        behavior: 'smooth'
+    });
     var dayDiv = document.querySelector('.details-day');
     var solDiv = document.querySelector('.details-sol');
     var dayTempDiv = document.querySelector('.day-temp-details');
@@ -244,7 +246,9 @@ function toggleClickedDayColor(sol) {
 }
 
 function intoSelectWeahterDay() {
-    document.querySelector('.weather-app').scrollIntoView({ behavior: 'smooth' });
+    document.querySelector('.weather-app').scrollIntoView({
+        behavior: 'smooth'
+    });
 }
 
 function redirectTo20DaysWeather() {
