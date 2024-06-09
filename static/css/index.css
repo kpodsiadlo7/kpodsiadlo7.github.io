@@ -57,12 +57,6 @@
     margin-top: 25px;
 }
 
-.content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto ;
-}
 
 .divider {
     margin-top: 20px;
@@ -77,15 +71,6 @@ footer {
     background-color: rgba(0, 0, 0, 0.5);
     margin-bottom: 50px;
     clear: both;
-}
-
-.content .card {
-    border-radius: 10px;
-    flex: 1;
-    margin: 25px 25px;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
-    height: 690px;
-    max-width: 600px;
 }
 
 .content .card:hover {
@@ -113,9 +98,24 @@ footer {
     padding: 10px;
 }
 
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.content .card {
+    border-radius: 10px;
+    margin: 25px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+    height: 690px;
+    width: calc(50% - 50px);
+    max-width: 600px;
+}
+
 @media screen and (max-width: 768px) {
-    .content{
-        flex-direction: column;
+    .content .card {
+        width: 100%;
     }
 }
 
