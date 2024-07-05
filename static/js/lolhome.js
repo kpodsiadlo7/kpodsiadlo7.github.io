@@ -85,7 +85,7 @@ function polishVersion() {
     `;
 
     infoText.innerHTML = `
-            Ze względu na korzystanie z bezpłatnego hostingu dla backendu, możliwe jest, że aplikacja będzie działać wolniej i wymagać dłuższego czasu przetwarzania.
+            Backend został chwilowo wyłączony
     `;
 }
 
@@ -126,7 +126,7 @@ function englishVersion() {
     `;
 
     infoText.innerHTML = `
-            Backend is off.
+            Backend is off
     `;
 }
 
