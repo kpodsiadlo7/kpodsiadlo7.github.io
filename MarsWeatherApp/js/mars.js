@@ -20,25 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
     getLast7DaysInfo();
 });
 
-function fillInfoAboutWeather() {
-    var {
-        warmDate,
-        hottesDayTemp,
-        month,
-        pressure,
-        coldDate,
-        coldestDayTemp,
-        hottestSol
-    } = checkWhichDayWasHottestAndColdest();
-
-    var detailsBottomDiv = document.querySelector(".details-bottom");
-    var aboutWeather = document.createElement("div");
-    aboutWeather.innerHTML = `
-    W dniu ${warmDate}, na Marsie w rejonie Gale Crater zanotowano rekordową dotychczasową temperaturę dodatnią, dochodzącą do około <a style="color:red; font-weight: bold;">${hottesDayTemp}°C</a>. Był to <a style="color:#FF6347; font-weight: bold;">sol ${hottestSol}</a>, miesiąc ${month.replace(/^Month\s+/i, '')}. Wówczas ciśnienie atmosferyczne oscylowało w granicach ${pressure} paskali, a atmosfera charakteryzowała się wyjątkową przejrzystością, intensywność promieniowania ultrafioletowego była wysoka. Natomiast najzimniejszy dzień to ${coldDate}, wówczas temperatura spadła do<a style="color:rgb(54, 171, 255); font-weight: bold;"> ${coldestDayTemp}°C</a>. Marsjański rok ma 687 dni.
-    `;
-    detailsBottomDiv.appendChild(aboutWeather);
-}
-
 function checkWhichDayWasHottestAndColdest() {
     var hottestSol;
     var warmDate;
@@ -102,6 +83,10 @@ function getLast7DaysInfo() {
     if (soles && soles.soles && soles.soles.length >= 6) {
         var list = document.querySelector('.forecast');
 
+        createAndAppendDivForEachDay();
+    }
+
+    function createAndAppendDivForEachDay() {
         for (var i = 0; i <= 6; i++) {
             var day = document.createElement("div");
 
@@ -109,21 +94,20 @@ function getLast7DaysInfo() {
                 dayName
             } = formatDate(soles.soles[i].terrestrial_date);
             var {
-                minTemp,
-                maxTemp
-            } = getTemp(i);
+                minTemp, maxTemp
+            } = getMinMaxTemp(i);
             var {
                 sol
             } = getSol(i);
             day.innerHTML = `
-      <div class="day" onclick="provideDetailsByCurrentDay(${sol})">
-        <div class="day-temp" style="float: left;">
-            <div class="day-name">${dayName}</div>
-            <div class="day-temperature">${maxTemp}°C / ${minTemp}°C</div>
-        </div>
-        <div class="day-sol" style="text-align: right;">Sol: ${sol}</div>
-      </div>
-    `;
+                            <div class="day" onclick="provideDetailsByCurrentDay(${sol})">
+                                <div class="day-temp" style="float: left;">
+                                    <div class="day-name">${dayName}</div>
+                                    <div class="day-temperature">${maxTemp}°C / ${minTemp}°C</div>
+                                </div>
+                                <div class="day-sol" style="text-align: right;">Sol: ${sol}</div>
+                            </div>
+            `;
             list.appendChild(day);
         }
     }
@@ -143,7 +127,7 @@ function formatDate(terrestrial_date) {
     };
 }
 
-function getTemp(i) {
+function getMinMaxTemp(i) {
     var minTemp = soles.soles[i].min_temp;
     var maxTemp = soles.soles[i].max_temp;
     return {
@@ -217,11 +201,11 @@ function provideDetailsByCurrentDay(sol) {
         if (ls >= 270 && ls <= 360) return 'Zima';
     }
 }
-let lastClickedSol;
 
 function toggleClickedDayColor(sol) {
     const daySolElements = document.querySelectorAll('.day');
     let nowClickedSol = sol;
+    let lastClickedSol;
 
     daySolElements.forEach(element => {
         if (element.textContent.includes(sol)) {
@@ -236,9 +220,7 @@ function toggleClickedDayColor(sol) {
     function restoreDefaultColor(lastClickedSol, daySolElements) {
         console.log("restore start")
         daySolElements.forEach(element => {
-            console.log("restore przed if")
             if (element.textContent.includes(lastClickedSol)) {
-                console.log("restore wewnątrz if")
                 element.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
             }
         });
@@ -249,6 +231,25 @@ function intoSelectWeahterDay() {
     document.querySelector('.weather-app').scrollIntoView({
         behavior: 'smooth'
     });
+}
+
+function fillInfoAboutWeather() {
+    var {
+        warmDate,
+        hottesDayTemp,
+        month,
+        pressure,
+        coldDate,
+        coldestDayTemp,
+        hottestSol
+    } = checkWhichDayWasHottestAndColdest();
+
+    var detailsBottomDiv = document.querySelector(".details-bottom");
+    var aboutWeather = document.createElement("div");
+    aboutWeather.innerHTML = `
+                                W dniu ${warmDate}, na Marsie w rejonie Gale Crater zanotowano rekordową dotychczasową temperaturę dodatnią, dochodzącą do około <a style="color:red; font-weight: bold;">${hottesDayTemp}°C</a>. Był to <a style="color:#FF6347; font-weight: bold;">sol ${hottestSol}</a>, miesiąc ${month.replace(/^Month\s+/i, '')}. Wówczas ciśnienie atmosferyczne oscylowało w granicach ${pressure} paskali, a atmosfera charakteryzowała się wyjątkową przejrzystością, intensywność promieniowania ultrafioletowego była wysoka. Natomiast najzimniejszy dzień to ${coldDate}, wówczas temperatura spadła do<a style="color:rgb(54, 171, 255); font-weight: bold;"> ${coldestDayTemp}°C</a>. Marsjański rok ma 687 dni.
+    `;
+    detailsBottomDiv.appendChild(aboutWeather);
 }
 
 function redirectTo20DaysWeather() {
