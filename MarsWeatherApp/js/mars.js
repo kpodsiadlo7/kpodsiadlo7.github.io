@@ -202,30 +202,37 @@ function provideDetailsByCurrentDay(sol) {
     }
 }
 
+let lastClickedSol;
+
 function toggleClickedDayColor(sol) {
     const daySolElements = document.querySelectorAll('.day');
     let nowClickedSol = sol;
-    let lastClickedSol;
 
-    daySolElements.forEach(element => {
-        if (element.textContent.includes(sol)) {
-            if (nowClickedSol !== lastClickedSol) {
-                restoreDefaultColor(lastClickedSol, daySolElements);
-                lastClickedSol = sol;
-                element.style.backgroundColor = 'rgb(255, 99, 71,0.1)';
-            }
-        }
-    });
-
-    function restoreDefaultColor(lastClickedSol, daySolElements) {
-        console.log("restore start")
-        daySolElements.forEach(element => {
-            if (element.textContent.includes(lastClickedSol)) {
-                element.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
-            }
-        });
+    if (nowClickedSol !== lastClickedSol) {
+        setClickedColor(nowClickedSol, daySolElements);
+        restoreLastClickedColorToDefault(lastClickedSol, daySolElements);
+        lastClickedSol = nowClickedSol;
     }
 }
+
+function setClickedColor(sol, daySolElements) {
+    daySolElements.forEach(element => {
+        if (element.textContent.includes(sol)) {
+            element.style.backgroundColor = 'rgba(255, 99, 71, 0.1)';
+        }
+    });
+}
+
+function restoreLastClickedColorToDefault(lastClickedSol, daySolElements) {
+    if (!lastClickedSol) return; 
+    daySolElements.forEach(element => {
+        if (element.textContent.includes(lastClickedSol)) {
+            element.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+        }
+    });
+}
+
+
 
 function intoSelectWeahterDay() {
     document.querySelector('.weather-app').scrollIntoView({
