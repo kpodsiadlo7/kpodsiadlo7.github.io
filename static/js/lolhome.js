@@ -126,7 +126,7 @@ function englishVersion() {
     `;
 
     infoText.innerHTML = `
-            Due to using free hosting for the backend, it is possible that the application will operate slower and require longer processing times.
+            Backend is off.
     `;
 }
 
