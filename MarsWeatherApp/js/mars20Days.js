@@ -130,7 +130,7 @@ function aggregateMaxTempsForYears(howManyYearsLeftToCheckWeather, lastYearSols,
     for (var i = 1; i <= howManyYearsLeftToCheckWeather; i++) {
         for (var j = 0; j < soles.soles.length; j++) {
             var sol = soles.soles[j];
-            if (sol.sol.toString() === lastYearSols.toString()) {
+            if (sol.sol.toString() <= lastYearSols.toString()) {
                 if (sol.max_temp === '--') continue;
                 var currentVal = lastYearDays.get(howManyDaysForward) || 0;
                 lastYearDays.set(howManyDaysForward, Number(sol.max_temp) + currentVal);
