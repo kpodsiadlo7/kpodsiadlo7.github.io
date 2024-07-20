@@ -153,6 +153,6 @@ function aggregateMaxTempsForYears(howManyYearsLeftToCheckWeather, lastYearSols,
 
 function calculateAverageForLastYearDays(lastYearDays) {
     for (var i = 1; i <= 20; i++) {
-        lastYearDays.set(i, Math.floor(lastYearDays.get(i) / 6));
+        lastYearDays.set(i, Math.trunc(lastYearDays.get(i) / 6));
     }
 }
