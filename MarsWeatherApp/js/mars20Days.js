@@ -105,6 +105,12 @@ function aggregateMaxTempsForYears(howManyYearsLeftToCheckWeather, lastYearSols,
     };
 }
 
+function calculateAverageForLastYearDays(lastYearDays) {
+    for (var i = lastYearDays.size; 1 <= i; i--) {
+        lastYearDays.set(i, Math.trunc(lastYearDays.get(i) / 6));
+    }
+}
+
 function fillCardsWithWeatherData(lastYearDays) {
     var firstFloor = document.querySelector('.first-floor');
     var secondFloor = document.querySelector('.second-floor');
@@ -148,11 +154,5 @@ function fillCardsWithWeatherData(lastYearDays) {
         
             floors[j].appendChild(floor); 
         }
-    }
-}
-
-function calculateAverageForLastYearDays(lastYearDays) {
-    for (var i = 20; 1 <= i; i--) {
-        lastYearDays.set(i, Math.trunc(lastYearDays.get(i) / 6));
     }
 }
