@@ -63,6 +63,48 @@ function initializeWeatherDataFor20Days() {
     }
 }
 
+function prepareVariables() {
+    var currentSol = soles.soles[0].sol;
+    var marsYearDays = 687;
+    var howManyYearsLeftToCheckWeather = Math.floor(currentSol / marsYearDays);
+    var lastYearDays = new Map();
+
+    var lastYearSols = currentSol - marsYearDays + 20;
+    var howManyDaysForward = 20;
+    return {
+        lastYearSols,
+        howManyDaysForward,
+        howManyYearsLeftToCheckWeather,
+        lastYearDays,
+        marsYearDays
+    };
+}
+
+function aggregateMaxTempsForYears(howManyYearsLeftToCheckWeather, lastYearSols, lastYearDays, howManyDaysForward, marsYearDays) {
+    for (var i = 1; i <= howManyYearsLeftToCheckWeather; i++) {
+        for (var j = 0; j < soles.soles.length; j++) {
+            var sol = soles.soles[j];
+            if (sol.sol <= lastYearSols) {
+                if (sol.max_temp === '--') continue;
+                var currentVal = lastYearDays.get(howManyDaysForward) || 0;
+                lastYearDays.set(howManyDaysForward, Number(sol.max_temp) + currentVal);
+                lastYearSols--;
+                howManyDaysForward--;
+                if (howManyDaysForward === 0) {
+                    howManyDaysForward = 20;
+                    break;
+                }
+            }
+        }
+        lastYearSols -= marsYearDays;
+    }
+    return {
+        i,
+        lastYearSols,
+        howManyDaysForward
+    };
+}
+
 function fillCardsWithWeatherData(lastYearDays) {
     var firstFloor = document.querySelector('.first-floor');
     var secondFloor = document.querySelector('.second-floor');
@@ -109,50 +151,8 @@ function fillCardsWithWeatherData(lastYearDays) {
     }
 }
 
-function prepareVariables() {
-    var currentSol = soles.soles[0].sol;
-    var marsYearDays = 687;
-    var howManyYearsLeftToCheckWeather = Math.floor(currentSol / marsYearDays);
-    var lastYearDays = new Map();
-
-    var lastYearSols = currentSol - marsYearDays + 20;
-    var howManyDaysForward = 20;
-    return {
-        lastYearSols,
-        howManyDaysForward,
-        howManyYearsLeftToCheckWeather,
-        lastYearDays,
-        marsYearDays
-    };
-}
-
-function aggregateMaxTempsForYears(howManyYearsLeftToCheckWeather, lastYearSols, lastYearDays, howManyDaysForward, marsYearDays) {
-    for (var i = 1; i <= howManyYearsLeftToCheckWeather; i++) {
-        for (var j = 0; j < soles.soles.length; j++) {
-            var sol = soles.soles[j];
-            if (sol.sol.toString() <= lastYearSols.toString()) {
-                if (sol.max_temp === '--') continue;
-                var currentVal = lastYearDays.get(howManyDaysForward) || 0;
-                lastYearDays.set(howManyDaysForward, Number(sol.max_temp) + currentVal);
-                lastYearSols--;
-                howManyDaysForward--;
-                if (howManyDaysForward === 0) {
-                    howManyDaysForward = 20;
-                    break;
-                }
-            }
-        }
-        lastYearSols -= marsYearDays;
-    }
-    return {
-        i,
-        lastYearSols,
-        howManyDaysForward
-    };
-}
-
 function calculateAverageForLastYearDays(lastYearDays) {
-    for (var i = 1; i <= 20; i++) {
+    for (var i = 20; 1 <= i; i--) {
         lastYearDays.set(i, Math.trunc(lastYearDays.get(i) / 6));
     }
 }
