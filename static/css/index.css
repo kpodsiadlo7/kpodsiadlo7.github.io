@@ -28,6 +28,7 @@
 
 .container .row .header h1 {
     padding-top: 30px;
+    font-weight: 100;
     font-size: 45px;
     color: #141727;
     font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', sans-serif; 

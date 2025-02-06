@@ -9,3 +9,7 @@ function redirectToMarsWeather() {
 function redirectToFishingSnap() {
     window.location.href = '/FishSnap/fishsnapMM.html';
 }
+
+function redirectToUndeadRPG() {
+    window.location.href = '/UndeadRPG/undead.html';
+}
